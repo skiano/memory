@@ -5,9 +5,9 @@ export const makeCards = (cards, gameMode) => {
   return [...cards]
 }
 
-export const makeSets = (cards) => {
-  return [...cards]
-}
+export const makeSets = cards => (
+  cards.map(c => c)
+)
 
 export const pureRemove = (arr, item) => {
   const newArr = [...arr]
