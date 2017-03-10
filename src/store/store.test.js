@@ -11,12 +11,18 @@ test('Initial State', () => {
 
 test('Setup Game: standard', () => {
   const store = createStore()
+  const input = ['A', 'B', 'C', 'A', 'B', 'C']
+  const expectedSets = ['0,3', '1,4', '2,5']
 
-  // const unsubscribe = store.subscribe(() =>
-  //   console.log(store.getState())
-  // )
+  const unsubscribe = store.subscribe(() => {
+    const { cards, sets } = store.getState()
+    input.map(c => expect(cards).toContain(c))
 
-  store.dispatch(setupGame(['A', 'B', 'C', 'A', 'B', 'C']))
+    const flattenedSets = sets.map(set => set.join())
+    expectedSets.map(s => expect(flattenedSets).toContain(s))
+  })
 
-  // unsubscribe()
+  store.dispatch(setupGame(input))
+
+  unsubscribe()
 })
