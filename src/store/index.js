@@ -1,3 +1,5 @@
+import { purePush, pureRemove } from '../util'
+
 /** Constants */
 
 export const GAME_STATES = {
@@ -30,17 +32,6 @@ export const initialState = {
 }
 
 /** Reducers */
-
-export const purePush = (state, key, item) => {
-  const newState = {}
-  newState[key] = [...state[key], item]
-  return { ...state, ...newState }
-}
-
-export const pureRemove = (state, key, item) => {
-  const newState = {}
-  newState[key] = [...state[key]].splice(state[key].indexOf(item), 1)
-}
 
 export const selection = (state = initialState, action) => {
   switch (action.type) {

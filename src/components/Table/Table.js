@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+
 import styles from './Table.scss'
 
 class Table extends React.Component {
