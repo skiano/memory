@@ -1,5 +1,7 @@
 import { createStore } from 'redux'
-import { pureRemove, makeCards, makeSets } from '../util'
+import { List, Set, Map } from 'immutable'
+
+import { makeCards, makeSets } from '../util'
 
 /** Constants */
 
@@ -51,54 +53,56 @@ export const gameState = (state = GAME_STATES.PENDING, { type }) => {
   }
 }
 
-const initialState = { cards: [], sets: [], remaining: [] }
-export const game = (state = initialState, { type, payload, gameMode }) => {
+export const game = (state = Map(), { type, payload, gameMode }) => {
   switch (type) {
     case SETUP_GAME: {
       const cards = makeCards(payload, gameMode)
-      const remaining = cards.map((v, i) => i)
-      const sets = makeSets(cards)
-      return { cards, sets, remaining }
+      return state
+        .set('cards', List(cards))
+        .set('sets', List(makeSets(cards)))
+        .set('remaining', List(cards.map((v, i) => i)))
     }
 
-    case REMOVE_CARD:
-      return Object.assign(
-        {}, state, { remaining: pureRemove(state.remaining, payload) })
+    case REMOVE_CARD: {
+      const remaining = state.get('remaining')
+      return state.set('remaining', remaining.delete(remaining.indexOf(payload)))
+    }
 
     default:
       return state
   }
 }
 
-export const selected = (state = [], { type, payload }) => {
+export const selected = (state = Set(), { type, payload }) => {
   switch (type) {
-
     case SELECT_CARD:
-      return state.includes(payload) ? state : [...state, payload]
-
+      return state.add(payload)
     case DESELECT_CARD:
-      return state.includes(payload) ? pureRemove(state, payload) : state
-
+      return state.remove(payload)
     default:
       return state
   }
 }
 
-export const seen = (state = [], { type, payload }) => {
+export const seen = (state = Set(), { type, payload }) => {
   switch (type) {
-
     case SELECT_CARD:
-      return [...state, payload]
-
+      return state.add(payload)
     default:
       return state
   }
 }
 
-export const memoryApp = (state = {}, action) => (Object.assign({
-  gameState: gameState(state.gameState, action),
-  selected: selected(state.selected, action),
-  seen: seen(state.seen, action),
-}, game(state.cards, action)))
+const initialState = Map({
+  cards: List(),
+  sets: List(),
+  remaining: Set(),
+})
+export const memoryApp = (state = initialState, action) => (
+  game(state, action)
+    .set('gameState', gameState(state.get('gameState'), action))
+    .set('selected', selected(state.get('selected'), action))
+    .set('seen', seen(state.get('seen'), action))
+)
 
 export default () => createStore(memoryApp)

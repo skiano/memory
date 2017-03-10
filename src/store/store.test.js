@@ -2,33 +2,34 @@ import createStore, {
   setupGame,
   selectCard,
   deselectCard,
+  removeCard,
 } from './index'
 
 test('Initial State', () => {
   const initial = createStore().getState()
-  expect(initial.gameState).toBe('PENDING')
-  expect(initial.cards.length).toBe(0)
-  expect(initial.remaining.length).toBe(0)
-  expect(initial.sets.length).toBe(0)
-  expect(initial.seen.length).toBe(0)
-  expect(initial.selected.length).toBe(0)
+  expect(initial.get('gameState')).toBe('PENDING')
+  expect(initial.get('cards').size).toBe(0)
+  expect(initial.get('remaining').size).toBe(0)
+  expect(initial.get('sets').size).toBe(0)
+  expect(initial.get('seen').size).toBe(0)
+  expect(initial.get('selected').size).toBe(0)
 })
 
 test('Setup Game: standard', () => {
   const store = createStore()
   const input = ['A', 'B', 'C', 'A', 'B', 'C']
-  const expectedSets = ['0,3', '1,4', '2,5']
-  const expectedRemaining = [0, 1, 2, 3, 4, 5]
 
   store.dispatch(setupGame(input))
 
-  const { cards, sets, remaining } = store.getState()
+  const state = store.getState()
 
-  input.map(c => expect(cards).toContain(c))
-  expectedRemaining.map(i => expect(remaining).toContain(i))
+  const expectedRemaining = [0, 1, 2, 3, 4, 5]
+  input.map(c => expect(state.get('cards').includes(c)).toBe(true))
+  expectedRemaining.map(i => expect(state.get('remaining').includes(i)).toBe(true))
 
-  const flattenedSets = sets.map(set => set.join())
-  expectedSets.map(s => expect(flattenedSets).toContain(s))
+  const expectedSets = ['0,3', '1,4', '2,5']
+  const flattenedSets = state.get('sets').map(set => set.join())
+  expectedSets.map(s => expect(flattenedSets.includes(s)).toBe(true))
 })
 
 test('selectCard', () => {
@@ -40,7 +41,10 @@ test('selectCard', () => {
   store.dispatch(selectCard(2))
   store.dispatch(selectCard(1))
 
-  expect(store.getState().selected.join()).toBe('1,2')
+  const selected = store.getState().get('selected')
+  const expected = [1, 2]
+
+  expected.forEach(i => expect(selected.includes(i)).toBe(true))
 })
 
 test('deselectCard', () => {
@@ -53,7 +57,10 @@ test('deselectCard', () => {
   store.dispatch(deselectCard(2))
   store.dispatch(deselectCard(0))
 
-  expect(store.getState().selected.join()).toBe('1')
+  const selected = store.getState().get('selected')
+  const expected = [1]
+
+  expected.forEach(i => expect(selected.includes(i)).toBe(true))
 })
 
 test('removeCard', () => {
@@ -62,5 +69,15 @@ test('removeCard', () => {
 
   store.dispatch(setupGame(input))
 
-  expect(store.getState().remaining.join()).toBe('0,1,2')
+  const remainingBefore = store.getState().get('remaining')
+  const expectBefore = [0, 1, 2]
+
+  expectBefore.forEach(i => expect(remainingBefore.includes(i)).toBe(true))
+
+  store.dispatch(removeCard(1))
+
+  const remainingAfter = store.getState().get('remaining')
+  const expectAfter = [0, 2]
+
+  expectAfter.forEach(i => expect(remainingAfter.includes(i)).toBe(true))
 })

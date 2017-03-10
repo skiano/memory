@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 // This is where the game will be extendable
-export const makeCards = (cards, gameMode) => [...cards]
+export const makeCards = (cards, gameMode) => cards
 
 function cardsMatch(a, b) {
   return a === b
@@ -21,9 +21,3 @@ export const makeSets = cards => (
     return sets
   }, [])
 )
-
-export const pureRemove = (arr, item) => {
-  const newArr = [...arr]
-  newArr.splice(arr.indexOf(item), 1)
-  return newArr
-}

@@ -16,6 +16,7 @@
   ],
 
   "rules": {
+    "new-cap": "off",
     "no-console": "off",
     "no-lonely-if": 2,
     "no-nested-ternary": 2,
