@@ -32,9 +32,9 @@ export const setupGame = (cards, gameMode = GAME_MODES.STANDARD) => ({
 
 export const startGame = () => ({ type: START_GAME })
 export const endGame = () => ({ type: END_GAME })
-export const selectCard = id => ({ type: SELECT_CARD, id })
-export const deselectCard = id => ({ type: DESELECT_CARD, id })
-export const removeCard = id => ({ type: REMOVE_CARD, id })
+export const selectCard = id => ({ type: SELECT_CARD, payload: id })
+export const deselectCard = id => ({ type: DESELECT_CARD, payload: id })
+export const removeCard = id => ({ type: REMOVE_CARD, payload: id })
 
 /** Reducers */
 
@@ -51,13 +51,20 @@ export const gameState = (state = GAME_STATES.PENDING, { type }) => {
   }
 }
 
-export const game = (state = { cards: [], sets: [] }, { type, payload, gameMode }) => {
+const initialGameState = { cards: [], sets: [], remaining: [] }
+
+export const game = (state = initialGameState, { type, payload, gameMode }) => {
   switch (type) {
     case SETUP_GAME: {
       const cards = makeCards(payload, gameMode)
+      const remaining = cards.map((v, i) => i)
       const sets = makeSets(cards)
-      return { cards, sets }
+      return { cards, sets, remaining }
     }
+
+    case REMOVE_CARD:
+      return Object.assign(
+        {}, state, { remaining: pureRemove(state.remaining, payload) })
 
     default:
       return state
