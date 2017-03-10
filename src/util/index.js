@@ -7,8 +7,20 @@ function cardsMatch(a, b) {
   return a === b
 }
 
+function vallidateSets(sets, cards) {
+  const size = sets[0].length
+
+  sets.forEach((set) => {
+    if (set.length !== size) {
+      throw new Error(`Sets must be the same size: ${JSON.stringify(cards)}`)
+    }
+  })
+
+  return sets
+}
+
 export const makeSets = cards => (
-  cards.reduce((sets, card, idx) => {
+  vallidateSets(cards.reduce((sets, card, idx) => {
     for (let i = 0; i < sets.length; i += 1) {
       const set = sets[i]
       if (cardsMatch(cards[set[0]], card)) {
@@ -19,5 +31,5 @@ export const makeSets = cards => (
 
     sets.push([idx])
     return sets
-  }, [])
+  }, []), cards)
 )

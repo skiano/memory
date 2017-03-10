@@ -15,6 +15,17 @@ test('Initial State', () => {
   expect(initial.get('selected').size).toBe(0)
 })
 
+test('Setup Game: Ensure sets match', () => {
+  const store = createStore()
+  const input = ['A', 'B', 'C', 'A', 'B']
+
+  try {
+    store.dispatch(setupGame(input))
+  } catch (e) {
+    expect(e.message).toMatch('Sets must be the same size')
+  }
+})
+
 test('Setup Game: standard', () => {
   const store = createStore()
   const input = ['A', 'B', 'C', 'A', 'B', 'C']
