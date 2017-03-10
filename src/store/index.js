@@ -1,3 +1,4 @@
+import { createStore } from 'redux'
 import { pureRemove, makeCards, makeSets } from '../util'
 
 /** Constants */
@@ -87,3 +88,5 @@ export const memoryApp = (state = {}, action) => (Object.assign({
   selected: selected(state.selected, action),
   seen: seen(state.seen, action),
 }, game(state.cards, action)))
+
+export default createStore(memoryApp)

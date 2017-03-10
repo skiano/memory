@@ -3,7 +3,7 @@ import { Router, Route, hashHistory } from 'react-router'
 
 import Home from '../Home/Home'
 import Game from '../Game/Game'
-import * as store from '../../store'
+import store from '../../store'
 
 console.log(store)
 
