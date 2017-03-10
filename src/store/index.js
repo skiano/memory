@@ -1,4 +1,5 @@
 import { createStore } from 'redux'
+import { createAction } from 'redux-actions'
 import { List, Set, Map } from 'immutable'
 
 import { makeCards, makeSets } from '../util'
@@ -26,17 +27,13 @@ export const REMOVE_CARD = 'REMOVE_CARD'
 
 /** Action creators */
 
-export const setupGame = (cards, gameMode = GAME_MODES.STANDARD) => ({
-  type: SETUP_GAME,
-  payload: cards,
-  gameMode,
-})
-
-export const startGame = () => ({ type: START_GAME })
-export const endGame = () => ({ type: END_GAME })
-export const selectCard = id => ({ type: SELECT_CARD, payload: id })
-export const deselectCard = id => ({ type: DESELECT_CARD, payload: id })
-export const removeCard = id => ({ type: REMOVE_CARD, payload: id })
+export const startGame = createAction(START_GAME)
+export const endGame = createAction(START_GAME)
+export const selectCard = createAction(SELECT_CARD)
+export const deselectCard = createAction(DESELECT_CARD)
+export const removeCard = createAction(REMOVE_CARD)
+export const setupGame = createAction(SETUP_GAME,
+  null, (cards, gameMode = GAME_MODES.STANDARD) => ({ gameMode }))
 
 /** Reducers */
 
@@ -53,10 +50,10 @@ export const gameState = (state = GAME_STATES.PENDING, { type }) => {
   }
 }
 
-export const game = (state = Map(), { type, payload, gameMode }) => {
+export const game = (state = Map(), { type, payload, meta }) => {
   switch (type) {
     case SETUP_GAME: {
-      const cards = makeCards(payload, gameMode)
+      const cards = makeCards(payload, meta.gameMode)
       return state
         .set('cards', List(cards))
         .set('sets', List(makeSets(cards)))
