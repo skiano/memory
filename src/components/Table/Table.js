@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 import styles from './Table.scss'
-import Card from '../Card/Card'
 
 class Table extends React.Component {
 
@@ -12,20 +11,18 @@ class Table extends React.Component {
   }
 
   render() {
-    const { cards } = this.props
+    const { children } = this.props
 
     return (
       <div className={styles.table}>
-        {cards.map(c => (
-          <Card key={c}>{c}</Card>
-        ))}
+        {children}
       </div>
     )
   }
 }
 
 Table.propTypes = {
-  cards: PropTypes.arrayOf(PropTypes.string),
+  children: PropTypes.arrayOf(PropTypes.node),
 }
 
 export default Table
