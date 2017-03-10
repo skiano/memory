@@ -1,12 +1,12 @@
 {
-  "name": "games-web-code-test",
+  "name": "@skiano/memory",
   "version": "1.0.0",
-  "description": "Sample app for NYT Games web engineering candidates",
+  "description": "Memory the game, with a twist",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nytm/games-web-code-test.git"
   },
-  "author": "NYT",
+  "author": "Greg Skiano",
   "license": "Apache-2.0",
   "dependencies": {
     "enzyme": "^2.6.0",
