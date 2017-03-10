@@ -24,6 +24,12 @@ export const REMOVE_CARD = 'REMOVE_CARD'
 
 /** Action creators */
 
+export const setupGame = (cards, gameMode = GAME_MODES.STANDARD) => ({
+  type: SETUP_GAME,
+  payload: cards,
+  gameMode,
+})
+
 export const startGame = () => ({ type: START_GAME })
 export const endGame = () => ({ type: END_GAME })
 export const selectCard = id => ({ type: SELECT_CARD, id })
@@ -89,4 +95,4 @@ export const memoryApp = (state = {}, action) => (Object.assign({
   seen: seen(state.seen, action),
 }, game(state.cards, action)))
 
-export default createStore(memoryApp)
+export default () => createStore(memoryApp)

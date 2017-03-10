@@ -1,7 +1,11 @@
 
 export const makeCards = (cards, gameMode) => {
   // This is where the game will be extendable
-  console.log(gameMode)
+  console.log(cards, gameMode)
+  return [...cards]
+}
+
+export const makeSets = (cards) => {
   return [...cards]
 }
 
