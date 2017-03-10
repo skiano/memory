@@ -8,3 +8,10 @@ Create extended matching ideas
 - Sign/Signified [Image, Word]
 - Mirrored [Image, egamI]
 - Double/Double [[A, B], [A, B]]
+
+### Increasing difficulty
+
+- triples
+- time pressure
+- time you have to look at your mistake shrinks over time
+- occasionally switch two cards with slide animation

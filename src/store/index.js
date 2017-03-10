@@ -51,9 +51,8 @@ export const gameState = (state = GAME_STATES.PENDING, { type }) => {
   }
 }
 
-const initialGameState = { cards: [], sets: [], remaining: [] }
-
-export const game = (state = initialGameState, { type, payload, gameMode }) => {
+const initialState = { cards: [], sets: [], remaining: [] }
+export const game = (state = initialState, { type, payload, gameMode }) => {
   switch (type) {
     case SETUP_GAME: {
       const cards = makeCards(payload, gameMode)
