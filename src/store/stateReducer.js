@@ -21,6 +21,8 @@ const reducers = {}
 
 reducers.gameState = (state = STATE_UNLOCKED, { type }) => {
   switch (type) {
+    case SETUP_GAME:
+      return STATE_UNLOCKED
     case LOCK_GAME:
       return STATE_LOCKED
     case UNLOCK_GAME:

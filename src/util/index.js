@@ -64,14 +64,32 @@ export function wait(time) {
   })
 }
 
-export function getMatch(selected, sets) {
-  const guess = selected.sort().join()
+export function isFinalSet(completedSets, sets) {
+  return completedSets.size() === sets.size() - 1
+}
 
+export function getPotentialSet(selected, sets) {
+  const guess = selected.toJS()
+  const base = guess.pop()
+
+  let potentialSet = null
+
+  /** find the set the base belongs to */
   for (let i = 0; i < sets.size; i += 1) {
-    if (sets.get(i).join() === guess) {
-      return i
+    if (sets.get(i).includes(base)) {
+      potentialSet = i
+      break
     }
   }
 
-  return null
+  /** ensure the rest of the selection matches */
+  return guess.reduce((current, cardId) => {
+    if (!potentialSet.includes(cardId)) return false
+    return current
+  }, true) ? potentialSet : null
+}
+
+
+export function isPerfectMatch(selection, set) {
+  return selection.sort().join() === set.sort().join()
 }

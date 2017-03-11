@@ -20,6 +20,8 @@ Create extended matching ideas
 
 Can i represent a user move as an async request where if the match fails it emits a failure?
 
+Could i make a growler like thing implemented as Redux middleware?
+
 ### scoring
 
 could be negative
