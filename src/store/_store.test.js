@@ -13,24 +13,24 @@ import {
   removeCard,
 } from './syncActions'
 
-// test('Initial State', () => {
-//   const initial = createStore().getState()
-//   expect(initial.get('gameState')).toBe(STATE_UNLOCKED)
-//   expect(initial.get('cards').size).toBe(0)
-//   expect(initial.get('remaining').size).toBe(0)
-//   expect(initial.get('sets').size).toBe(0)
-//   expect(initial.get('seen').size).toBe(0)
-//   expect(initial.get('selected').size).toBe(0)
-// })
+test('Initial State', () => {
+  const initial = createStore().getState()
+  expect(initial.get('gameState')).toBe(STATE_UNLOCKED)
+  expect(initial.get('cards').size).toBe(0)
+  expect(initial.get('remaining').size).toBe(0)
+  expect(initial.get('sets').size).toBe(0)
+  expect(initial.get('seen').size).toBe(0)
+  expect(initial.get('selected').size).toBe(0)
+})
 
-// test('Setup Game: Ensure set lengths match', () => {
-//   const store = createStore()
-//   const input = ['A', 'B', 'C', 'A', 'B']
+test('Setup Game: Ensure set lengths match', () => {
+  const store = createStore()
+  const input = ['A', 'B', 'C', 'A', 'B']
 
-//   expect(() => {
-//     store.dispatch(setup(input))
-//   }).toThrowError(/Sets must be the same size/)
-// })
+  expect(() => {
+    store.dispatch(setup(input))
+  }).toThrowError(/Sets must be the same size/)
+})
 
 test('Setup Game: Standard', () => {
   const store = createStore()
