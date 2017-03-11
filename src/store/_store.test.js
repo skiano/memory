@@ -43,6 +43,13 @@ test('action: setup: sit sizes must match', () => {
   }).toThrowError(/Sets must be the same size/)
 })
 
+test('action: setup: handles larger sets', () => {
+  const input = ['A', 'B', 'A', 'B', 'A', 'B']
+  dispatch(setup(input))
+  expect(getState().get('sets').size).toEqual(2)
+  expect(getState().get('sets').get(0).length).toEqual(3)
+})
+
 test('action: setup: creates {cards, sets, remaining}', () => {
   const input = ['A', 'B', 'C', 'A', 'B', 'C']
 
