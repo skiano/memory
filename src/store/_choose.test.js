@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 
 import createStore from './'
-import { choose } from './choose'
+import choose from './choose'
+import { setup } from './setup'
 
 import {
   setupGame,
@@ -13,6 +14,8 @@ import {
   submitMatch,
 } from './syncActions'
 
+jest.useFakeTimers()
+
 let getState
 let dispatch
 
@@ -20,16 +23,40 @@ beforeEach(() => {
   const store = createStore()
   getState = store.getState
   dispatch = store.dispatch
+  dispatch(setup(
+    ['A', 'B', 'C', 'A', 'B', 'C', 'A', 'B', 'C']
+  ))
 })
 
 test('choose: noop if game is locked', () => {
-  console.log('game is locked')
+  dispatch(choose(1))
+  dispatch(lockGame())
+  dispatch(choose(2))
+  expect(getState().get('selected').size).toEqual(1)
 })
 
-test('choose: deselecting a card', () => {
-  console.log('game is locked')
+test('choose: toggling a card', () => {
+  dispatch(choose(1))
+  expect(getState().get('selected').size).toEqual(1)
+  dispatch(choose(1))
+  expect(getState().get('selected').size).toEqual(0)
 })
 
-test('choose: selecting a card', () => {
-  console.log('game is locked')
+test('choose: building a selection', () => {
+  dispatch(choose(1))
+  dispatch(choose(3))
+  expect(getState().get('selected').size).toEqual(2)
+})
+
+test('choose: guess: incorrect', (done) => {
+  dispatch(choose(3))
+  dispatch(choose(4))
+  dispatch(choose(5))
+
+  jest.runAllTimers()
+
+  process.nextTick(() => {
+    expect(getState().get('selected').size).toEqual(0)
+    done()
+  })
 })

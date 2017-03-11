@@ -25,43 +25,46 @@ import {
  */
 export default cardId => (
   (dispatch, getState) => {
-    const {
-      completedSets,
-      elapsedTime,
-      gameState,
-      selected,
-      sets,
-    } = getState()
+    const state = getState()
+    const completedSets = state.get('completedSets')
+    const elapsedTime = state.get('elapsedTime')
+    const gameState = state.get('gameState')
+    const selected = state.get('selected')
+    const sets = state.get('sets')
 
     const matchSize = sets.get(0).length
 
     switch (true) {
-      /** Locked */
+      /** Noop if game is locked */
       case (gameState === STATE_LOCKED):
         break
 
-      /** Already Selected */
+      /** Turn card back over */
       case (selected.includes(cardId)):
-        dispatch(removeCard(cardId))
+        dispatch(deselectCard(cardId))
         break
 
-      /** Building Set */
-      case (selected.size < matchSize):
+      /** Building selection */
+      case (selected.size < matchSize - 1):
         dispatch(selectCard(cardId))
         break
 
-      /** Completed Set */
-      case (selected.size === matchSize): {
+      /** Submit a guess */
+      case (selected.size === matchSize - 1): {
+        dispatch(selectCard(cardId))
         dispatch(lockGame())
+
         // This is where some score helper might go
         // it could look at if there is a match and what has been seen etc
-        const match = getMatch(selected, sets)
+
+        const finalSelection = getState().get('selected')
+        const match = getMatch(finalSelection, sets)
 
         if (match) {
           const isWin = (completedSets.size() === sets.size())
 
           wait(getSuccessDuration(isWin)).then(() => {
-            selected.forEach((id) => {
+            finalSelection.forEach((id) => {
               dispatch(submitMatch(id))
               dispatch(deselectCard(id))
               dispatch(removeCard(id))
@@ -70,7 +73,7 @@ export default cardId => (
           })
         } else {
           wait(getFailureDuration(elapsedTime)).then(() => {
-            selected.forEach((id) => {
+            finalSelection.forEach((id) => {
               dispatch(deselectCard(id))
             })
             dispatch(unlockGame())
