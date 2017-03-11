@@ -51,8 +51,8 @@ export default cardId => (
 
       /** Submit a guess */
       case (selected.size === matchSize - 1): {
-        dispatch(selectCard(cardId))
         dispatch(lockGame())
+        dispatch(selectCard(cardId))
 
         // This is where some score helper might go
         // it could look at if there is a match and what has been seen etc

@@ -48,7 +48,7 @@ test('choose: building a selection', () => {
   expect(getState().get('selected').size).toEqual(2)
 })
 
-test('choose: guess: incorrect', (done) => {
+test('guess: incorrect', (done) => {
   dispatch(choose(3))
   dispatch(choose(4))
   dispatch(choose(5))
@@ -59,4 +59,22 @@ test('choose: guess: incorrect', (done) => {
     expect(getState().get('selected').size).toEqual(0)
     done()
   })
+})
+
+test('guess: incorrect: locking', () => {
+  dispatch(choose(3))
+  dispatch(choose(4))
+  dispatch(choose(5))
+  dispatch(choose(1))
+  dispatch(choose(2))
+
+  expect(getState().get('selected').size).toEqual(3)
+})
+
+test('guess: correct', () => {
+  expect(true).toBe(false)
+})
+
+test('guess: correct: locking', () => {
+  expect(true).toBe(false)
 })
