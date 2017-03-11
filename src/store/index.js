@@ -1,8 +1,12 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { createAction } from 'redux-actions'
 import { List, Set, Map } from 'immutable'
+import thunkMiddleware from 'redux-thunk'
+import createLogger from 'redux-logger'
 
 import { makeCards, makeSets } from '../util'
+
+const loggerMiddleware = createLogger()
 
 /** Constants */
 
@@ -102,4 +106,10 @@ export const memoryApp = (state = initialState, action) => (
     .set('seen', seen(state.get('seen'), action))
 )
 
-export default () => createStore(memoryApp)
+export default () => createStore(
+  memoryApp,
+  applyMiddleware(
+    thunkMiddleware,
+    loggerMiddleware
+  )
+)
