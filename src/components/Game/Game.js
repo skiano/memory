@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 
 import Table from '../Table/SmartTable'
@@ -14,12 +14,15 @@ class Game extends React.Component {
   }
 
   componentDidMount() {
-    // setup game
     setTimeout(() => {
-      this.setState({
-        isSetup: true,
-      })
-    }, 1500)
+      this.props.setup([
+        'A', 'B', 'C', 'D', 'E',
+        'A', 'B', 'C', 'D', 'E',
+        'A', 'B', 'C', 'D', 'E',
+      ])
+
+      this.setState({ isSetup: true })
+    }, 500)
   }
 
   componentWillUnmount() {
@@ -41,6 +44,10 @@ class Game extends React.Component {
       </div>
     )
   }
+}
+
+Game.propTypes = {
+  setup: PropTypes.func.isRequired,
 }
 
 export default Game

@@ -3,7 +3,7 @@ import { Router, Route, hashHistory } from 'react-router'
 import { Provider } from 'react-redux'
 
 import Home from '../Home/Home'
-import Game from '../Game/Game'
+import Game from '../Game/SmartGame'
 import createStore from '../../store'
 
 const App = () => (
