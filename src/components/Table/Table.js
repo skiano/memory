@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import Card from '../Card/Card'
 import styles from './Table.scss'
 
-const Table = () => (
+
+const Table = ({ cards }) => (
   <div className={styles.table}>
-    <div>
-      <Card>A</Card>
-    </div>
+    {cards.map(card => (
+      <div key={card.idx}>
+        <Card {... card} />
+      </div>
+    ))}
   </div>
 )
+
+Table.propTypes = {
+  cards: PropTypes.arrayOf(PropTypes.object),
+}
 
 export default Table
