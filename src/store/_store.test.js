@@ -13,7 +13,7 @@ import {
   removeCard,
 } from './syncActions'
 
-test('Initial State', () => {
+test('initial state', () => {
   const initial = createStore().getState()
   expect(initial.get('gameState')).toBe(STATE_UNLOCKED)
   expect(initial.get('cards').size).toBe(0)
@@ -23,7 +23,7 @@ test('Initial State', () => {
   expect(initial.get('selected').size).toBe(0)
 })
 
-test('Setup Game: Ensure set lengths match', () => {
+test('action: setup: sit sizes must match', () => {
   const store = createStore()
   const input = ['A', 'B', 'C', 'A', 'B']
 
@@ -32,7 +32,7 @@ test('Setup Game: Ensure set lengths match', () => {
   }).toThrowError(/Sets must be the same size/)
 })
 
-test('Setup Game: Standard', () => {
+test('action: setup: creates {cards, sets, remaining}', () => {
   const store = createStore()
   const input = ['A', 'B', 'C', 'A', 'B', 'C']
 
@@ -49,7 +49,7 @@ test('Setup Game: Standard', () => {
   expectedSets.map(s => expect(flattenedSets.includes(s)).toBe(true))
 })
 
-test('selectCard', () => {
+test('action: selectCard', () => {
   const store = createStore()
   const input = ['A', 'B', 'C']
 
@@ -64,7 +64,7 @@ test('selectCard', () => {
   expected.forEach(i => expect(selected.includes(i)).toBe(true))
 })
 
-test('deselectCard', () => {
+test('action: deselectCard', () => {
   const store = createStore()
   const input = ['A', 'B', 'C']
 
@@ -80,7 +80,7 @@ test('deselectCard', () => {
   expected.forEach(i => expect(selected.includes(i)).toBe(true))
 })
 
-test('removeCard', () => {
+test('action: removeCard', () => {
   const store = createStore()
   const input = ['A', 'B', 'C']
 
