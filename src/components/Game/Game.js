@@ -1,22 +1,46 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-import Table from '../Table/Table'
+import Table from '../Table/SmartTable'
 import Timer from '../Timer/Timer'
-import Card from '../Card/Card'
 import styles from './Game.scss'
 
-const cards = ['a', 'b', 'c']
+class Game extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isSetup: false,
+    }
+  }
 
-const Game = () => (
-  <div>
-    <Link to="/">Home</Link>
-    <h1 className={styles.header}>NYT Games Code Test</h1>
-    <Timer />
-    <Table>
-      {cards.map(c => (<Card key={c}>{c}</Card>))}
-    </Table>
-  </div>
-)
+  componentDidMount() {
+    // setup game
+    setTimeout(() => {
+      this.setState({
+        isSetup: true,
+      })
+    }, 1500)
+  }
+
+  componentWillUnmount() {
+    // reset game
+  }
+
+  render() {
+    const { isSetup } = this.state
+    return isSetup ? (
+      <div>
+        <Link to="/">Home</Link>
+        <h1 className={styles.header}>NYT Games Code Test</h1>
+        <Timer />
+        <Table />
+      </div>
+    ) : (
+      <div>
+        loading
+      </div>
+    )
+  }
+}
 
 export default Game
