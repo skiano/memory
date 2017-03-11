@@ -87,25 +87,39 @@ test('guess: correct', () => {
 })
 
 test('full game', () => {
+  expect(getState().get('remaining').size).toEqual(9)
+
   // choose As
   dispatch(choose(3)) // good
   dispatch(choose(0)) // good
   dispatch(choose(6)) // good
+  expect(getState().get('remaining').size).toEqual(6)
 
   // make mistake
   dispatch(choose(1)) // good
   dispatch(choose(4)) // good
   dispatch(choose(2)) // bad
+  expect(getState().get('remaining').size).toEqual(6)
 
   // choose Bs
   dispatch(choose(1)) // good
   dispatch(choose(4)) // good
   dispatch(choose(7)) // good
+  expect(getState().get('remaining').size).toEqual(3)
 
   // choose Cs
   dispatch(choose(8)) // good
   dispatch(choose(5)) // good
   dispatch(choose(2)) // good
+  expect(getState().get('remaining').size).toEqual(0)
 
-  console.log(getState())
+  const state = getState()
+  const cards = state.get('cards')
+  const sets = state.get('sets')
+  const completedSets = state.get('completedSets')
+  const cardSets = completedSets.map(setId => (
+    sets.get(setId).map(cardId => cards.get(cardId))
+  )).map(cardSet => cardSet.join('')).sort().join()
+
+  expect(cardSets).toEqual('AAA,BBB,CCC')
 })
