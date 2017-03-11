@@ -16,6 +16,13 @@ Create extended matching ideas
 - time you have to look at your mistake shrinks over time
 - occasionally switch two cards with slide animation
 
-### cpde thoughts
+### code thoughts
 
 Can i represent a user move as an async request where if the match fails it emits a failure?
+
+### scoring
+
+could be negative
+  - you loose points when:
+    - you already saw the match but you fail to remember it
+    - you keep clicking the same start without new information?
