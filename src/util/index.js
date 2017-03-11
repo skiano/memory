@@ -5,11 +5,10 @@ import {
   unlockGame,
 } from '../store/syncActions'
 
-/*
- * This is where the game will be extendable
- */
+/** This is where the game will be extendable */
 export const makeCards = (cards, gameMode) => cards
 
+/** Once there are more card modes this will be useful */
 export function cardsMatch(a, b) {
   return a === b
 }
@@ -64,10 +63,6 @@ export function wait(time) {
   })
 }
 
-export function isFinalSet(completedSets, sets) {
-  return completedSets.size() === sets.size() - 1
-}
-
 export function getPotentialSet(selected, sets) {
   const guess = selected.toJS()
   const base = guess.pop()
@@ -90,4 +85,8 @@ export function getPotentialSet(selected, sets) {
 
 export function isPerfectMatch(selection, set) {
   return selection.sort().join() === set.sort().join()
+}
+
+export function isFinalSet(completedSets, sets) {
+  return completedSets.size() === sets.size() - 1
 }
