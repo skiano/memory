@@ -23,10 +23,16 @@ import {
  * whenever a user clicks a card.
  * It handles all the timing & logic complexity
  */
-export default function choose(cardId) {
-  /** Returns a thunk */
-  return (dispatch, getState) => {
-    const { selected, gameState, sets, elapsedTime } = getState()
+export default cardId => (
+  (dispatch, getState) => {
+    const {
+      completedSets,
+      elapsedTime,
+      gameState,
+      selected,
+      sets,
+    } = getState()
+
     const matchSize = sets.get(0).length
 
     switch (true) {
@@ -52,7 +58,7 @@ export default function choose(cardId) {
         const match = getMatch(selected, sets)
 
         if (match) {
-          const isWin = false // check for a win!
+          const isWin = (completedSets.size() === sets.size())
 
           wait(getSuccessDuration(isWin)).then(() => {
             selected.forEach((id) => {
@@ -77,4 +83,4 @@ export default function choose(cardId) {
         throw new Error('Unhandled state')
     }
   }
-}
+)

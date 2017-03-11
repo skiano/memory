@@ -12,6 +12,7 @@ import {
   REMOVE_CARD,
   SELECT_CARD,
   DESELECT_CARD,
+  SUBMIT_SET,
   START_TIMER,
   TICK,
 } from './syncActions'
@@ -80,10 +81,15 @@ reducers.selected = (state = Set(), { type, payload }) => {
   }
 }
 
-// Handle SUBMIT_SET
-reducers.foundSets = (state = Set()) => state
+reducers.completedSets = (state = Set(), { type, payload }) => {
+  switch (type) {
+    case SUBMIT_SET:
+      return state.add(payload)
+    default:
+      return state
+  }
+}
 
-// Handle SUBMIT_SET
 reducers.elapsedTime = (state = 0, { type }) => {
   switch (type) {
     case START_TIMER:
