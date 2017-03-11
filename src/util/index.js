@@ -19,8 +19,8 @@ function vallidateSets(sets, cards) {
   return sets
 }
 
-export const makeSets = cards => (
-  vallidateSets(cards.reduce((sets, card, idx) => {
+export function makeSets(cards) {
+  return vallidateSets(cards.reduce((sets, card, idx) => {
     for (let i = 0; i < sets.length; i += 1) {
       const set = sets[i]
       if (cardsMatch(cards[set[0]], card)) {
@@ -32,4 +32,4 @@ export const makeSets = cards => (
     sets.push([idx])
     return sets
   }, []), cards)
-)
+}

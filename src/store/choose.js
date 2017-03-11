@@ -1,9 +1,12 @@
 import {
-  GAME_STATES,
+  STATE_LOCKED,
+} from './constants'
+
+import {
   selectCard,
   deselectCard,
   removeCard,
-} from './'
+} from './syncActions'
 
 /** how long to show a successful match */
 const showMatchTime = 300
@@ -49,7 +52,7 @@ export default function choose(cardId) {
 
     switch (true) {
       /** Locked */
-      case (gameState === GAME_STATES.LOCKED):
+      case (gameState === STATE_LOCKED):
         break
 
       /** Already Selected */
@@ -75,6 +78,8 @@ export default function choose(cardId) {
                 // dispatch(submitMatch(id))
                 dispatch(deselectCard(id))
                 dispatch(removeCard(id))
+
+                // check for a win!
               })
             })
         } else {
