@@ -64,7 +64,6 @@ export function wait(time) {
 
   // Jest is being weird about time
   // so this is instant for now
-  console.log(`...wait for ${time}ms`)
   return {
     then: cb => cb(),
   }

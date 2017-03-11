@@ -31,5 +31,8 @@
     "lint": "kyt lint",
     "lint-style": "kyt lint-style",
     "kyt:help": "kyt --help"
+  },
+  "devDependencies": {
+    "sinon": "^1.17.7"
   }
 }

@@ -77,9 +77,6 @@ reducers.selected = (state = Set(), { type, payload }) => {
     case SELECT_CARD:
       return state.add(payload)
     case DESELECT_CARD:
-      console.log(`
-        deselect(${payload})
-      `)
       return state.remove(payload)
     default:
       return state
