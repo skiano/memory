@@ -11,9 +11,13 @@ import {
   setupGame,
 } from './syncActions'
 
-export default function setup(cards, mode = MODE_STANDARD) {
+export const setupFromAPI = (mode = MODE_STANDARD) => {
+  console.log(mode)
+}
+
+export const setup = (cards, mode = MODE_STANDARD) => (
   /** Returns a thunk */
-  return (dispatch) => {
+  (dispatch) => {
     const createdCards = makeCards(cards, mode)
 
     dispatch(setupGame({
@@ -22,4 +26,4 @@ export default function setup(cards, mode = MODE_STANDARD) {
       remaining: createdCards.map((c, i) => i),
     }))
   }
-}
+)

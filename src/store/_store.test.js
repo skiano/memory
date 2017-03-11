@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import createStore from './'
-import setup from './setup'
+import { setup } from './setup'
 
 import {
   STATE_UNLOCKED,
