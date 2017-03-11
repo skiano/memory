@@ -14,6 +14,7 @@ export const GAME_STATES = {
   PENDING: 'PENDING',
   STARTED: 'STARTED',
   COMPLETE: 'COMPLETE',
+  LOCKED: 'LOCKED',
 }
 
 export const GAME_MODES = {
