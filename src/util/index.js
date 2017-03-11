@@ -56,11 +56,18 @@ export function getFailureDuration(elapsedTime) {
 }
 
 export function wait(time) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve()
-    }, time)
-  })
+  // return new Promise((resolve) => {
+  //   setTimeout(() => {
+  //     resolve()
+  //   }, time)
+  // })
+
+  // Jest is being weird about time
+  // so this is instant for now
+  console.log(`...wait for ${time}ms`)
+  return {
+    then: cb => cb(),
+  }
 }
 
 export function getPotentialSet(selected, sets) {
@@ -76,6 +83,11 @@ export function getPotentialSet(selected, sets) {
     }
   }
 
+  /* every selected card should exist in some set */
+  if (setId === null) {
+    throw new Error('selected includes values that are not in sets')
+  }
+
   /** ensure the rest of the selection matches */
   return guess.reduce((current, cardId) => {
     if (!sets.get(setId).includes(cardId)) return false
@@ -83,10 +95,6 @@ export function getPotentialSet(selected, sets) {
   }, true) ? setId : null
 }
 
-export function isPerfectMatch(selection, set) {
-  return selection.sort().join() === set.sort().join()
-}
-
 export function isFinalSet(completedSets, sets) {
-  return completedSets.size() === sets.size() - 1
+  return completedSets.size === sets.size - 1
 }

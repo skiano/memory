@@ -15,7 +15,6 @@ import {
   getSuccessDuration,
   getFailureDuration,
   getPotentialSet,
-  isPerfectMatch,
   isFinalSet,
   wait,
 } from '../util'
@@ -33,9 +32,16 @@ export const guess = () => (
     const completedSets = state.get('completedSets')
     const potentialSetId = getPotentialSet(selected, sets)
 
-    if (potentialSetId) {
+    console.log(`
+      (Guess)
+      selected: ${selected}
+      sets: ${sets}
+      potentialSetId: ${potentialSetId}
+    `)
+
+    if (potentialSetId !== null) {
       /* we're on the right track but need to find more matches */
-      if (!isPerfectMatch(selected, sets.get(potentialSetId))) return
+      if (selected.size < sets.get(potentialSetId).length) return
 
       dispatch(lockGame())
 
@@ -52,10 +58,19 @@ export const guess = () => (
         dispatch(unlockGame())
       })
     } else {
+      console.log(`
+        No potentialSetId
+          selected: ${selected}
+      `)
+
       /* Our selection doesn't match any sets */
       dispatch(lockGame())
 
       wait(getFailureDuration(elapsedTime)).then(() => {
+        console.log(`
+          deselecting:
+            ${selected}
+        `)
         selected.forEach(id => dispatch(deselectCard(id)))
         dispatch(unlockGame())
       })
@@ -79,6 +94,15 @@ export const choose = cardId => (
     const selected = state.get('selected')
     const gameState = state.get('gameState')
     const matchSize = sets.get(0).length
+
+    console.log(`
+      (Choose)
+      choose: ${cardId}
+      matchSize: ${matchSize}
+      selected: ${selected},
+      selected.size: ${selected.size}
+      gameState: ${gameState}
+    `)
 
     switch (true) {
       /** Noop if game is locked */

@@ -35,7 +35,7 @@ reducers.gameState = (state = STATE_UNLOCKED, { type }) => {
 reducers.cards = (state = List(), { type, payload }) => {
   switch (type) {
     case SETUP_GAME:
-      return state.concat(payload.cards)
+      return List().concat(payload.cards)
     default:
       return state
   }
@@ -44,7 +44,7 @@ reducers.cards = (state = List(), { type, payload }) => {
 reducers.sets = (state = List(), { type, payload }) => {
   switch (type) {
     case SETUP_GAME:
-      return state.concat(payload.sets)
+      return List().concat(payload.sets)
     default:
       return state
   }
@@ -53,7 +53,7 @@ reducers.sets = (state = List(), { type, payload }) => {
 reducers.remaining = (state = Set(), { type, payload }) => {
   switch (type) {
     case SETUP_GAME:
-      return state.concat(payload.remaining)
+      return Set().concat(payload.remaining)
 
     case REMOVE_CARD:
       return state.remove(payload)
@@ -77,6 +77,9 @@ reducers.selected = (state = Set(), { type, payload }) => {
     case SELECT_CARD:
       return state.add(payload)
     case DESELECT_CARD:
+      console.log(`
+        deselect(${payload})
+      `)
       return state.remove(payload)
     default:
       return state
