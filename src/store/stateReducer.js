@@ -12,7 +12,7 @@ import {
   REMOVE_CARD,
   SELECT_CARD,
   DESELECT_CARD,
-  SUBMIT_SET,
+  SUBMIT_MATCH,
   START_TIMER,
   TICK,
 } from './syncActions'
@@ -83,7 +83,7 @@ reducers.selected = (state = Set(), { type, payload }) => {
 
 reducers.completedSets = (state = Set(), { type, payload }) => {
   switch (type) {
-    case SUBMIT_SET:
+    case SUBMIT_MATCH:
       return state.add(payload)
     default:
       return state

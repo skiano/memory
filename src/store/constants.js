@@ -1,6 +1,4 @@
-export default {
-  API: 'http://api.com/stuff',
-  STATE_LOCKED: 'STATE_LOCKED',
-  STATE_UNLOCKED: 'STATE_UNLOCKED',
-  MODE_STANDARD: 'MODE_STANDARD',
-}
+export const API = 'http://api.com/stuff'
+export const STATE_LOCKED = 'STATE_LOCKED'
+export const STATE_UNLOCKED = 'STATE_UNLOCKED'
+export const MODE_STANDARD = 'MODE_STANDARD'

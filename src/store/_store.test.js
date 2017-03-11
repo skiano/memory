@@ -4,23 +4,27 @@ import createStore from './'
 import { setup } from './setup'
 
 import {
-  STATE_UNLOCKED,
-} from './constants'
-
-import {
+  setupGame,
+  lockGame,
+  unlockGame,
   selectCard,
   deselectCard,
   removeCard,
+  submitMatch,
+  startTimer,
+  tick,
 } from './syncActions'
 
 test('initial state', () => {
   const initial = createStore().getState()
-  expect(initial.get('gameState')).toBe(STATE_UNLOCKED)
+  expect(initial.get('gameState')).toBe('STATE_UNLOCKED')
   expect(initial.get('cards').size).toBe(0)
   expect(initial.get('remaining').size).toBe(0)
   expect(initial.get('sets').size).toBe(0)
+  expect(initial.get('completedSets').size).toBe(0)
   expect(initial.get('seen').size).toBe(0)
   expect(initial.get('selected').size).toBe(0)
+  expect(initial.get('elapsedTime')).toBe(0)
 })
 
 test('action: setup: sit sizes must match', () => {
@@ -97,4 +101,45 @@ test('action: removeCard', () => {
   const expectAfter = [0, 2]
 
   expectAfter.forEach(i => expect(remainingAfter.includes(i)).toBe(true))
+})
+
+test('action: lockGame', () => {
+  const store = createStore()
+  store.dispatch(unlockGame())
+  store.dispatch(lockGame())
+  expect(store.getState().get('gameState')).toEqual('STATE_LOCKED')
+})
+
+test('action: unlockGame', () => {
+  const store = createStore()
+  store.dispatch(lockGame())
+  store.dispatch(unlockGame())
+  expect(store.getState().get('gameState')).toEqual('STATE_UNLOCKED')
+})
+
+test('action: submitMatch', () => {
+  const store = createStore()
+  store.dispatch(submitMatch(1))
+  store.dispatch(submitMatch(3))
+  const completed = store.getState().get('completedSets')
+  expect(completed.includes(1)).toBe(true)
+  expect(completed.includes(3)).toBe(true)
+})
+
+test('action: tick', () => {
+  const { dispatch, getState } = createStore()
+  dispatch(tick())
+  expect(getState().get('elapsedTime')).toBe(1)
+
+  dispatch(tick())
+  dispatch(tick())
+  expect(getState().get('elapsedTime')).toBe(3)
+})
+
+test('action: startTimer', () => {
+  const { dispatch, getState } = createStore()
+  dispatch(tick())
+  expect(getState().get('elapsedTime')).toBe(1)
+  dispatch(startTimer())
+  expect(getState().get('elapsedTime')).toBe(0)
 })
