@@ -71,24 +71,22 @@ export function isFinalSet(completedSets, sets) {
 export function getPotentialSet(selected, sets) {
   const guess = selected.toJS()
   const base = guess.pop()
-
-  let potentialSet = null
+  let setId = null
 
   /** find the set the base belongs to */
   for (let i = 0; i < sets.size; i += 1) {
     if (sets.get(i).includes(base)) {
-      potentialSet = i
+      setId = i
       break
     }
   }
 
   /** ensure the rest of the selection matches */
   return guess.reduce((current, cardId) => {
-    if (!potentialSet.includes(cardId)) return false
+    if (!sets.get(setId).includes(cardId)) return false
     return current
-  }, true) ? potentialSet : null
+  }, true) ? setId : null
 }
-
 
 export function isPerfectMatch(selection, set) {
   return selection.sort().join() === set.sort().join()

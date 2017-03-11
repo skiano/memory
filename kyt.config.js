@@ -4,7 +4,7 @@ module.exports = {
   reactHotLoader: true,
   modifyWebpackConfig: baseConfig => (baseConfig),
   modifyJestConfig: (baseConfig) => {
-    baseConfig.verbose = true
+    // baseConfig.verbose = true
     return baseConfig
   },
 }

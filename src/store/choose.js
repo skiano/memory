@@ -87,7 +87,6 @@ export const choose = cardId => (
 
       /** Turn card back over */
       case (selected.includes(cardId)):
-        console.log('deselectCard', selected, cardId)
         dispatch(deselectCard(cardId))
         break
 
@@ -99,7 +98,7 @@ export const choose = cardId => (
       }
 
       default:
-        throw new Error(`Unhandled state\n${state}`)
+        throw new Error(`Selection overflow: \n${selected}`)
     }
   }
 )
