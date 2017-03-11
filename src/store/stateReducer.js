@@ -12,9 +12,22 @@ import {
   REMOVE_CARD,
   SELECT_CARD,
   DESELECT_CARD,
+  START_TIMER,
+  TICK,
 } from './syncActions'
 
 const reducers = {}
+
+reducers.gameState = (state = STATE_UNLOCKED, { type }) => {
+  switch (type) {
+    case LOCK_GAME:
+      return STATE_LOCKED
+    case UNLOCK_GAME:
+      return STATE_UNLOCKED
+    default:
+      return state
+  }
+}
 
 reducers.cards = (state = List(), { type, payload }) => {
   switch (type) {
@@ -47,6 +60,15 @@ reducers.remaining = (state = Set(), { type, payload }) => {
   }
 }
 
+reducers.seen = (state = Set(), { type, payload }) => {
+  switch (type) {
+    case SELECT_CARD:
+      return state.add(payload)
+    default:
+      return state
+  }
+}
+
 reducers.selected = (state = Set(), { type, payload }) => {
   switch (type) {
     case SELECT_CARD:
@@ -58,24 +80,16 @@ reducers.selected = (state = Set(), { type, payload }) => {
   }
 }
 
-reducers.seen = (state = Set(), { type, payload }) => {
-  switch (type) {
-    case SELECT_CARD:
-      return state.add(payload)
-    default:
-      return state
-  }
-}
-
 // Handle SUBMIT_SET
 reducers.foundSets = (state = Set()) => state
 
-reducers.gameState = (state = STATE_UNLOCKED, { type }) => {
+// Handle SUBMIT_SET
+reducers.elapsedTime = (state = 0, { type }) => {
   switch (type) {
-    case LOCK_GAME:
-      return STATE_LOCKED
-    case UNLOCK_GAME:
-      return STATE_UNLOCKED
+    case START_TIMER:
+      return 0
+    case TICK:
+      return state + 1
     default:
       return state
   }

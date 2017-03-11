@@ -4,16 +4,13 @@ import {
 } from '../util'
 
 import {
+  API,
   MODE_STANDARD,
 } from './constants'
 
 import {
   setupGame,
 } from './syncActions'
-
-export const setupFromAPI = (mode = MODE_STANDARD) => {
-  console.log(mode)
-}
 
 export const setup = (cards, mode = MODE_STANDARD) => (
   /** Returns a thunk */
@@ -27,3 +24,8 @@ export const setup = (cards, mode = MODE_STANDARD) => (
     }))
   }
 )
+
+export const setupFromAPI = (mode = MODE_STANDARD) => {
+  console.log(API, mode)
+  // get data from api and return sync setup
+}

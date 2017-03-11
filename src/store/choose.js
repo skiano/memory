@@ -6,49 +6,28 @@ import {
   selectCard,
   deselectCard,
   removeCard,
+  submitMatch,
+  lockGame,
+  unlockGame,
 } from './syncActions'
 
-/** how long to show a successful match */
-const showMatchTime = 300
-
-const getDwellTime = (elapsedTime) => {
-  /*
-   * This will relate dwell time to time played
-   * so that we can turn up the pressure over time.
-   *
-   * Perhaps the dwellTime also comes from the store
-   * so it can be configured in UI?
-   */
-  console.log(elapsedTime)
-  return 500
-}
-
-const lockFor = (time, dispatch) => (
-  new Promise((resolve) => {
-    dispatch(/* lockGame */)
-    setTimeout(() => {
-      dispatch(/* unlockGame */)
-      resolve()
-    }, time)
-  })
-)
-
-const hasMatch = (selected, sets) => {
-  console.log(selected, sets)
-  return false
-}
+import {
+  getSuccessDuration,
+  getFailureDuration,
+  getMatch,
+  wait,
+} from '../util'
 
 /*
  * This async actionCreator is used
  * whenever a user clicks a card.
- * It handles all the timing/logic complexity
+ * It handles all the timing & logic complexity
  */
 export default function choose(cardId) {
   /** Returns a thunk */
   return (dispatch, getState) => {
-    const { selected, gameState, sets } = getState()
-    const setSize = sets.get(0).length
-    const dwellTime = getDwellTime(/* pass timer state */)
+    const { selected, gameState, sets, elapsedTime } = getState()
+    const matchSize = sets.get(0).length
 
     switch (true) {
       /** Locked */
@@ -61,36 +40,38 @@ export default function choose(cardId) {
         break
 
       /** Building Set */
-      case (selected.size < setSize):
+      case (selected.size < matchSize):
         dispatch(selectCard(cardId))
         break
 
       /** Completed Set */
-      case (selected.size === setSize):
-
+      case (selected.size === matchSize): {
+        dispatch(lockGame())
         // This is where some score helper might go
         // it could look at if there is a match and what has been seen etc
+        const match = getMatch(selected, sets)
 
-        if (hasMatch(selected, sets)) {
-          lockFor(showMatchTime, dispatch)
-            .then(() => {
-              selected.forEach((id) => {
-                // dispatch(submitMatch(id))
-                dispatch(deselectCard(id))
-                dispatch(removeCard(id))
+        if (match) {
+          const isWin = false // check for a win!
 
-                // check for a win!
-              })
+          wait(getSuccessDuration(isWin)).then(() => {
+            selected.forEach((id) => {
+              dispatch(submitMatch(id))
+              dispatch(deselectCard(id))
+              dispatch(removeCard(id))
             })
+            dispatch(unlockGame())
+          })
         } else {
-          lockFor(dwellTime, dispatch)
-            .then(() => {
-              selected.forEach((id) => {
-                dispatch(deselectCard(id))
-              })
+          wait(getFailureDuration(elapsedTime)).then(() => {
+            selected.forEach((id) => {
+              dispatch(deselectCard(id))
             })
+            dispatch(unlockGame())
+          })
         }
         break
+      }
 
       default:
         throw new Error('Unhandled state')
