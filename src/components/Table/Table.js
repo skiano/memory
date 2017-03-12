@@ -2,7 +2,13 @@ import React, { PropTypes } from 'react'
 import Card from '../Card/Card'
 import styles from './Table.scss'
 
-const Table = ({ cards, positions, cardSize, choose }) => (
+const Table = ({
+  cards,
+  choose,
+  cardSize,
+  positions,
+  isGameLocked,
+}) => (
   <div>
     {cards.map(card => (
       <button
@@ -16,7 +22,7 @@ const Table = ({ cards, positions, cardSize, choose }) => (
         }}
         key={card.idx}
         onClick={() => choose(card.idx)}>
-        <Card {... card} />
+        <Card {... card} isGameLocked={isGameLocked} />
       </button>
     ))}
   </div>
@@ -27,6 +33,7 @@ Table.propTypes = {
   choose: PropTypes.func.isRequired,
   cardSize: PropTypes.number,
   positions: PropTypes.arrayOf(PropTypes.array),
+  isGameLocked: PropTypes.bool,
 }
 
 export default Table

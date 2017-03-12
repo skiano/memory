@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 
 import Table from '../Table/SmartTable'
 import Timer from '../Timer/SmartTimer'
+import styles from './Game.scss'
 
 class Game extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Game extends React.Component {
   componentDidMount() {
     /** dispatch the setup from api */
     setTimeout(() => {
-      this.props.setup(['✈', '♘', '✈', '♫', '♫', '☆', '♘', '☆'])
+      this.props.setup(['⍨', '✈', '☆', '♘', '⍨', '♫', '♠', '✈', '❄', '✈', '♘', '☆', '❄', '☯', '☯', '♫', '♠', '⍨', '☯', '☆', '❄', '♘', '♫', '♠'])
 
       this.setState({ isSetup: true })
     }, 500)
@@ -28,8 +29,10 @@ class Game extends React.Component {
     const { isSetup } = this.state
     return isSetup ? (
       <div>
+        <header>
+          <Timer />
+        </header>
         <Table />
-        <Timer />
       </div>
     ) : (
       <div>

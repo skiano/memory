@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 
 import Table from './ResponsiveTable'
 import { choose } from '../../store/choose'
+import { STATE_LOCKED } from '../../store/constants'
 
 const mapStateToProps = (state) => {
   const sets = state.get('sets')
@@ -10,10 +11,12 @@ const mapStateToProps = (state) => {
   const selected = state.get('selected')
   const remaining = state.get('remaining')
   const completedSets = state.get('completedSets')
+  const gameState = state.get('gameState')
 
   return {
     isComplete: remaining.size < 1,
     matchSize: sets.get(0).length,
+    isGameLocked: gameState === STATE_LOCKED,
     sets: sets.map((set, idx) => ({
       idx,
       cards: set.map(cardId => cards.get(cardId)),

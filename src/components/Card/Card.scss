@@ -20,7 +20,8 @@ $text-size: 50px;
 
 
   &.removed {
-    opacity: 0;
+    opacity: 0 !important;
+    transform: scale(0.6);
   }
 
   &.selected {
@@ -28,6 +29,9 @@ $text-size: 50px;
     transform: rotateY(180deg);
   }
 
+  &.locked {
+    opacity: .5;
+  }
 }
 
 .front, .back {
