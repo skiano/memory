@@ -30,7 +30,9 @@ $text-size: 50px;
   }
 
   &.locked {
-    opacity: .7;
+    .back {
+      background: darken(darkgreen, 7%);  
+    }
   }
 }
 
@@ -57,5 +59,6 @@ $text-size: 50px;
 }
 
 .back {
+  transition: background 400ms ease-in-out;
   background: darkgreen;
 }
