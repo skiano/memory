@@ -9,6 +9,7 @@ import {
   removeCard,
   submitMatch,
   startGame,
+  completeGame,
   lockGame,
   unlockGame,
 } from './syncActions'
@@ -49,6 +50,7 @@ export const guess = () => (
       const isVictory = isFinalSet(completedSets, sets)
       if (isVictory) {
         dispatch(stopTimer())
+        dispatch(completeGame())
       }
 
       wait(getSuccessDuration(isVictory)).then(() => {
