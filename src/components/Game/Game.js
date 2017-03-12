@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react'
-import { Link } from 'react-router'
 
 import Table from '../Table/SmartTable'
 import Timer from '../Timer/Timer'
@@ -16,11 +15,7 @@ class Game extends React.Component {
   componentDidMount() {
     /** dispatch the setup from api */
     setTimeout(() => {
-      this.props.setup([
-        'A', 'B', 'C', 'D', 'E',
-        'A', 'B', 'C', 'D', 'E',
-        'A', 'B', 'C', 'D', 'E',
-      ])
+      this.props.setup(['⍨', '✈', '☆', '♘', '⍨', '♫', '♠', '✈', '❄', '✈', '♘', '☆', '❄', '☯', '☯', '♫', '♠', '⍨', '☯', '☆', '❄', '♘', '♫', '♠'])
 
       this.setState({ isSetup: true })
     }, 500)

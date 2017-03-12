@@ -43,8 +43,9 @@ export const guess = () => (
       )
 
       wait(dwellTime).then(() => {
+        dispatch(submitMatch(potentialSetId))
+
         selected.forEach((id) => {
-          dispatch(submitMatch(potentialSetId))
           dispatch(deselectCard(id))
           dispatch(removeCard(id))
         })

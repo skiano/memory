@@ -41,7 +41,7 @@ export function makeSets(cards) {
 }
 
 export function getSuccessDuration(isFinal) {
-  return isFinal ? 600 : 300
+  return isFinal ? 1000 : 800
 }
 
 export function getFailureDuration(elapsedTime) {
@@ -52,21 +52,21 @@ export function getFailureDuration(elapsedTime) {
    * Perhaps the dwellTime also comes from the store
    * so it can be configured in UI?
    */
-  return 500
+  return 800
 }
 
 export function wait(time) {
-  // return new Promise((resolve) => {
-  //   setTimeout(() => {
-  //     resolve()
-  //   }, time)
-  // })
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve()
+    }, time)
+  })
 
   // Jest is being weird about time
   // so this is instant for now
-  return {
-    then: cb => cb(),
-  }
+  // return {
+  //   then: cb => cb(),
+  // }
 }
 
 export function getPotentialSet(selected, sets) {

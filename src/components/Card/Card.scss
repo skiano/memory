@@ -1,5 +1,6 @@
-$card-height: 60px;
-$card-width: 60px;
+$card-height: 120px;
+$card-width: 120px;
+$text-size: 50px;
 
 .card {
   position: relative;
@@ -9,19 +10,18 @@ $card-width: 60px;
   height: $card-width;
   line-height: $card-height;
   text-align: center;
-  font-size: 20px;
+  font-size: $text-size;
 
   &:hover {
     cursor: pointer;
-    border: 1px solid yellow;
   }
 
   transform-style: preserve-3d;
   transition: all 250ms ease-in-out;
 
 
-  &.remaining {
-    border: 1px solid yellow;
+  &.removed {
+    opacity: 0;
   }
 
   &.selected {
@@ -32,6 +32,11 @@ $card-width: 60px;
 }
 
 .front, .back {
+  border-radius: 2px;
+  -webkit-box-shadow: 1px 3px 53px -13px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 3px 53px -13px rgba(0,0,0,0.75);
+  box-shadow: 1px 3px 53px -13px rgba(0,0,0,0.75);
+
   backface-visibility: hidden;
   height: 100%;
   width: 100%;

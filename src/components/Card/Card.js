@@ -5,7 +5,7 @@ import styles from './Card.scss'
 
 const Card = ({ value, isSelected, isRemaining }) => {
   const className = classNames(styles.card, {
-    [styles.remaining]: isRemaining,
+    [styles.removed]: !isRemaining,
     [styles.selected]: isSelected,
   })
 
@@ -14,9 +14,7 @@ const Card = ({ value, isSelected, isRemaining }) => {
       <div className={styles.front}>
         {value}
       </div>
-      <div className={styles.back}>
-        back
-      </div>
+      <div className={styles.back}/>
     </div>
   )
 }
