@@ -109,7 +109,7 @@ test.only('getLayout: supports rectangle', () => {
   })
 })
 
-test.only('getLayout: chooses best orientation for rectangle', () => {
+test('getLayout: chooses best orientation for rectangle', () => {
   const cardCount = 6
   const tableSize = [220, 340]
   const gutterSize = 20

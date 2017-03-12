@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react'
 
 import Table from '../Table/SmartTable'
 import Timer from '../Timer/SmartTimer'
-import styles from './Game.scss'
 
 class Game extends React.Component {
   constructor(props) {

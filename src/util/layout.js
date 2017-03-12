@@ -69,16 +69,27 @@ export function getLayout(
   idealGutter = IDEAL_GUTTER,
   minCardSize = MIN_CARD_SIZE
 ) {
-  const shortSide = tableSize[0] < tableSize[1] ? tableSize[0] : tableSize[1]
   const grid = getGridSize(cardCount)
 
   /** if table is portrait transpose the grid */
-  if (tableSize[1] > tableSize[0]) {
+  if (tableSize[0] < tableSize[1]) {
     grid.reverse()
   }
 
-  const { cardSize, gutterSize } = getSizes(shortSide, grid[0], idealGutter, minCardSize)
-  const pxDimensions = getPxDimensions(grid, cardSize, gutterSize)
+  let sizes
+  let pxDimensions
+
+  sizes = getSizes(tableSize[1], grid[1], idealGutter, minCardSize)
+  pxDimensions = getPxDimensions(grid, sizes.cardSize, sizes.gutterSize)
+
+  /** doesnt fit, try the other way */
+  /** find a way that doesnt try twice? */
+  if (pxDimensions[1] > tableSize[1] || pxDimensions[0] > tableSize[0]) {
+    sizes = getSizes(tableSize[0], grid[0], idealGutter, minCardSize)
+    pxDimensions = getPxDimensions(grid, sizes.cardSize, sizes.gutterSize)
+  }
+
+  const { cardSize, gutterSize } = sizes
   const offsets = pxDimensions.map((s, i) => (tableSize[i] - s) / 2)
   const positions = []
 

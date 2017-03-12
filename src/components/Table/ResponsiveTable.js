@@ -27,8 +27,6 @@ class ResponsiveTable extends React.Component {
     const cardCount = this.props.cards.length
     const { offsetWidth, offsetHeight } = this.wrapper
 
-    console.log(offsetWidth, offsetHeight)
-
     this.setState(
       getLayout(cardCount, [offsetWidth, offsetHeight]),
     )

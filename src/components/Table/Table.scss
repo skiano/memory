@@ -1,24 +1,19 @@
 .table {
-  // position: absolute;
-  // top: 50px;
-  // left: 50px;
-  // right: 50px;
-  // bottom: 50px;
-
-  width: 600px;
-  height: 600px;
-  position: relative;
-
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  right: 60px;
+  bottom: 100px;
   border: 1px solid green;
   perspective: 1000px;
   perspective-origin: 50% 50%;
 }
 
 .button {
+  transition: all 250ms ease-in-out;
   position: absolute;
   border: none;
   outline: none;
   background: none;
   padding: 0;
-  margin: 20px;
 }
