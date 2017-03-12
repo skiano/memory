@@ -16,7 +16,7 @@ $text-size: 50px;
   }
 
   transform-style: preserve-3d;
-  transition: all 250ms ease-in-out;
+  transition: all 280ms ease-in-out;
 
 
   &.removed {
@@ -30,7 +30,7 @@ $text-size: 50px;
   }
 
   &.locked {
-    opacity: .5;
+    opacity: .7;
   }
 }
 
