@@ -20,7 +20,7 @@ import {
 const reducers = {}
 
 /** is the game locked or unlocked */
-reducers.gameState = (state = STATE_UNLOCKED, { type }) => {
+reducers.gameLocked = (state = STATE_UNLOCKED, { type }) => {
   switch (type) {
     case SETUP_GAME:
       return STATE_UNLOCKED

@@ -25,7 +25,7 @@ beforeEach(() => {
 })
 
 test('initial state', () => {
-  expect(getState().get('gameState')).toBe('STATE_UNLOCKED')
+  expect(getState().get('gameLocked')).toBe('STATE_UNLOCKED')
   expect(getState().get('cards').size).toBe(0)
   expect(getState().get('remaining').size).toBe(0)
   expect(getState().get('sets').size).toBe(0)
@@ -120,13 +120,13 @@ test('action: removeCard', () => {
 test('action: lockGame', () => {
   dispatch(unlockGame())
   dispatch(lockGame())
-  expect(getState().get('gameState')).toEqual('STATE_LOCKED')
+  expect(getState().get('gameLocked')).toEqual('STATE_LOCKED')
 })
 
 test('action: unlockGame', () => {
   dispatch(lockGame())
   dispatch(unlockGame())
-  expect(getState().get('gameState')).toEqual('STATE_UNLOCKED')
+  expect(getState().get('gameLocked')).toEqual('STATE_UNLOCKED')
 })
 
 test('action: submitMatch', () => {

@@ -8,6 +8,7 @@ Create extended matching ideas
 - Sign/Signified [Image, Word]
 - Mirrored [Image, egamI]
 - Double/Double [[A, B], [A, B]]
+- Math [10, 7 + 3]
 
 ### Increasing difficulty
 

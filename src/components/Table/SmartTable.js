@@ -11,12 +11,12 @@ const mapStateToProps = (state) => {
   const selected = state.get('selected')
   const remaining = state.get('remaining')
   const completedSets = state.get('completedSets')
-  const gameState = state.get('gameState')
+  const gameLocked = state.get('gameLocked')
 
   return {
     isComplete: remaining.size < 1,
     matchSize: sets.get(0).length,
-    isGameLocked: gameState === STATE_LOCKED,
+    isGameLocked: gameLocked === STATE_LOCKED,
     sets: sets.map((set, idx) => ({
       idx,
       cards: set.map(cardId => cards.get(cardId)),

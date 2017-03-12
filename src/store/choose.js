@@ -85,12 +85,12 @@ export const choose = cardId => (
     const state = getState()
     const sets = state.get('sets')
     const selected = state.get('selected')
-    const gameState = state.get('gameState')
+    const gameLocked = state.get('gameLocked')
     const matchSize = sets.get(0).length
 
     switch (true) {
       /** Noop if game is locked */
-      case (gameState === STATE_LOCKED):
+      case (gameLocked === STATE_LOCKED):
         break
 
       /** Turn card back over */
