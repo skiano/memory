@@ -7,6 +7,7 @@ const Table = ({ cards, choose }) => (
   <div className={styles.table}>
     {cards.map(card => (
       <button
+        className={styles.button}
         key={card.idx}
         onClick={() => choose(card.idx)}>
         <Card {... card} />

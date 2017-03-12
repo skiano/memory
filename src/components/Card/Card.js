@@ -3,12 +3,23 @@ import classNames from 'classnames'
 
 import styles from './Card.scss'
 
-const Card = ({ value, isSelected, isRemaining }) => (
-  <div className={classNames(styles.card, {
+const Card = ({ value, isSelected, isRemaining }) => {
+  const className = classNames(styles.card, {
     [styles.remaining]: isRemaining,
     [styles.selected]: isSelected,
-  })}>{value}</div>
-)
+  })
+
+  return (
+    <div className={className}>
+      <div className={styles.front}>
+        {value}
+      </div>
+      <div className={styles.back}>
+        back
+      </div>
+    </div>
+  )
+}
 
 Card.propTypes = {
   value: PropTypes.string,
