@@ -42,3 +42,23 @@ test('getSizes: shrink gutter to keep min card size', () => {
   expect(cardSize).toEqual(100)
   expect(gutterSize).toEqual(5)
 })
+
+test('getPxDimensions', () => {
+  const dimensions = [3, 4]
+  const cardSize = 100
+  const gutterSize = 20
+  const pxDimensions = layout.getPxDimensions(
+    dimensions, cardSize, gutterSize
+  )
+
+  expect(pxDimensions[0]).toEqual(340)
+  expect(pxDimensions[1]).toEqual(460)
+})
+
+test('getPosition', () => {
+  const card = 100
+  const gutter = 20
+  expect(layout.getPosition(0, card, gutter)).toEqual(0)
+  expect(layout.getPosition(1, card, gutter)).toEqual(120)
+  expect(layout.getPosition(2, card, gutter)).toEqual(240)
+})

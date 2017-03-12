@@ -30,8 +30,9 @@ export function getGridSize(cardCount) {
 export function getSizes(
   outerSide,
   cardCount,
-  idealGutter = IDEAL_GUTTER,
-  minCardSize = MIN_CARD_SIZE) {
+  idealGutter,
+  minCardSize
+) {
   let cardSize
 
   cardSize = (outerSide - ((cardCount - 1) * idealGutter)) / cardCount
@@ -41,5 +42,40 @@ export function getSizes(
   const gutterSize = (outerSide - (cardCount * cardSize)) / (cardCount - 1)
 
   return { cardSize, gutterSize }
+}
+
+export function getPxDimensions(dimensions, cardSize, gutterSize) {
+  return dimensions.map(d => (
+    ((d - 1) * gutterSize) + (d * cardSize)
+  ))
+}
+
+export function getPosition(i, cardSize, gutterSize) {
+  return i === 0 ? 0 : (i * cardSize) + (i * gutterSize)
+}
+
+export function getLayout(
+  cardCount,
+  size,
+  idealGutter = IDEAL_GUTTER,
+  minCardSize = MIN_CARD_SIZE
+) {
+  const shortSide = size[0] < size[1] ? size[0] : size[1]
+  const { cardSize, gutterSize } = getSizes(shortSide, cardCount, idealGutter, minCardSize)
+  const grid = getGridSize(cardCount)
+  const pxDimensions = getPxDimensions(grid, cardSize, gutterSize)
+  const positions = []
+
+  let i
+  for (i = 0; i < cardCount; i += 1) {
+    const x = i % grid[0]
+    const y = Math.floor(i / grid[0])
+    positions.push([
+      getPosition(x, cardSize, gutterSize),
+      getPosition(y, cardSize, gutterSize),
+    ])
+  }
+
+  return { pxDimensions, positions }
 }
 
