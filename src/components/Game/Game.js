@@ -15,7 +15,7 @@ class Game extends React.Component {
   componentDidMount() {
     /** dispatch the setup from api */
     setTimeout(() => {
-      this.props.setup(['⍨', '✈', '☆', '♘', '⍨', '♫', '♠', '✈', '❄', '✈', '♘', '☆', '❄', '☯', '☯', '♫', '♠', '⍨', '☯', '☆', '❄', '♘', '♫', '♠'])
+      this.props.setup(['✈', '♘', '✈', '♫', '♫', '☆', '♘', '☆'])
 
       this.setState({ isSetup: true })
     }, 500)

@@ -13,6 +13,7 @@ import {
 
 import {
   startTimer,
+  stopTimer,
 } from './timer'
 
 import {
@@ -43,11 +44,10 @@ export const guess = () => (
 
       dispatch(lockGame())
 
-      const dwellTime = getSuccessDuration(
-        isFinalSet(completedSets, sets)
-      )
+      const isVictory = isFinalSet(completedSets, sets)
+      if (isVictory) { dispatch(stopTimer()) }
 
-      wait(dwellTime).then(() => {
+      wait(getSuccessDuration(isVictory)).then(() => {
         dispatch(submitMatch(potentialSetId))
 
         selected.forEach((id) => {
