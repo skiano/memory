@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 
 import Table from '../Table/SmartTable'
 import Timer from '../Timer/SmartTimer'
-import styles from './Game.scss'
+import './Game.scss'
 
 class Game extends React.Component {
   constructor(props) {
@@ -13,11 +13,8 @@ class Game extends React.Component {
   }
 
   componentWillMount() {
-    this.props.setup()
-  }
-
-  componentWillUnmount() {
-    // reset game
+    const { mode, difficulty } = this.props.routeParams
+    this.props.setup(mode, difficulty)
   }
 
   render() {
@@ -34,6 +31,10 @@ class Game extends React.Component {
 
 Game.propTypes = {
   setup: PropTypes.func.isRequired,
+  routeParams: PropTypes.shape({
+    mode: PropTypes.string,
+    difficulty: PropTypes.string,
+  }),
 }
 
 export default Game
