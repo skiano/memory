@@ -44,8 +44,11 @@ export const guess = () => (
 
       dispatch(lockGame())
 
+      /** the end of the game */
       const isVictory = isFinalSet(completedSets, sets)
-      if (isVictory) { dispatch(stopTimer()) }
+      if (isVictory) {
+        dispatch(stopTimer())
+      }
 
       wait(getSuccessDuration(isVictory)).then(() => {
         dispatch(submitMatch(potentialSetId))
@@ -97,7 +100,10 @@ export const choose = cardId => (
 
       /** Select a card */
       case (selected.size < matchSize): {
-        if (isFirstChoice(state)) { dispatch(startTimer()) }
+        /** the start of the game */
+        if (isFirstChoice(state)) {
+          dispatch(startTimer())
+        }
         dispatch(selectCard(cardId))
         dispatch(guess())
         break
