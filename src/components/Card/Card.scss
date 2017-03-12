@@ -1,3 +1,25 @@
+$card-height: 60px;
+$card-width: 60px;
+
 .card {
   color: blue;
+  float: left;
+  width: $card-height;
+  height: $card-width;
+  border: 1px solid red;
+  line-height: $card-height;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid yellow;
+  }
+}
+
+.remaining {
+  border: 1px solid yellow;
+}
+
+.selected {
+  color: red;
 }

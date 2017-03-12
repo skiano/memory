@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import Table from './Table'
-import choose from '../../store/choose'
+import { choose } from '../../store/choose'
 
 const mapStateToProps = (state) => {
   const sets = state.get('sets')

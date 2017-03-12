@@ -38,6 +38,7 @@
     "react/jsx-filename-extension": [1, {
       "extensions": [".js", ".jsx"]
     }],
+    "react/jsx-closing-bracket-location": [1, "after-props"],
     "no-param-reassign": 0,
     "semi": ["warn", "never"]
   },

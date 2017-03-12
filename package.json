@@ -9,6 +9,7 @@
   "author": "Greg Skiano",
   "license": "Apache-2.0",
   "dependencies": {
+    "classnames": "^2.2.5",
     "enzyme": "^2.6.0",
     "express": "^4.14.0",
     "immutable": "^3.8.1",
@@ -31,8 +32,5 @@
     "lint": "kyt lint",
     "lint-style": "kyt lint-style",
     "kyt:help": "kyt --help"
-  },
-  "devDependencies": {
-    "sinon": "^1.17.7"
   }
 }
