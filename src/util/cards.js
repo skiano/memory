@@ -1,7 +1,10 @@
 /* eslint-disable no-unused-vars */
 
 /** This is where the game will be extendable */
-export const makeCards = (cards, gameMode) => cards
+export const makeCards = (cards, gameMode) => {
+  const easy = cards.get('easy')
+  return [...easy, ...easy]
+}
 
 /** Once there are more card modes this will be useful */
 export function cardsMatch(a, b) {

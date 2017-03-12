@@ -2,7 +2,7 @@ import React from 'react'
 import { Router, Route, hashHistory } from 'react-router'
 import { Provider } from 'react-redux'
 
-import Shell from '../Shell/Shell'
+import Shell from '../Shell/SmartShell'
 import Home from '../Home/Home'
 import Game from '../Game/SmartGame'
 import createStore from '../../store'

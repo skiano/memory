@@ -1,4 +1,4 @@
-export const API = 'http://api.com/stuff'
+export const API = '/api'
 export const STATE_LOCKED = 'STATE_LOCKED'
 export const STATE_UNLOCKED = 'STATE_UNLOCKED'
 export const STATE_PENDING = 'STATE_PENDING'

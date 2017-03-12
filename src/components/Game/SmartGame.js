@@ -4,9 +4,7 @@ import { bindActionCreators } from 'redux'
 import Game from './Game'
 import { setup } from '../../store/actions'
 
-const mapStateToProps = state => ({
-  isComplete: state.get('remaining') < 1,
-})
+const mapStateToProps = () => ({})
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ setup }, dispatch)

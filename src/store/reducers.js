@@ -9,6 +9,7 @@ import {
 } from './constants'
 
 import {
+  SETUP_CARDS,
   SETUP_GAME,
   START_GAME,
   COMPLETE_GAME,
@@ -23,6 +24,18 @@ import {
 } from './actions'
 
 const reducers = {}
+
+/** sets of unique card types based on nyt api */
+reducers.cardTypes = (state = Map(), { type, payload }) => {
+  switch (type) {
+    case SETUP_CARDS:
+      return state
+        .set('easy', Set(payload[0].cards))
+        .set('hard', Set(payload[1].cards))
+    default:
+      return state
+  }
+}
 
 /** is the game started or completed */
 reducers.gameState = (state = STATE_PENDING, { type }) => {
