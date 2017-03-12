@@ -53,7 +53,7 @@ reducers.sets = (state = List(), { type, payload }) => {
   }
 }
 
-/** the list of cards still on the table */
+/** the list of card ids still on the table */
 reducers.remaining = (state = Set(), { type, payload }) => {
   switch (type) {
     case SETUP_GAME:
@@ -67,6 +67,7 @@ reducers.remaining = (state = Set(), { type, payload }) => {
   }
 }
 
+/** keeps track of how many times we saw each card */
 reducers.seen = (state = List(), { type, payload }) => {
   switch (type) {
     case SETUP_GAME:
@@ -78,6 +79,7 @@ reducers.seen = (state = List(), { type, payload }) => {
   }
 }
 
+/** list of card ids that are face up */
 reducers.selected = (state = Set(), { type, payload }) => {
   switch (type) {
     case SELECT_CARD:
@@ -89,6 +91,7 @@ reducers.selected = (state = Set(), { type, payload }) => {
   }
 }
 
+/** list of set ids we have completed */
 reducers.completedSets = (state = Set(), { type, payload }) => {
   switch (type) {
     case SUBMIT_MATCH:
@@ -98,6 +101,7 @@ reducers.completedSets = (state = Set(), { type, payload }) => {
   }
 }
 
+/* time elapsed since first card turned over */
 reducers.elapsedTime = (state = 0, { type }) => {
   switch (type) {
     case RESET_TIMER:
