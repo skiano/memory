@@ -24,7 +24,6 @@ export function getGridSize(cardCount) {
 }
 
 /*
- * Given a dimension
  * decide how big to make the cards and gutter
  */
 export function getSizes(
@@ -37,36 +36,44 @@ export function getSizes(
 
   cardSize = (outerSide - ((cardCount - 1) * idealGutter)) / cardCount
 
-  if (cardSize < minCardSize) {
-    cardSize = minCardSize
-  }
+  if (cardSize < minCardSize) { cardSize = minCardSize }
 
   const gutterSize = (outerSide - (cardCount * cardSize)) / (cardCount - 1)
 
   return { cardSize, gutterSize }
 }
 
+/*
+ * calculate the pixel dimensions of the card grid
+ */
 export function getPxDimensions(dimensions, cardSize, gutterSize) {
   return dimensions.map(d => (
     ((d - 1) * gutterSize) + (d * cardSize)
   ))
 }
 
+/*
+ * get the absolute position of the card along one dimension
+ */
 export function getPosition(i, cardSize, gutterSize) {
   return i === 0 ? 0 : (i * cardSize) + (i * gutterSize)
 }
 
+/*
+ * get a list of positions
+ * based on card count and total table size
+ */
 export function getLayout(
   cardCount,
-  size,
+  tableSize,
   idealGutter = IDEAL_GUTTER,
   minCardSize = MIN_CARD_SIZE
 ) {
-  const shortSide = size[0] < size[1] ? size[0] : size[1]
-  const { cardSize, gutterSize } = getSizes(shortSide, cardCount, idealGutter, minCardSize)
+  const shortSide = tableSize[0] < tableSize[1] ? tableSize[0] : tableSize[1]
   const grid = getGridSize(cardCount)
+  const { cardSize, gutterSize } = getSizes(shortSide, grid[0], idealGutter, minCardSize)
   const pxDimensions = getPxDimensions(grid, cardSize, gutterSize)
-  const offsets = pxDimensions.map((s, i) => (size[i] - s) / 2)
+  const offsets = pxDimensions.map((s, i) => (tableSize[i] - s) / 2)
   const positions = []
 
   let i
@@ -79,6 +86,6 @@ export function getLayout(
     ])
   }
 
-  return { pxDimensions, positions }
+  return positions
 }
 

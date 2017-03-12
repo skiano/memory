@@ -62,3 +62,26 @@ test('getPosition', () => {
   expect(layout.getPosition(1, card, gutter)).toEqual(120)
   expect(layout.getPosition(2, card, gutter)).toEqual(240)
 })
+
+test.only('getLayout', () => {
+  const cardCount = 9
+  const tableSize = [400, 340]
+  const minCardSize = 0
+  const gutterSize = 20
+  const positions = layout.getLayout(
+    cardCount, tableSize, gutterSize, minCardSize
+  )
+
+  /* eslint-disable no-multi-spaces */
+  const expectedPositions = [
+    [30,   0], [150,   0], [270,   0],
+    [30, 120], [150, 120], [270, 120],
+    [30, 240], [150, 240], [270, 240],
+  ]
+  /* eslint-enable no-multi-spaces */
+
+  expectedPositions.forEach((p, i) => {
+    expect(positions[i][0]).toEqual(p[0])
+    expect(positions[i][1]).toEqual(p[1])
+  })
+})
