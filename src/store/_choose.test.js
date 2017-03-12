@@ -122,4 +122,5 @@ test('full game', () => {
   )).map(cardSet => cardSet.join('')).sort().join()
 
   expect(cardSets).toEqual('AAA,BBB,CCC')
+  expect(state.get('gameState')).toEqual('STATE_COMPLETED')
 })
