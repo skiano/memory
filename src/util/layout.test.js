@@ -66,8 +66,9 @@ test('getPosition', () => {
 test.only('getLayout', () => {
   const cardCount = 9
   const tableSize = [400, 340]
-  const minCardSize = 0
   const gutterSize = 20
+  const minCardSize = 0
+
   const positions = layout.getLayout(
     cardCount, tableSize, gutterSize, minCardSize
   )
@@ -77,6 +78,51 @@ test.only('getLayout', () => {
     [30,   0], [150,   0], [270,   0],
     [30, 120], [150, 120], [270, 120],
     [30, 240], [150, 240], [270, 240],
+  ]
+  /* eslint-enable no-multi-spaces */
+
+  expectedPositions.forEach((p, i) => {
+    expect(positions[i][0]).toEqual(p[0])
+    expect(positions[i][1]).toEqual(p[1])
+  })
+})
+
+test.only('getLayout: supports rectangle', () => {
+  const cardCount = 6
+  const tableSize = [340, 340]
+  const gutterSize = 20
+  const minCardSize = 0
+  const positions = layout.getLayout(
+    cardCount, tableSize, gutterSize, minCardSize
+  )
+
+  /* eslint-disable no-multi-spaces */
+  const expectedPositions = [
+    [0,  60], [120,  60], [240,  60],
+    [0, 180], [120, 180], [240, 180],
+  ]
+  /* eslint-enable no-multi-spaces */
+
+  expectedPositions.forEach((p, i) => {
+    expect(positions[i][0]).toEqual(p[0])
+    expect(positions[i][1]).toEqual(p[1])
+  })
+})
+
+test.only('getLayout: chooses best orientation for rectangle', () => {
+  const cardCount = 6
+  const tableSize = [220, 340]
+  const gutterSize = 20
+  const minCardSize = 0
+  const positions = layout.getLayout(
+    cardCount, tableSize, gutterSize, minCardSize
+  )
+
+  /* eslint-disable no-multi-spaces */
+  const expectedPositions = [
+    [0,   0], [120,   0],
+    [0, 120], [120, 120],
+    [0, 240], [120, 240],
   ]
   /* eslint-enable no-multi-spaces */
 

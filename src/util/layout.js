@@ -71,6 +71,12 @@ export function getLayout(
 ) {
   const shortSide = tableSize[0] < tableSize[1] ? tableSize[0] : tableSize[1]
   const grid = getGridSize(cardCount)
+
+  /** if table is portrait transpose the grid */
+  if (tableSize[1] > tableSize[0]) {
+    grid.reverse()
+  }
+
   const { cardSize, gutterSize } = getSizes(shortSide, grid[0], idealGutter, minCardSize)
   const pxDimensions = getPxDimensions(grid, cardSize, gutterSize)
   const offsets = pxDimensions.map((s, i) => (tableSize[i] - s) / 2)
