@@ -8,24 +8,30 @@ export const makeCards = (cards, mode, level) => {
   const { difficulty, sets } = levels[level]
   const setSize = levels[level].setSize || 2
 
-  if (sets > 8) {
-    throw new Error(`
-      levels cannot have more than 8 setSize
-      because there are only 8 cartTypes
+  /* We are limited by the card types in the api */
+  /* Nothing prevents adding more types */
+  const maxSets = cards.get('hard').size
 
-      ${title} / ${difficulty} has ${sets} sets
+  if (sets > maxSets) {
+    throw new Error(`
+      Levels cannot have more than ${maxSets} sets.
+      -> ${title}:${difficulty} requested ${sets} sets
     `)
   }
 
+  /* Make sure easy matches original NYT sample api */
   const cartTypes = sets <= 4 ?
     cards.get('easy') :
     cards.get('hard')
+
+  /* Get enough card types to make the requisite sets */
+  const baseCards = cartTypes.slice(-sets)
 
   console.log(`
     mode: ${title}
     difficulty: ${difficulty}
     level: ${level}
-    cartTypes: ${cartTypes}
+    baseCards: ${baseCards}
     sets: ${sets}
   `)
 
