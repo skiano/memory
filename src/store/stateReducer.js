@@ -13,7 +13,7 @@ import {
   SELECT_CARD,
   DESELECT_CARD,
   SUBMIT_MATCH,
-  START_TIMER,
+  RESET_TIMER,
   TICK,
 } from './syncActions'
 
@@ -94,7 +94,7 @@ reducers.completedSets = (state = Set(), { type, payload }) => {
 
 reducers.elapsedTime = (state = 0, { type }) => {
   switch (type) {
-    case START_TIMER:
+    case RESET_TIMER:
       return 0
     case TICK:
       return state + 1
