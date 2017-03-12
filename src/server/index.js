@@ -1,11 +1,18 @@
 
 import express from 'express'
+import request from 'request'
 import path from 'path'
 
+const apiServerHost = 'https://web-code-test-dot-nyt-games-prd.appspot.com/cards.json'
 const clientAssets = require(KYT.ASSETS_MANIFEST)
 
 const app = express()
 app.use(express.static(path.join(process.cwd(), KYT.PUBLIC_DIR)))
+
+app.use('/api', (req, res) => {
+  const url = apiServerHost + req.url
+  req.pipe(request(url)).pipe(res)
+})
 
 app.get('/', (req, res) => {
   res.send(`
