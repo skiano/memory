@@ -5,8 +5,9 @@ import styles from './Home.scss'
 
 const Home = () => (
   <div className={styles.home}>
-    Hello Gamer!
-    <Link to="/play">Play</Link>
+    <Link to="/play/classic/easy">Play Classic (easy)</Link>
+    <Link to="/play/classic/hard">Play Classic (hard)</Link>
+    <Link to="/play/classic/tripples">Play Classic (tripples)</Link>
   </div>
 )
 

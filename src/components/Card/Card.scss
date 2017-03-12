@@ -1,4 +1,6 @@
 $text-size: 50px;
+$back-color: darkgreen;
+$front-color: darkblue;
 
 .card {
   position: absolute;
@@ -31,16 +33,16 @@ $text-size: 50px;
 
   &.locked {
     .back {
-      background: darken(darkgreen, 7%);  
+      background: darken($back-color, 7%);  
     }
   }
 }
 
 .front, .back {
   border-radius: 2px;
-  -webkit-box-shadow: 1px 3px 53px -13px rgba(0,0,0,0.75);
-  -moz-box-shadow: 1px 3px 53px -13px rgba(0,0,0,0.75);
-  box-shadow: 1px 3px 53px -13px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 1px 3px 53px -13px rgba(0,0,0,0.9);
+  -moz-box-shadow: 1px 3px 53px -13px rgba(0,0,0,0.9);
+  box-shadow: 1px 3px 53px -13px rgba(0,0,0,0.9);
 
   backface-visibility: hidden;
   height: 100%;
@@ -54,11 +56,11 @@ $text-size: 50px;
 }
 
 .front {
-  background: darkblue;
+  background: $front-color;
   transform: rotateY(180deg);
 }
 
 .back {
   transition: background 400ms ease-in-out;
-  background: darkgreen;
+  background: $back-color;
 }
