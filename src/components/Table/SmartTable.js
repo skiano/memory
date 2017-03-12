@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import Table from './Table'
+import Table from './ResponsiveTable'
 import { choose } from '../../store/choose'
 
 const mapStateToProps = (state) => {

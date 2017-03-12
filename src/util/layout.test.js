@@ -69,7 +69,7 @@ test.only('getLayout', () => {
   const gutterSize = 20
   const minCardSize = 0
 
-  const positions = layout.getLayout(
+  const { positions } = layout.getLayout(
     cardCount, tableSize, gutterSize, minCardSize
   )
 
@@ -92,7 +92,7 @@ test.only('getLayout: supports rectangle', () => {
   const tableSize = [340, 340]
   const gutterSize = 20
   const minCardSize = 0
-  const positions = layout.getLayout(
+  const { positions } = layout.getLayout(
     cardCount, tableSize, gutterSize, minCardSize
   )
 
@@ -114,7 +114,7 @@ test.only('getLayout: chooses best orientation for rectangle', () => {
   const tableSize = [220, 340]
   const gutterSize = 20
   const minCardSize = 0
-  const positions = layout.getLayout(
+  const { positions } = layout.getLayout(
     cardCount, tableSize, gutterSize, minCardSize
   )
 

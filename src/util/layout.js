@@ -92,6 +92,6 @@ export function getLayout(
     ])
   }
 
-  return positions
+  return { positions, cardSize }
 }
 

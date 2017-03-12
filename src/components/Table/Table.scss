@@ -1,15 +1,21 @@
 .table {
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  right: 50px;
-  bottom: 50px;
+  // position: absolute;
+  // top: 50px;
+  // left: 50px;
+  // right: 50px;
+  // bottom: 50px;
+
+  width: 600px;
+  height: 600px;
+  position: relative;
+
   border: 1px solid green;
   perspective: 1000px;
   perspective-origin: 50% 50%;
 }
 
 .button {
+  position: absolute;
   border: none;
   outline: none;
   background: none;

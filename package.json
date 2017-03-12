@@ -11,6 +11,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "enzyme": "^2.6.0",
+    "eventlistener": "0.0.1",
     "express": "^4.14.0",
     "immutable": "^3.8.1",
     "kyt": "^0.3.0",

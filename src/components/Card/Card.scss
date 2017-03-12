@@ -1,14 +1,13 @@
-$card-height: 120px;
-$card-width: 120px;
 $text-size: 50px;
 
 .card {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   color: blue;
   float: left;
-  width: $card-height;
-  height: $card-width;
-  line-height: $card-height;
   text-align: center;
   font-size: $text-size;
 
