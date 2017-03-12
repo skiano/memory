@@ -1,50 +1,16 @@
 import slugify from 'slugify'
+import classic from './mode.classic'
+import mirrored from './mode.mirrored'
+import colors from './mode.colors'
+import tuples from './mode.tuples'
+import formula from './mode.formula'
 
 const gameModes = [
-  {
-    title: 'Classic',
-    levels: [
-      { difficulty: 'easy', sets: 4 },
-      { difficulty: 'hard', sets: 8 },
-      { difficulty: 'tripples', sets: 8, setSize: 3 },
-    ],
-  },
-  {
-    title: 'Mirrored',
-    levels: [
-      { difficulty: 'easy', sets: 4 },
-      { difficulty: 'hard', sets: 8 },
-    ],
-  },
-  {
-    title: 'Names',
-    levels: [
-      { difficulty: 'easy', sets: 4 },
-      { difficulty: 'hard', sets: 8 },
-    ],
-  },
-  {
-    title: 'Double Trouble',
-    levels: [
-      { difficulty: 'easy', sets: 4 },
-      { difficulty: 'hard', sets: 8 },
-    ],
-  },
-  {
-    title: 'Formula',
-    levels: [
-      { difficulty: 'easy', sets: 4 },
-      { difficulty: 'hard', sets: 8 },
-    ],
-  },
-  {
-    title: 'Colors',
-    levels: [
-      { difficulty: 'easy', sets: 4 },
-      { difficulty: 'hard', sets: 8 },
-      { difficulty: 'tripples', sets: 4, setSize: 3 },
-    ],
-  },
+  classic,
+  mirrored,
+  colors,
+  tuples,
+  formula,
 ].map(mode => Object.assign({
   slug: slugify(mode.title.toLowerCase()),
 }, mode))
