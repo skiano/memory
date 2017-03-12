@@ -1,6 +1,12 @@
+const MIN_CARD_SIZE = 40
+const IDEAL_GUTTER = 20
 
-// http://stackoverflow.com/a/16267018
-export const getGridSize = (cardCount) => {
+/*
+ * given card count
+ * return dimensions closest to square
+ */
+export function getGridSize(cardCount) {
+  // http://stackoverflow.com/a/16267018
   let n
   n = Math.sqrt(cardCount)
   n = Math.floor(n)
@@ -17,7 +23,23 @@ export const getGridSize = (cardCount) => {
   return [n, cardCount / n].sort().reverse()
 }
 
-export const getGridLayout = (cardCount) => {
-  console.log(cardCount)
-  return [4, 4]
+/*
+ * Given a dimension
+ * decide how big to make the cards and gutter
+ */
+export function getSizes(
+  outerSide,
+  cardCount,
+  idealGutter = IDEAL_GUTTER,
+  minCardSize = MIN_CARD_SIZE) {
+  let cardSize
+
+  cardSize = (outerSide - ((cardCount - 1) * idealGutter)) / cardCount
+
+  if (cardSize < minCardSize) { cardSize = minCardSize }
+
+  const gutterSize = (outerSide - (cardCount * cardSize)) / (cardCount - 1)
+
+  return { cardSize, gutterSize }
 }
+
