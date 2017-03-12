@@ -37,7 +37,9 @@ export function getSizes(
 
   cardSize = (outerSide - ((cardCount - 1) * idealGutter)) / cardCount
 
-  if (cardSize < minCardSize) { cardSize = minCardSize }
+  if (cardSize < minCardSize) {
+    cardSize = minCardSize
+  }
 
   const gutterSize = (outerSide - (cardCount * cardSize)) / (cardCount - 1)
 
@@ -64,6 +66,7 @@ export function getLayout(
   const { cardSize, gutterSize } = getSizes(shortSide, cardCount, idealGutter, minCardSize)
   const grid = getGridSize(cardCount)
   const pxDimensions = getPxDimensions(grid, cardSize, gutterSize)
+  const offsets = pxDimensions.map((s, i) => (size[i] - s) / 2)
   const positions = []
 
   let i
@@ -71,8 +74,8 @@ export function getLayout(
     const x = i % grid[0]
     const y = Math.floor(i / grid[0])
     positions.push([
-      getPosition(x, cardSize, gutterSize),
-      getPosition(y, cardSize, gutterSize),
+      getPosition(x, cardSize, gutterSize) + offsets[0],
+      getPosition(y, cardSize, gutterSize) + offsets[1],
     ])
   }
 
