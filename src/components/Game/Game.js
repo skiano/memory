@@ -34,10 +34,8 @@ class Game extends React.Component {
     const { isSetup } = this.state
     return isSetup ? (
       <div>
-        <Link to="/">Home</Link>
-        <h1 className={styles.header}>NYT Games Code Test</h1>
-        <Timer />
         <Table />
+        <Timer />
       </div>
     ) : (
       <div>

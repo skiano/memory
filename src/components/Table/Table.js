@@ -6,9 +6,7 @@ import styles from './Table.scss'
 const Table = ({ cards }) => (
   <div className={styles.table}>
     {cards.map(card => (
-      <div key={card.idx}>
-        <Card {... card} />
-      </div>
+      <Card key={card.idx} {... card} />
     ))}
   </div>
 )

@@ -13,6 +13,8 @@ app.get('/', (req, res) => {
     <html>
       <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
         <title>Memory</title>
       </head>
       <body>
