@@ -1,5 +1,6 @@
 import {
   STATE_LOCKED,
+  STATE_STARTED,
 } from './constants'
 
 import {
@@ -7,6 +8,7 @@ import {
   deselectCard,
   removeCard,
   submitMatch,
+  startGame,
   lockGame,
   unlockGame,
 } from './syncActions'
@@ -20,7 +22,6 @@ import {
   getSuccessDuration,
   getFailureDuration,
   getPotentialSet,
-  isFirstChoice,
   isFinalSet,
   wait,
 } from '../util'
@@ -101,7 +102,8 @@ export const choose = cardId => (
       /** Select a card */
       case (selected.size < matchSize): {
         /** the start of the game */
-        if (isFirstChoice(state)) {
+        if (state.get('gameState') !== STATE_STARTED) {
+          dispatch(startGame())
           dispatch(startTimer())
         }
         dispatch(selectCard(cardId))

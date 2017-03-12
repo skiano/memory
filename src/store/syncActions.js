@@ -2,6 +2,8 @@ import { createAction } from 'redux-actions'
 
 /** Action types */
 export const SETUP_GAME = 'SETUP_GAME'
+export const START_GAME = 'START_GAME'
+export const COMPLETE_GAME = 'COMPLETE_GAME'
 export const LOCK_GAME = 'LOCK_GAME'
 export const UNLOCK_GAME = 'UNLOCK_GAME'
 export const SELECT_CARD = 'SELECT_CARD'
@@ -13,6 +15,8 @@ export const TICK = 'TICK'
 
 /** Action creators */
 export const setupGame = createAction(SETUP_GAME)
+export const startGame = createAction(START_GAME)
+export const completeGame = createAction(COMPLETE_GAME)
 export const lockGame = createAction(LOCK_GAME)
 export const unlockGame = createAction(UNLOCK_GAME)
 export const selectCard = createAction(SELECT_CARD)

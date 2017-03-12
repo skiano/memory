@@ -40,10 +40,6 @@ export function getPotentialSet(selected, sets) {
   }, true) ? setId : null
 }
 
-export function isFirstChoice(state) {
-  return state.get('seen').size === 0
-}
-
 export function isFinalSet(completedSets, sets) {
   return completedSets.size === sets.size - 1
 }

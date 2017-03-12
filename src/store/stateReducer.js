@@ -3,10 +3,15 @@ import { List, Set, Map } from 'immutable'
 import {
   STATE_UNLOCKED,
   STATE_LOCKED,
+  STATE_PENDING,
+  STATE_STARTED,
+  STATE_COMPLETED,
 } from './constants'
 
 import {
   SETUP_GAME,
+  START_GAME,
+  COMPLETE_GAME,
   LOCK_GAME,
   UNLOCK_GAME,
   REMOVE_CARD,
@@ -18,6 +23,18 @@ import {
 } from './syncActions'
 
 const reducers = {}
+
+/** is the game started or completed */
+reducers.gameState = (state = STATE_PENDING, { type }) => {
+  switch (type) {
+    case START_GAME:
+      return STATE_STARTED
+    case COMPLETE_GAME:
+      return STATE_COMPLETED
+    default:
+      return state
+  }
+}
 
 /** is the game locked or unlocked */
 reducers.gameLocked = (state = STATE_UNLOCKED, { type }) => {
