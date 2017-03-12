@@ -1,9 +1,35 @@
 /* eslint-disable no-unused-vars */
+import modes from '../modes'
+import shuffle from './shuffle'
 
 /** This is where the game will be extendable */
-export const makeCards = (cards, gameMode) => {
-  const easy = cards.get('easy')
-  return [...easy, ...easy]
+export const makeCards = (cards, mode, level) => {
+  const { title, levels } = modes[mode]
+  const { difficulty, sets } = levels[level]
+  const setSize = levels[level].setSize || 2
+
+  if (sets > 8) {
+    throw new Error(`
+      levels cannot have more than 8 setSize
+      because there are only 8 cartTypes
+
+      ${title} / ${difficulty} has ${sets} sets
+    `)
+  }
+
+  const cartTypes = sets <= 4 ?
+    cards.get('easy') :
+    cards.get('hard')
+
+  console.log(`
+    mode: ${title}
+    difficulty: ${difficulty}
+    level: ${level}
+    cartTypes: ${cartTypes}
+    sets: ${sets}
+  `)
+
+  return shuffle([...cartTypes, ...cartTypes])
 }
 
 /** Once there are more card modes this will be useful */

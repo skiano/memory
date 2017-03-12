@@ -13,8 +13,8 @@ class Game extends React.Component {
   }
 
   componentWillMount() {
-    const { mode, difficulty } = this.props.routeParams
-    this.props.setup(mode, difficulty)
+    const { mode, level } = this.props.routeParams
+    this.props.setup(mode, level)
   }
 
   render() {
@@ -33,7 +33,7 @@ Game.propTypes = {
   setup: PropTypes.func.isRequired,
   routeParams: PropTypes.shape({
     mode: PropTypes.string,
-    difficulty: PropTypes.string,
+    level: PropTypes.string,
   }),
 }
 

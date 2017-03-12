@@ -6,21 +6,16 @@ import {
 } from '../../util'
 
 import {
-  API,
-  MODE_STANDARD,
-} from '../constants'
-
-import {
   setupGame,
   resetTimer,
   setupCards,
 } from './'
 
-export const setup = (mode = MODE_STANDARD) => (
+export const setup = (mode, level) => (
   /** Returns a thunk */
   (dispatch, getState) => {
     const cardTypes = getState().get('cardTypes')
-    const cards = makeCards(cardTypes, mode)
+    const cards = makeCards(cardTypes, mode, level)
 
     dispatch(resetTimer())
 
@@ -36,7 +31,7 @@ export const setup = (mode = MODE_STANDARD) => (
 export const fetchCards = () => (
   /** Returns a thunk */
   (dispatch) => {
-    fetch(API).then((response) => {
+    fetch('/api').then((response) => {
       if (response.status >= 400) {
         throw new Error('Bad response from server')
       }

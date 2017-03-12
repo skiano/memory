@@ -11,8 +11,10 @@ const Home = () => (
         <div key={modeId}>
           <h3>{mode.title}</h3>
           {
-            mode.levels.map((level, id) => (
-              <Link key={id} to={`/play/${mode.slug}/${level.difficulty}`}>
+            mode.levels.map((level, levelId) => (
+              <Link
+                key={levelId}
+                to={`/play/${modeId}/${levelId}`}>
                 {level.difficulty}
               </Link>
             ))

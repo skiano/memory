@@ -12,7 +12,7 @@ const App = () => (
     <Shell>
       <Router history={hashHistory}>
         <Route path="/" component={Home} />
-        <Route path="/play/:mode/:difficulty" component={Game} />
+        <Route path="/play/:mode/:level" component={Game} />
       </Router>
     </Shell>
   </Provider>
