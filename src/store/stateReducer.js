@@ -19,6 +19,7 @@ import {
 
 const reducers = {}
 
+/** is the game locked or unlocked */
 reducers.gameState = (state = STATE_UNLOCKED, { type }) => {
   switch (type) {
     case SETUP_GAME:
@@ -32,6 +33,7 @@ reducers.gameState = (state = STATE_UNLOCKED, { type }) => {
   }
 }
 
+/** the list of cards we have */
 reducers.cards = (state = List(), { type, payload }) => {
   switch (type) {
     case SETUP_GAME:
@@ -41,6 +43,7 @@ reducers.cards = (state = List(), { type, payload }) => {
   }
 }
 
+/** the list of sets we are searching for */
 reducers.sets = (state = List(), { type, payload }) => {
   switch (type) {
     case SETUP_GAME:
@@ -50,6 +53,7 @@ reducers.sets = (state = List(), { type, payload }) => {
   }
 }
 
+/** the list of cards still on the table */
 reducers.remaining = (state = Set(), { type, payload }) => {
   switch (type) {
     case SETUP_GAME:
@@ -63,10 +67,12 @@ reducers.remaining = (state = Set(), { type, payload }) => {
   }
 }
 
-reducers.seen = (state = Set(), { type, payload }) => {
+reducers.seen = (state = List(), { type, payload }) => {
   switch (type) {
+    case SETUP_GAME:
+      return List().concat(payload.seen)
     case SELECT_CARD:
-      return state.add(payload)
+      return state.update(payload, v => v + 1)
     default:
       return state
   }

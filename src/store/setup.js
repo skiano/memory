@@ -24,6 +24,7 @@ export const setup = (cards, mode = MODE_STANDARD) => (
       cards: createdCards,
       sets: makeSets(createdCards),
       remaining: createdCards.map((c, i) => i),
+      seen: createdCards.map(() => 0),
     }))
   }
 )

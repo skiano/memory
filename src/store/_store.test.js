@@ -35,7 +35,7 @@ test('initial state', () => {
   expect(getState().get('elapsedTime')).toBe(0)
 })
 
-test('action: setup: creates {cards, sets, remaining}', () => {
+test('action: setup: creates {cards, sets, remaining, seen}', () => {
   const input = ['A', 'B', 'C', 'A', 'B', 'C']
 
   dispatch(setup(input))
@@ -49,6 +49,10 @@ test('action: setup: creates {cards, sets, remaining}', () => {
   const expectedSets = ['0,3', '1,4', '2,5']
   const flattenedSets = state.get('sets').map(set => set.join())
   expectedSets.map(s => expect(flattenedSets.includes(s)).toBe(true))
+
+  const seen = state.get('seen')
+  expect(seen.size).toEqual(6)
+  seen.forEach(counter => expect(counter).toEqual(0))
 })
 
 test('action: setup: handles sets larger than 2', () => {
@@ -148,3 +152,21 @@ test('action: resetTimer', () => {
   dispatch(resetTimer())
   expect(getState().get('elapsedTime')).toBe(0)
 })
+
+test('tracking seen count', () => {
+  const input = ['A', 'B', 'C', 'A', 'B', 'C']
+
+  dispatch(setup(input))
+
+  dispatch(selectCard(0)) // select A1
+  dispatch(selectCard(3)) // select A2
+  dispatch(selectCard(1)) // select B1
+  dispatch(selectCard(3)) // select A2
+
+  const seen = getState().get('seen')
+
+  // -----------------  A  B  C  A  B  C
+  const expectedSeen = [1, 1, 0, 2, 0, 0]
+  expect(expectedSeen.join()).toEqual(seen.join())
+})
+

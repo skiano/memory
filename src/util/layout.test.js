@@ -63,7 +63,7 @@ test('getPosition', () => {
   expect(layout.getPosition(2, card, gutter)).toEqual(240)
 })
 
-test.only('getLayout', () => {
+test('getLayout', () => {
   const cardCount = 9
   const tableSize = [400, 340]
   const gutterSize = 20
@@ -87,7 +87,7 @@ test.only('getLayout', () => {
   })
 })
 
-test.only('getLayout: supports rectangle', () => {
+test('getLayout: supports rectangle', () => {
   const cardCount = 6
   const tableSize = [340, 340]
   const gutterSize = 20
