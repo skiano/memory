@@ -3,15 +3,28 @@ import classNames from 'classnames'
 
 import styles from './Card.scss'
 
-const Card = ({ value, isSelected, isRemaining, isGameLocked }) => {
+const Card = (props) => {
+  const {
+    value,
+    cardSize,
+    isSelected,
+    isRemaining,
+    isGameLocked,
+  } = props
+
   const className = classNames(styles.card, {
     [styles.removed]: !isRemaining,
     [styles.selected]: isSelected,
     [styles.locked]: isGameLocked && !isSelected,
   })
 
+  const style = {
+    fontSize: `${cardSize * 0.7}px`,
+    lineHeight: `${cardSize}px`,
+  }
+
   return (
-    <div className={className}>
+    <div className={className} style={style}>
       <div className={styles.front}>
         {value}
       </div>
@@ -22,6 +35,7 @@ const Card = ({ value, isSelected, isRemaining, isGameLocked }) => {
 
 Card.propTypes = {
   value: PropTypes.string,
+  cardSize: PropTypes.number,
   isSelected: PropTypes.bool,
   isRemaining: PropTypes.bool,
   isGameLocked: PropTypes.bool,

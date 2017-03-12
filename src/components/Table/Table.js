@@ -2,31 +2,43 @@ import React, { PropTypes } from 'react'
 import Card from '../Card/Card'
 import styles from './Table.scss'
 
-const Table = ({
-  cards,
-  choose,
-  cardSize,
-  positions,
-  isGameLocked,
-}) => (
-  <div>
-    {cards.map(card => (
+const Table = (props) => {
+  const {
+    cards,
+    choose,
+    cardSize,
+    positions,
+    isGameLocked,
+  } = props
+
+  const cardComponents = cards.map((card) => {
+    const style = {
+      height: cardSize,
+      width: cardSize,
+      left: positions[card.idx][0],
+      top: positions[card.idx][1],
+    }
+
+    return (
       <button
         className={styles.button}
-        style={{
-          lineHeight: `${cardSize}px`,
-          height: cardSize,
-          width: cardSize,
-          left: positions[card.idx][0],
-          top: positions[card.idx][1],
-        }}
+        style={style}
         key={card.idx}
         onClick={() => choose(card.idx)}>
-        <Card {... card} isGameLocked={isGameLocked} />
+        <Card
+          {... card}
+          isGameLocked={isGameLocked}
+          cardSize={cardSize} />
       </button>
-    ))}
-  </div>
-)
+    )
+  })
+
+  return (
+    <div>
+      {cardComponents}
+    </div>
+  )
+}
 
 Table.propTypes = {
   cards: PropTypes.arrayOf(PropTypes.object),
