@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import Game from './Game'
-import { setup } from '../../store/setup'
+import { setup } from '../../store/actions'
 
 const mapStateToProps = state => ({
   isComplete: state.get('remaining') < 1,

@@ -20,7 +20,7 @@ import {
   SUBMIT_MATCH,
   RESET_TIMER,
   TICK,
-} from './syncActions'
+} from './actions'
 
 const reducers = {}
 

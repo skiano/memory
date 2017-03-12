@@ -1,7 +1,7 @@
 import {
   STATE_LOCKED,
   STATE_STARTED,
-} from './constants'
+} from '../constants'
 
 import {
   selectCard,
@@ -12,7 +12,7 @@ import {
   completeGame,
   lockGame,
   unlockGame,
-} from './syncActions'
+} from './'
 
 import {
   startTimer,
@@ -25,7 +25,7 @@ import {
   getPotentialSet,
   isFinalSet,
   wait,
-} from '../util'
+} from '../../util'
 
 /*
  * Every time a card is added

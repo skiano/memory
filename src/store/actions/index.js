@@ -25,3 +25,8 @@ export const removeCard = createAction(REMOVE_CARD)
 export const submitMatch = createAction(SUBMIT_MATCH)
 export const resetTimer = createAction(RESET_TIMER)
 export const tick = createAction(TICK)
+
+/** Export complex actions */
+export { setup, setupFromAPI } from './setup'
+export { startTimer, stopTimer } from './timer'
+export { choose } from './choose'

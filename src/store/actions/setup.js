@@ -1,17 +1,17 @@
 import {
   makeCards,
   makeSets,
-} from '../util'
+} from '../../util'
 
 import {
   API,
   MODE_STANDARD,
-} from './constants'
+} from '../constants'
 
 import {
   setupGame,
   resetTimer,
-} from './syncActions'
+} from './'
 
 export const setup = (cards, mode = MODE_STANDARD) => (
   /** Returns a thunk */

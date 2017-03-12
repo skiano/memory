@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import Table from './ResponsiveTable'
-import { choose } from '../../store/choose'
+import { choose } from '../../store/actions'
 import { STATE_LOCKED } from '../../store/constants'
 
 const mapStateToProps = (state) => {

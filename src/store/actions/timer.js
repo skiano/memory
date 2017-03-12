@@ -1,6 +1,6 @@
 import {
   tick,
-} from './syncActions'
+} from './'
 
 let interval
 

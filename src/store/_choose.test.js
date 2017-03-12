@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 
 import createStore from './'
-import { choose } from './choose'
-import { setup } from './setup'
 
 import {
+  choose,
+  setup,
   setupGame,
   lockGame,
   unlockGame,
@@ -12,7 +12,7 @@ import {
   deselectCard,
   removeCard,
   submitMatch,
-} from './syncActions'
+} from './actions'
 
 let getState
 let dispatch

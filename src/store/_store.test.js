@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 
 import createStore from './'
-import { setup } from './setup'
 
 import {
+  setup,
   setupGame,
   lockGame,
   unlockGame,
@@ -13,7 +13,7 @@ import {
   submitMatch,
   resetTimer,
   tick,
-} from './syncActions'
+} from './actions'
 
 let getState
 let dispatch
