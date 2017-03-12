@@ -12,9 +12,14 @@ import {
 } from './syncActions'
 
 import {
+  startTimer,
+} from './timer'
+
+import {
   getSuccessDuration,
   getFailureDuration,
   getPotentialSet,
+  isFirstChoice,
   isFinalSet,
   wait,
 } from '../util'
@@ -92,6 +97,7 @@ export const choose = cardId => (
 
       /** Select a card */
       case (selected.size < matchSize): {
+        if (isFirstChoice(state)) { dispatch(startTimer()) }
         dispatch(selectCard(cardId))
         dispatch(guess())
         break

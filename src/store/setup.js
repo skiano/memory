@@ -10,12 +10,15 @@ import {
 
 import {
   setupGame,
+  resetTimer,
 } from './syncActions'
 
 export const setup = (cards, mode = MODE_STANDARD) => (
   /** Returns a thunk */
   (dispatch) => {
     const createdCards = makeCards(cards, mode)
+
+    dispatch(resetTimer())
 
     dispatch(setupGame({
       cards: createdCards,

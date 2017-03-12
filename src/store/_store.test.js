@@ -11,7 +11,7 @@ import {
   deselectCard,
   removeCard,
   submitMatch,
-  startTimer,
+  resetTimer,
   tick,
 } from './syncActions'
 
@@ -142,9 +142,9 @@ test('action: tick', () => {
   expect(getState().get('elapsedTime')).toBe(3)
 })
 
-test('action: startTimer', () => {
+test('action: resetTimer', () => {
   dispatch(tick())
   expect(getState().get('elapsedTime')).toBe(1)
-  dispatch(startTimer())
+  dispatch(resetTimer())
   expect(getState().get('elapsedTime')).toBe(0)
 })

@@ -1,4 +1,4 @@
-import { formatTime } from './Timer'
+import formatTime from './formatTime'
 
 test('Test invalid time ', () => {
   expect(formatTime(-1)).toBe('--:--')
