@@ -8,8 +8,8 @@ const fib = (n, memo = {}) => (memo[n] || (
 
 const getFormula = (n, setPosition) => (
   [
-    [-1, -2],
-    [-1, -3, -4],
+    [-2, -1],
+    [-4, -3, -1],
   ][setPosition - 1].slice(0, setPosition + 1).map(i => fib(n + i)).join('+')
 )
 
