@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
 
 import Table from '../Table/SmartTable'
 import Timer from '../Timer/SmartTimer'
@@ -18,6 +19,7 @@ class Game extends React.Component {
     return (
       <div>
         <header>
+          <Link to="/">Home</Link>
           <Timer />
         </header>
         <Table />

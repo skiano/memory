@@ -7,6 +7,7 @@ import {
 
 import {
   setupGame,
+  stopTimer,
   resetTimer,
   setupCards,
 } from './'
@@ -17,6 +18,7 @@ export const setup = (mode, level, cardMaker = makeCards) => (
     const cardTypes = getState().get('cardTypes')
     const cards = cardMaker(cardTypes, mode, level)
 
+    dispatch(stopTimer())
     dispatch(resetTimer())
 
     dispatch(setupGame({

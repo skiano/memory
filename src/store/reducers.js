@@ -38,6 +38,8 @@ reducers.cardTypes = (state = Set(), { type, payload }) => {
 /** is the game started or completed */
 reducers.gameState = (state = STATE_PENDING, { type }) => {
   switch (type) {
+    case SETUP_GAME:
+      return STATE_PENDING
     case START_GAME:
       return STATE_STARTED
     case COMPLETE_GAME:
@@ -110,6 +112,8 @@ reducers.seen = (state = List(), { type, payload }) => {
 /** list of card ids that are face up */
 reducers.selected = (state = Set(), { type, payload }) => {
   switch (type) {
+    case SETUP_GAME:
+      return Set()
     case SELECT_CARD:
       return state.add(payload)
     case DESELECT_CARD:
@@ -122,6 +126,8 @@ reducers.selected = (state = Set(), { type, payload }) => {
 /** list of set ids we have completed */
 reducers.completedSets = (state = Set(), { type, payload }) => {
   switch (type) {
+    case SETUP_GAME:
+      return Set()
     case SUBMIT_MATCH:
       return state.add(payload)
     default:
