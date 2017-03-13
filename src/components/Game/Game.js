@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react'
 
 import Table from '../Table/SmartTable'
 import Timer from '../Timer/SmartTimer'
+import { modeMap } from '../../modes'
 import './Game.scss'
 
 class Game extends React.Component {
@@ -14,7 +15,10 @@ class Game extends React.Component {
 
   componentWillMount() {
     const { mode, level } = this.props.routeParams
-    this.props.setup(mode, level)
+    this.props.setup(
+      modeMap[mode].id,
+      modeMap[mode].levels[level]
+    )
   }
 
   render() {

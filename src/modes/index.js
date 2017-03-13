@@ -16,3 +16,18 @@ const gameModes = [
 }, mode))
 
 export default gameModes
+
+/** for friendly url mapping */
+export const modeMap = {}
+gameModes.forEach((mode, modeId) => {
+  const levels = {}
+
+  mode.levels.forEach((level, levelId) => (
+    levels[level.difficulty] = levelId
+  ))
+
+  modeMap[mode.slug] = {
+    levels,
+    id: modeId,
+  }
+})
