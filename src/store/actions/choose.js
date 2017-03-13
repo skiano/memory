@@ -91,10 +91,9 @@ export const guess = () => (
 export const choose = cardId => (
   (dispatch, getState) => {
     const state = getState()
-    const sets = state.get('sets')
     const selected = state.get('selected')
+    const matchSize = state.get('sets').get(0).length
     const gameLocked = state.get('gameLocked')
-    const matchSize = sets.get(0).length
 
     switch (true) {
       /** Noop if game is locked */
