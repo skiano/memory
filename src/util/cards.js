@@ -3,9 +3,13 @@ import shuffle from './shuffle'
 
 const DEFAULT_SET_SIZE = 2
 
-export const createCardMaker = (maker, value, setPosition, level) => (
+/*
+ * pass card props and set information
+ * to the game modes card generator
+ */
+export const createCardMaker = (maker, info) => (
   (props) => {
-    maker({ props, value, level, setPosition })
+    maker(Object.assign({ props }, info))
   }
 )
 
@@ -27,12 +31,11 @@ export const makeCards = (cards, mode, level) => {
   return shuffle(baseCards.reduce((finalCards, value) => (
     finalCards.concat(emptySet.map((empty, setPosition) => ({
       value,
-      cardFace: makeCardFace ? createCardMaker(
-        makeCardFace,
+      cardFace: makeCardFace ? createCardMaker(makeCardFace, {
         value,
         setPosition,
-        levels[level]
-      ) : null,
+        level: levels[level],
+      }) : null,
     })))
   ), []))
 }
