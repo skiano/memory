@@ -37,6 +37,15 @@ export const guess = () => (
     const completedSets = state.get('completedSets')
     const potentialSetId = getPotentialSet(selected, sets)
 
+    /*
+     * If:
+     * the selection still matches one of the sets
+     * we have a good guess
+     *
+     * Else:
+     * we have a bad guess
+     * and we need to turn the cards back over
+     */
     if (potentialSetId !== null) {
       /* we're on the right track but need to find more matches */
       if (selected.size < sets.get(potentialSetId).length) return
