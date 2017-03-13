@@ -28,11 +28,12 @@ export const makeCards = (cards, mode, level) => {
   const baseCards = cards.slice(-sets)
   const emptySet = Array(...Array(setSize || DEFAULT_SET_SIZE))
 
-  return shuffle(baseCards.reduce((finalCards, value) => (
+  return shuffle(baseCards.reduce((finalCards, value, setId) => (
     finalCards.concat(emptySet.map((empty, setPosition) => ({
       value,
       cardFace: makeCardFace ? createCardMaker(makeCardFace, {
         value,
+        setId,
         setPosition,
         level: levels[level],
       }) : null,
