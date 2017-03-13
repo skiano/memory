@@ -113,10 +113,7 @@ test('full game', () => {
   dispatch(choose(2)) // good
   expect(getState().remaining.length).toEqual(0)
 
-  const state = getState()
-  const cards = state.selected
-  const sets = state.sets
-  const completedSets = state.completedSets
+  const {cards, selected, sets, completedSets} = getState()
   const cardSets = completedSets.map(setId => (
     sets[setId].map(cardId => cards[cardId])
   )).map(cardSet => cardSet.join('')).sort().join()
