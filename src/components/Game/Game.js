@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 
+import styles from './Game.scss'
 import Table from '../Table/Table.Smart'
 import Timer from '../Timer/Timer.Smart'
 import { modeMap } from '../../modes'
-import './Game.scss'
 
 class Game extends React.Component {
   componentWillMount() {
@@ -17,12 +17,17 @@ class Game extends React.Component {
 
   render() {
     return (
-      <div>
-        <header>
+      <div className={styles.game}>
+        <header className={styles.header}>
           <Link to="/">Home</Link>
           <Timer />
         </header>
-        <Table />
+        <div className={styles.table}>
+          <Table />
+        </div>
+        <div className={styles.status}>
+          status goes here
+        </div>
       </div>
     )
   }

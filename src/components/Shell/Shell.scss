@@ -1,10 +1,20 @@
-.shell {
+.shell:before {
+  content: "";
+  display: block;
   position: fixed;
   top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
-
+  bottom: 0;
   background: #001122;
   color: #ffffaa;
+
+  -webkit-box-shadow: inset 0px 0px 500px -30px rgba(0,0,0,0.85);
+  -moz-box-shadow: inset 0px 0px 500px -30px rgba(0,0,0,0.85);
+  box-shadow: inset 0px 0px 500px -30px rgba(0,0,0,0.85)
+}
+
+.content {
+  position: relative;
+  z-index: 10;
 }

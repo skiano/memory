@@ -1,9 +1,26 @@
-header {
+.header {
+  z-index: 1000;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: 40px;
-  background: #000;
   text-align: center;
+}
+
+.table {
+  position: fixed;
+  top: 100px;
+  left: 100px;
+  right: 100px;
+  bottom: 100px;
+}
+
+.status {
+  z-index: 1000;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
 }

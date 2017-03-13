@@ -9,7 +9,9 @@ class Shell extends React.Component {
   render() {
     return (
       <div className={styles.shell}>
-        {this.props.hasCardTypes ? this.props.children : null}
+        <div className={styles.content}>
+          {this.props.hasCardTypes ? this.props.children : null}
+        </div>
       </div>
     )
   }
