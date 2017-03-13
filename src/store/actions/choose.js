@@ -40,7 +40,7 @@ export const guess = () => (
     /*
      * If:
      * the selection still matches one of the sets
-     * we have a good guess
+     * we have found a potential set
      *
      * Else:
      * we have a bad guess
