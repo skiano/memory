@@ -1,11 +1,11 @@
 import { List, Set, Map } from 'immutable'
 
 import {
-  STATE_UNLOCKED,
-  STATE_LOCKED,
-  STATE_PENDING,
-  STATE_STARTED,
-  STATE_COMPLETED,
+  UNLOCKED,
+  LOCKED,
+  PENDING,
+  STARTED,
+  COMPLETED,
 } from './constants'
 
 import {
@@ -36,28 +36,28 @@ reducers.cardTypes = (state = Set(), { type, payload }) => {
 }
 
 /** is the game started or completed */
-reducers.gameState = (state = STATE_PENDING, { type }) => {
+reducers.gameState = (state = PENDING, { type }) => {
   switch (type) {
     case SETUP_GAME:
-      return STATE_PENDING
+      return PENDING
     case START_GAME:
-      return STATE_STARTED
+      return STARTED
     case COMPLETE_GAME:
-      return STATE_COMPLETED
+      return COMPLETED
     default:
       return state
   }
 }
 
 /** is the game locked or unlocked */
-reducers.gameLocked = (state = STATE_UNLOCKED, { type }) => {
+reducers.gameLocked = (state = UNLOCKED, { type }) => {
   switch (type) {
     case SETUP_GAME:
-      return STATE_UNLOCKED
+      return UNLOCKED
     case LOCK_GAME:
-      return STATE_LOCKED
+      return LOCKED
     case UNLOCK_GAME:
-      return STATE_UNLOCKED
+      return UNLOCKED
     default:
       return state
   }

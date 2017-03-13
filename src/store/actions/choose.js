@@ -1,6 +1,6 @@
 import {
-  STATE_LOCKED,
-  STATE_STARTED,
+  LOCKED,
+  STARTED,
 } from '../constants'
 
 import {
@@ -93,7 +93,7 @@ export const choose = cardId => (
 
     switch (true) {
       /** Noop if game is locked */
-      case (gameLocked === STATE_LOCKED):
+      case (gameLocked === LOCKED):
         break
 
       /** Turn card back over */
@@ -104,7 +104,7 @@ export const choose = cardId => (
       /** Select a card */
       case (selected.size < matchSize): {
         /** the start of the game */
-        if (state.get('gameState') !== STATE_STARTED) {
+        if (state.get('gameState') !== STARTED) {
           dispatch(startGame())
           dispatch(startTimer())
         }
