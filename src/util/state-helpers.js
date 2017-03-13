@@ -1,20 +1,27 @@
 /* eslint-disable no-unused-vars */
 
+/*
+ * How long we see the cards when
+ * we find a correct match
+ */
 export function getSuccessDuration(isFinal) {
   return isFinal ? 1000 : 800
 }
 
+/*
+ * How long we see the cards when
+ * we guess wrong
+ */
 export function getFailureDuration(elapsedTime) {
-  /*
-   * This will relate dwell time to time played
-   * so that we can turn up the pressure over time.
-   *
-   * Perhaps the dwellTime also comes from the store
-   * so it can be configured in UI?
-   */
+  /** This can relate to the elapsed time */
   return 800
 }
 
+/*
+ * Get the set that contains everything
+ * in our current selection
+ * (return null if there is none)
+ */
 export function getPotentialSet(selected, sets) {
   const guess = selected.toJS()
   const base = guess.pop()
@@ -40,6 +47,9 @@ export function getPotentialSet(selected, sets) {
   }, true) ? setId : null
 }
 
+/*
+ * Is this match the winning one?
+ */
 export function isFinalSet(completedSets, sets) {
   return completedSets.size === sets.size - 1
 }
