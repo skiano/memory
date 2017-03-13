@@ -24,7 +24,7 @@ export const remove = (arr, v) => {
 }
 
 export const unique = arr => arr.reduce((a, v) => {
-  if (a.includes[v]) return a
+  if (a.includes(v)) return a
   a.push(v)
   return a
 }, [])
