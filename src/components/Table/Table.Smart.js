@@ -2,9 +2,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import Table from './Table.Responsive'
-import { getCardPropsFromState } from '../../util/state-helpers'
 import { choose } from '../../store/actions'
 import { LOCKED, COMPLETED } from '../../store/constants'
+import { getCardPropsFromState } from '../../util/state-helpers'
 
 const mapStateToProps = (state) => {
   const gameState = state.get('gameState')
