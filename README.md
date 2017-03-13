@@ -15,6 +15,9 @@
 
 _Coming soon_
 
+## Roadmap
+
+[Roadmap](https://github.com/skiano/memory/issues/2)
 
 ## Setup
 
@@ -26,7 +29,3 @@ $ open http://localhost:3000
 This is based on [NYT kyt](https://github.com/NYTimes/kyt)
 
 ---
-
-## Roadmap
-
-[Roadmap](https://github.com/skiano/memory/issues/2)
