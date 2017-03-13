@@ -113,11 +113,11 @@ test('full game', () => {
   dispatch(choose(2)) // good
   expect(getState().remaining.length).toEqual(0)
 
-  const {cards, selected, sets, completedSets} = getState()
+  const { cards, selected, sets, completedSets } = getState()
   const cardSets = completedSets.map(setId => (
     sets[setId].map(cardId => cards[cardId])
   )).map(cardSet => cardSet.join('')).sort().join()
 
   expect(cardSets).toEqual('AAA,BBB,CCC')
-  expect(state.gameState).toEqual('COMPLETED')
+  expect(getState().gameState).toEqual('COMPLETED')
 })
