@@ -14,7 +14,7 @@ const gameModes = [
 ].map(mode => Object.assign({}, mode, {
   slug: slugify(mode.title.toLowerCase()),
   levels: mode.levels.map(level => Object.assign({
-    slug: slugify(level.difficulty),
+    slug: slugify(level.difficulty.toLowerCase()),
   }, level)),
 }))
 
