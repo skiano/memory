@@ -13,7 +13,6 @@
     "enzyme": "^2.6.0",
     "eventlistener": "0.0.1",
     "express": "^4.14.0",
-    "immutable": "^3.8.1",
     "isomorphic-fetch": "^2.2.1",
     "kyt": "^0.3.0",
     "react": "^15.4.1",
