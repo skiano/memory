@@ -33,3 +33,8 @@ test('Pure update', () => {
   expect(input.join('')).toBe('abcd')
   expect(output.join('')).toBe('aBcd')
 })
+
+test('Pure update', () => {
+  const output = pure.unique(['a', 'a', 'b', 'c', 'c'])
+  expect(output.join('')).toBe('abc')
+})
