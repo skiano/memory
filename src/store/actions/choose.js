@@ -92,12 +92,17 @@ export const choose = cardId => (
   (dispatch, getState) => {
     const state = getState()
     const selected = state.get('selected')
+    const remaining = state.get('remaining')
     const matchSize = state.get('sets').get(0).length
     const gameLocked = state.get('gameLocked')
 
     switch (true) {
       /** Noop if game is locked */
       case (gameLocked === LOCKED):
+        break
+
+      /** Noop if card is already removed */
+      case (!remaining.includes(cardId)):
         break
 
       /** Turn card back over */
