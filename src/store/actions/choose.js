@@ -25,8 +25,8 @@ import {
 } from '../../util'
 
 /*
- * Every time a card is added
- * to the selection we dispatch a guess
+ * Every time a card is selected,
+ * we dispatch a guess
  */
 export const guess = () => (
   (dispatch, getState) => {
@@ -83,12 +83,11 @@ export const guess = () => (
 
 
 /*
- * This actionCreator is used
+ * Choose is dispatched
  * whenever a user clicks a card.
  * It simplifies the components
- * because there is only one action
- * to dispatch when the user
- * clicks a card
+ * because they only have one action
+ * and all of the outcomes are managed here
  */
 export const choose = cardId => (
   (dispatch, getState) => {
