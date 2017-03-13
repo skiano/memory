@@ -24,6 +24,7 @@ export const makeCards = (cards, mode, level) => {
   }
 
   /* Get enough card types to make the requisite sets */
+  /* convert to js so keys are indexes instead of Set keys */
   const baseCards = cards.slice(-sets).toJS()
   const emptySet = Array(...Array(setSize || DEFAULT_SET_SIZE))
 
