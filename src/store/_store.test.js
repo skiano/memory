@@ -25,14 +25,14 @@ beforeEach(() => {
 })
 
 test('initial state', () => {
-  expect(getState().get('gameLocked')).toBe('UNLOCKED')
-  expect(getState().get('cards').size).toBe(0)
-  expect(getState().get('remaining').size).toBe(0)
-  expect(getState().get('sets').size).toBe(0)
-  expect(getState().get('completedSets').size).toBe(0)
-  expect(getState().get('seen').size).toBe(0)
-  expect(getState().get('selected').size).toBe(0)
-  expect(getState().get('elapsedTime')).toBe(0)
+  expect(getState().gameLocked).toBe('UNLOCKED')
+  expect(getState().cards.length).toBe(0)
+  expect(getState().remaining.length).toBe(0)
+  expect(getState().sets.length).toBe(0)
+  expect(getState().completedSets.length).toBe(0)
+  expect(getState().seen.length).toBe(0)
+  expect(getState().selected.length).toBe(0)
+  expect(getState().elapsedTime).toBe(0)
 })
 
 test('action: setup: creates {cards, sets, remaining, seen}', () => {
@@ -43,23 +43,23 @@ test('action: setup: creates {cards, sets, remaining, seen}', () => {
   const state = getState()
 
   const expectedRemaining = [0, 1, 2, 3, 4, 5]
-  input.map(c => expect(state.get('cards').includes(c)).toBe(true))
-  expectedRemaining.map(i => expect(state.get('remaining').includes(i)).toBe(true))
+  input.map(c => expect(state.cards.includes(c)).toBe(true))
+  expectedRemaining.map(i => expect(state.remaining.includes(i)).toBe(true))
 
   const expectedSets = ['0,3', '1,4', '2,5']
-  const flattenedSets = state.get('sets').map(set => set.join())
+  const flattenedSets = state.sets.map(set => set.join())
   expectedSets.map(s => expect(flattenedSets.includes(s)).toBe(true))
 
-  const seen = state.get('seen')
-  expect(seen.size).toEqual(6)
+  const seen = state.seen
+  expect(seen.length).toEqual(6)
   seen.forEach(counter => expect(counter).toEqual(0))
 })
 
 test('action: setup: handles sets larger than 2', () => {
   const input = ['A', 'B', 'A', 'B', 'A', 'B']
   dispatch(setup(null, null, () => input))
-  expect(getState().get('sets').size).toEqual(2)
-  expect(getState().get('sets').get(0).length).toEqual(3)
+  expect(getState().sets.length).toEqual(2)
+  expect(getState().sets[0].length).toEqual(3)
 })
 
 test('action: setup: sit sizes must match', () => {
@@ -78,7 +78,7 @@ test('action: selectCard', () => {
   dispatch(selectCard(2))
   dispatch(selectCard(1))
 
-  const selected = getState().get('selected')
+  const selected = getState().selected
   const expected = [1, 2]
 
   expected.forEach(i => expect(selected.includes(i)).toBe(true))
@@ -93,7 +93,7 @@ test('action: deselectCard', () => {
   dispatch(deselectCard(2))
   dispatch(deselectCard(0))
 
-  const selected = getState().get('selected')
+  const selected = getState().selected
   const expected = [1]
 
   expected.forEach(i => expect(selected.includes(i)).toBe(true))
@@ -104,14 +104,14 @@ test('action: removeCard', () => {
 
   dispatch(setup(null, null, () => input))
 
-  const remainingBefore = getState().get('remaining')
+  const remainingBefore = getState().remaining
   const expectBefore = [0, 1, 2]
 
   expectBefore.forEach(i => expect(remainingBefore.includes(i)).toBe(true))
 
   dispatch(removeCard(1))
 
-  const remainingAfter = getState().get('remaining')
+  const remainingAfter = getState().remaining
   const expectAfter = [0, 2]
 
   expectAfter.forEach(i => expect(remainingAfter.includes(i)).toBe(true))
@@ -120,37 +120,37 @@ test('action: removeCard', () => {
 test('action: lockGame', () => {
   dispatch(unlockGame())
   dispatch(lockGame())
-  expect(getState().get('gameLocked')).toEqual('LOCKED')
+  expect(getState().gameLocked).toEqual('LOCKED')
 })
 
 test('action: unlockGame', () => {
   dispatch(lockGame())
   dispatch(unlockGame())
-  expect(getState().get('gameLocked')).toEqual('UNLOCKED')
+  expect(getState().gameLocked).toEqual('UNLOCKED')
 })
 
 test('action: submitMatch', () => {
   dispatch(submitMatch(1))
   dispatch(submitMatch(3))
-  const completed = getState().get('completedSets')
+  const completed = getState().completedSets
   expect(completed.includes(1)).toBe(true)
   expect(completed.includes(3)).toBe(true)
 })
 
 test('action: tick', () => {
   dispatch(tick())
-  expect(getState().get('elapsedTime')).toBe(1)
+  expect(getState().elapsedTime).toBe(1)
 
   dispatch(tick())
   dispatch(tick())
-  expect(getState().get('elapsedTime')).toBe(3)
+  expect(getState().elapsedTime).toBe(3)
 })
 
 test('action: resetTimer', () => {
   dispatch(tick())
-  expect(getState().get('elapsedTime')).toBe(1)
+  expect(getState().elapsedTime).toBe(1)
   dispatch(resetTimer())
-  expect(getState().get('elapsedTime')).toBe(0)
+  expect(getState().elapsedTime).toBe(0)
 })
 
 test('tracking seen count', () => {
@@ -163,7 +163,7 @@ test('tracking seen count', () => {
   dispatch(selectCard(1)) // select B1
   dispatch(selectCard(3)) // select A2
 
-  const seen = getState().get('seen')
+  const seen = getState().seen
 
   // -----------------  A  B  C  A  B  C
   const expectedSeen = [1, 1, 0, 2, 0, 0]

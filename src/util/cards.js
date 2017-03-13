@@ -17,16 +17,15 @@ export const makeCards = (cards, mode, level) => {
   const { difficulty, sets } = levels[level]
   const setSize = levels[level].setSize || DEFAULT_SET_SIZE
 
-  if (sets > cards.size) {
+  if (sets > cards.length) {
     throw new Error(`
-      Levels cannot have more than ${cards.size} sets.
+      Levels cannot have more than ${cards.length} sets.
       -> ${title}:${difficulty} requested ${sets} sets
     `)
   }
 
   /* Get enough card types to make the requisite sets */
-  /* convert to js so keys are indexes instead of Set keys */
-  const baseCards = cards.slice(-sets).toJS()
+  const baseCards = cards.slice(-sets)
   const emptySet = Array(...Array(setSize))
 
   return shuffle(baseCards.reduce((finalCards, value, setId) => (

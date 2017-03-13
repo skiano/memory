@@ -23,13 +23,13 @@ export function getFailureDuration(elapsedTime) {
  * (return null if there is none)
  */
 export function getPotentialSet(selected, sets) {
-  const guess = selected.toJS()
+  const guess = [...selected]
   const base = guess.pop()
   let setId = null
 
   /** find the set the base belongs to */
-  for (let i = 0; i < sets.size; i += 1) {
-    if (sets.get(i).includes(base)) {
+  for (let i = 0; i < sets.length; i += 1) {
+    if (sets[i].includes(base)) {
       setId = i
       break
     }
@@ -42,7 +42,7 @@ export function getPotentialSet(selected, sets) {
 
   /** ensure the rest of the selection matches */
   return guess.reduce((current, cardId) => {
-    if (!sets.get(setId).includes(cardId)) return false
+    if (!sets[setId].includes(cardId)) return false
     return current
   }, true) ? setId : null
 }
@@ -51,16 +51,15 @@ export function getPotentialSet(selected, sets) {
  * Is this match the winning one?
  */
 export function isFinalSet(completedSets, sets) {
-  return completedSets.size === sets.size - 1
+  return completedSets.length === sets.length - 1
 }
 
 /*
  * assemble the state of a given card
  */
 export function getCardPropsFromState(cardId, state) {
-  const card = state.get('cards').get(cardId)
-  const selected = state.get('selected')
-  const remaining = state.get('remaining')
+  const { selected, remaining } = state
+  const card = state.cards[cardId]
 
   return {
     idx: cardId,

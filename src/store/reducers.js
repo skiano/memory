@@ -1,4 +1,11 @@
-import { List, Set, Map } from 'immutable'
+import { combineReducers } from 'redux'
+
+import {
+  remove,
+  unique,
+  update,
+  addUnique,
+} from '../util/pure'
 
 import {
   UNLOCKED,
@@ -26,10 +33,10 @@ import {
 const reducers = {}
 
 /** set of unique card types based on nyt api */
-reducers.cardTypes = (state = Set(), { type, payload }) => {
+reducers.cardTypes = (state = [], { type, payload }) => {
   switch (type) {
     case SETUP_CARDS:
-      return Set(payload)
+      return unique(payload)
     default:
       return state
   }
@@ -64,72 +71,70 @@ reducers.gameLocked = (state = UNLOCKED, { type }) => {
 }
 
 /** the list of cards we have */
-reducers.cards = (state = List(), { type, payload }) => {
+reducers.cards = (state = [], { type, payload }) => {
   switch (type) {
     case SETUP_GAME:
-      return List().concat(payload.cards)
+      return payload.cards
     default:
       return state
   }
 }
 
 /** the list of sets we are searching for */
-reducers.sets = (state = List(), { type, payload }) => {
+reducers.sets = (state = [], { type, payload }) => {
   switch (type) {
     case SETUP_GAME:
-      return List().concat(payload.sets)
+      return payload.sets
     default:
       return state
   }
 }
 
 /** the list of card ids still on the table */
-reducers.remaining = (state = Set(), { type, payload }) => {
+reducers.remaining = (state = [], { type, payload }) => {
   switch (type) {
     case SETUP_GAME:
-      return Set().concat(payload.remaining)
-
+      return payload.remaining
     case REMOVE_CARD:
-      return state.remove(payload)
-
+      return remove(state, payload)
     default:
       return state
   }
 }
 
 /** keeps track of how many times we saw each card */
-reducers.seen = (state = List(), { type, payload }) => {
+reducers.seen = (state = [], { type, payload }) => {
   switch (type) {
     case SETUP_GAME:
-      return List().concat(payload.seen)
+      return payload.seen
     case SELECT_CARD:
-      return state.update(payload, v => v + 1)
+      return update(state, payload, v => v + 1)
     default:
       return state
   }
 }
 
 /** list of card ids that are face up */
-reducers.selected = (state = Set(), { type, payload }) => {
+reducers.selected = (state = [], { type, payload }) => {
   switch (type) {
     case SETUP_GAME:
-      return Set()
+      return []
     case SELECT_CARD:
-      return state.add(payload)
+      return addUnique(state, payload)
     case DESELECT_CARD:
-      return state.remove(payload)
+      return remove(state, payload)
     default:
       return state
   }
 }
 
 /** list of set ids we have completed */
-reducers.completedSets = (state = Set(), { type, payload }) => {
+reducers.completedSets = (state = [], { type, payload }) => {
   switch (type) {
     case SETUP_GAME:
-      return Set()
+      return []
     case SUBMIT_MATCH:
-      return state.add(payload)
+      return addUnique(state, payload)
     default:
       return state
   }
@@ -147,8 +152,4 @@ reducers.elapsedTime = (state = 0, { type }) => {
   }
 }
 
-export default (state = Map(), action) => (
-  Object.keys(reducers).reduce((s, key) => (
-    s.set(key, reducers[key](s.get(key), action))
-  ), state)
-)
+export default combineReducers(reducers)

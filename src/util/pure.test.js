@@ -29,7 +29,7 @@ test('Pure Add Unique', () => {
 })
 
 test('Pure update', () => {
-  const output = pure.update(input, 1, v => v.toUperCase())
+  const output = pure.update(input, 1, v => v.toUpperCase())
   expect(input.join('')).toBe('abcd')
-  expect(output.join('')).toBe('aBcde')
+  expect(output.join('')).toBe('aBcd')
 })

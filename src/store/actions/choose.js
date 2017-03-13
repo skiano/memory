@@ -30,12 +30,12 @@ import {
  */
 export const guess = () => (
   (dispatch, getState) => {
-    const state = getState()
-    const sets = state.get('sets')
-    const selected = state.get('selected')
-    const elapsedTime = state.get('elapsedTime')
-    const completedSets = state.get('completedSets')
-    const potentialSetId = getPotentialSet(selected, sets)
+    const {
+     sets,
+     selected,
+     elapsedTime,
+     completedSets,
+    } = getState()
 
     /*
      * If:
@@ -46,9 +46,11 @@ export const guess = () => (
      * we have a bad guess
      * and we need to turn the cards back over
      */
+    const potentialSetId = getPotentialSet(selected, sets)
+
     if (potentialSetId !== null) {
       /** we're on the right track but need to find more matches */
-      if (selected.size < sets.get(potentialSetId).length) return
+      if (selected.length < sets[potentialSetId].length) return
 
       /** Is this the end of the game? */
       const isVictory = isFinalSet(completedSets, sets)
@@ -90,11 +92,21 @@ export const guess = () => (
  */
 export const choose = cardId => (
   (dispatch, getState) => {
-    const state = getState()
-    const selected = state.get('selected')
-    const remaining = state.get('remaining')
-    const matchSize = state.get('sets').get(0).length
-    const gameLocked = state.get('gameLocked')
+    const {
+      sets,
+      selected,
+      remaining,
+      gameState,
+      gameLocked,
+    } = getState()
+
+    const matchSize = sets[0].length
+
+    /** the start of the game */
+    if (gameState !== STARTED) {
+      dispatch(startGame())
+      dispatch(startTimer())
+    }
 
     switch (true) {
       /** Noop if game is locked */
@@ -111,12 +123,7 @@ export const choose = cardId => (
         break
 
       /** Select a card */
-      case (selected.size < matchSize): {
-        /** the start of the game */
-        if (state.get('gameState') !== STARTED) {
-          dispatch(startGame())
-          dispatch(startTimer())
-        }
+      case (selected.length < matchSize): {
         dispatch(selectCard(cardId))
         dispatch(guess())
         break

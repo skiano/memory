@@ -7,12 +7,11 @@ import { LOCKED, COMPLETED } from '../../store/constants'
 import { getCardPropsFromState } from '../../util/state-helpers'
 
 const mapStateToProps = (state) => {
-  const gameState = state.get('gameState')
-  const gameLocked = state.get('gameLocked')
+  const { gameState, gameLocked } = state
 
-  const cards = state.get('cards').map((card, cardId) => (
+  const cards = state.cards.map((card, cardId) => (
     getCardPropsFromState(cardId, state)
-  )).toJS()
+  ))
 
   return {
     cards,

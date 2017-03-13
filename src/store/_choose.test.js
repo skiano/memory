@@ -32,14 +32,14 @@ test('choose: noop if game is locked', () => {
   dispatch(choose(1))
   dispatch(lockGame())
   dispatch(choose(2))
-  expect(getState().get('selected').size).toEqual(1)
+  expect(getState().selected.length).toEqual(1)
 })
 
 test('choose: toggles card', () => {
   dispatch(choose(1))
-  expect(getState().get('selected').size).toEqual(1)
+  expect(getState().selected.length).toEqual(1)
   dispatch(choose(1))
-  expect(getState().get('selected').size).toEqual(0)
+  expect(getState().selected.length).toEqual(0)
 })
 
 test('choose: throws on selection overflow', () => {
@@ -55,20 +55,20 @@ test('choose: throws on selection overflow', () => {
 test('choose: building a selection', () => {
   dispatch(choose(0)) // good
   dispatch(choose(3)) // good
-  expect(getState().get('selected').size).toEqual(2)
+  expect(getState().selected.length).toEqual(2)
 })
 
 test('guess: partial incorrect', () => {
   dispatch(choose(3))  // good
   dispatch(choose(4))  // bad
-  expect(getState().get('selected').size).toEqual(0)
+  expect(getState().selected.length).toEqual(0)
 })
 
 test('guess: complete incorrect (handle sets > 2)', () => {
   dispatch(choose(0)) // good
   dispatch(choose(3)) // good
   dispatch(choose(4)) // bad
-  expect(getState().get('selected').size).toEqual(0)
+  expect(getState().selected.length).toEqual(0)
 })
 
 test('guess: correct', () => {
@@ -77,50 +77,50 @@ test('guess: correct', () => {
   dispatch(choose(6)) // good
 
   const state = getState()
-  const cards = state.get('cards')
-  const completedSet = state.get('completedSets').get(0)
-  const set = state.get('sets').get(completedSet)
-  const setCards = set.map(id => cards.get(id))
+  const cards = state.selected.cards
+  const completedSet = state.completedSets[0]
+  const set = state.sets[completedSet]
+  const setCards = set.map(id => cards[id])
 
   expect(setCards.join('')).toEqual('AAA')
-  expect(getState().get('selected').size).toEqual(0)
+  expect(getState().selected.length).toEqual(0)
 })
 
 test('full game', () => {
-  expect(getState().get('remaining').size).toEqual(9)
+  expect(getState().remaining.length).toEqual(9)
 
   // choose As
   dispatch(choose(3)) // good
   dispatch(choose(0)) // good
   dispatch(choose(6)) // good
-  expect(getState().get('remaining').size).toEqual(6)
+  expect(getState().remaining.length).toEqual(6)
 
   // make mistake
   dispatch(choose(1)) // good
   dispatch(choose(4)) // good
   dispatch(choose(2)) // bad
-  expect(getState().get('remaining').size).toEqual(6)
+  expect(getState().remaining.length).toEqual(6)
 
   // choose Bs
   dispatch(choose(1)) // good
   dispatch(choose(4)) // good
   dispatch(choose(7)) // good
-  expect(getState().get('remaining').size).toEqual(3)
+  expect(getState().remaining.length).toEqual(3)
 
   // choose Cs
   dispatch(choose(8)) // good
   dispatch(choose(5)) // good
   dispatch(choose(2)) // good
-  expect(getState().get('remaining').size).toEqual(0)
+  expect(getState().remaining.length).toEqual(0)
 
   const state = getState()
-  const cards = state.get('cards')
-  const sets = state.get('sets')
-  const completedSets = state.get('completedSets')
+  const cards = state.selected
+  const sets = state.sets
+  const completedSets = state.completedSets
   const cardSets = completedSets.map(setId => (
-    sets.get(setId).map(cardId => cards.get(cardId))
+    sets[setId].map(cardId => cards[cardId])
   )).map(cardSet => cardSet.join('')).sort().join()
 
   expect(cardSets).toEqual('AAA,BBB,CCC')
-  expect(state.get('gameState')).toEqual('COMPLETED')
+  expect(state.gameState).toEqual('COMPLETED')
 })
