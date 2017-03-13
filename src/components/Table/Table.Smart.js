@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import Table from './ResponsiveTable'
+import Table from './Table.Responsive'
 import { choose } from '../../store/actions'
 import { LOCKED } from '../../store/constants'
 

@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 
-import Table from '../Table/SmartTable'
-import Timer from '../Timer/SmartTimer'
+import Table from '../Table/Table.Smart'
+import Timer from '../Timer/Timer.Smart'
 import { modeMap } from '../../modes'
 import './Game.scss'
 
