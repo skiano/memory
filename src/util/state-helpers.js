@@ -53,3 +53,19 @@ export function getPotentialSet(selected, sets) {
 export function isFinalSet(completedSets, sets) {
   return completedSets.size === sets.size - 1
 }
+
+/*
+ * assemble the state of a given card
+ */
+export function getCardPropsFromState(cardId, state) {
+  const card = state.get('cards').get(cardId)
+  const selected = state.get('selected')
+  const remaining = state.get('remaining')
+
+  return Object.assign({
+    idx: cardId,
+    value: card.value,
+    isSelected: selected.includes(cardId),
+    isRemaining: remaining.includes(cardId),
+  }, card.props)
+}

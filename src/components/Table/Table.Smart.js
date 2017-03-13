@@ -2,39 +2,21 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import Table from './Table.Responsive'
+import { getCardPropsFromState } from '../../util/state-helpers'
 import { choose } from '../../store/actions'
-import { LOCKED } from '../../store/constants'
+import { LOCKED, COMPLETED } from '../../store/constants'
 
 const mapStateToProps = (state) => {
-  const selected = state.get('selected')
-  const remaining = state.get('remaining')
-  const completedSets = state.get('completedSets')
+  const gameState = state.get('gameState')
   const gameLocked = state.get('gameLocked')
 
-  /** prepare the cards so they are easy for component */
-  const cards = state.get('cards').toJS().map((card, idx) => {
-    const { value, props } = card
-
-    return Object.assign({
-      idx,
-      value,
-      isSelected: selected.includes(idx),
-      isRemaining: remaining.includes(idx),
-    }, props)
-  })
-
-  /** prepare sets for status component */
-  const sets = state.get('sets').toJS().map((set, idx) => ({
-    idx,
-    cards: set.map(cardId => cards[cardId]),
-    isSubmitted: completedSets.includes(idx),
-  }))
+  const cards = state.get('cards').map((card, cardId) => (
+    getCardPropsFromState(cardId, state)
+  )).toJS()
 
   return {
-    sets,
     cards,
-    isComplete: remaining.size < 1,
-    matchSize: sets[0].length,
+    isComplete: gameState === COMPLETED,
     isGameLocked: gameLocked === LOCKED,
   }
 }
