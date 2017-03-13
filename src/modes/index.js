@@ -11,19 +11,21 @@ const gameModes = [
   colors,
   tuples,
   formula,
-].map(mode => Object.assign({
+].map(mode => Object.assign({}, mode, {
   slug: slugify(mode.title.toLowerCase()),
-}, mode))
-
-export default gameModes
+  levels: mode.levels.map(level => Object.assign({
+    slug: slugify(level.difficulty),
+  }, level)),
+}))
 
 /** for friendly url mapping */
 export const modeMap = {}
+
 gameModes.forEach((mode, modeId) => {
   const levels = {}
 
   mode.levels.forEach((level, levelId) => (
-    levels[level.difficulty] = levelId
+    levels[level.slug] = levelId
   ))
 
   modeMap[mode.slug] = {
@@ -31,3 +33,5 @@ gameModes.forEach((mode, modeId) => {
     id: modeId,
   }
 })
+
+export default gameModes
