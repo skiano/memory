@@ -5,19 +5,15 @@ import { COMPLETED } from '../../store/constants'
 import { getCardPropsFromState } from '../../util/state-helpers'
 
 const mapStateToProps = (state) => {
-  const gameState = state.get('gameState')
-  const completedSets = state.get('completedSets')
-
-  const sets = state.get('sets').map((set, setId) => ({
-    idx: setId,
-    isSubmitted: completedSets.includes(setId),
-    cards: set.map(cardId => (
-      getCardPropsFromState(cardId, state)
-    )),
-  })).toJS()
-
+  const { gameState, completedSets, sets } = state
   return {
-    sets,
+    sets: sets.map((set, setId) => ({
+      idx: setId,
+      isSubmitted: completedSets.includes(setId),
+      cards: set.map(cardId => (
+        getCardPropsFromState(cardId, state)
+      )),
+    })),
     isComplete: gameState === COMPLETED,
     matchSize: sets[0].length,
   }

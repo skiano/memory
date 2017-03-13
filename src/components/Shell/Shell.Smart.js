@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux'
 import Shell from './Shell'
 import { fetchCards } from '../../store/actions'
 
-const mapStateToProps = state => ({
-  hasCardTypes: !!state.get('cardTypes').size,
+const mapStateToProps = ({ cardTypes }) => ({
+  hasCardTypes: cardTypes.length > 0,
 })
 
 function mapDispatchToProps(dispatch) {

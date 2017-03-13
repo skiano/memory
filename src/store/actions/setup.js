@@ -14,7 +14,7 @@ import {
 
 export const setup = (mode, level, cardMaker = makeCards) => (
   (dispatch, getState) => {
-    const cardTypes = getState().get('cardTypes')
+    const { cardTypes } = getState()
     const cards = cardMaker(cardTypes, mode, level)
 
     dispatch(stopTimer())
