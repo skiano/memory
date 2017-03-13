@@ -47,18 +47,18 @@ export const guess = () => (
      * and we need to turn the cards back over
      */
     if (potentialSetId !== null) {
-      /* we're on the right track but need to find more matches */
+      /** we're on the right track but need to find more matches */
       if (selected.size < sets.get(potentialSetId).length) return
 
-      dispatch(lockGame())
-
-      /** the end of the game */
+      /** Is this the end of the game? */
       const isVictory = isFinalSet(completedSets, sets)
       if (isVictory) {
         dispatch(stopTimer())
         dispatch(completeGame())
       }
 
+      /** Wait for a bit and then submit the match */
+      dispatch(lockGame())
       wait(getSuccessDuration(isVictory)).then(() => {
         dispatch(submitMatch(potentialSetId))
 
@@ -69,9 +69,8 @@ export const guess = () => (
         dispatch(unlockGame())
       })
     } else {
-      /* Our selection doesn't match any sets */
+      /** Wait for a bit and then cancel the selection */
       dispatch(lockGame())
-
       wait(getFailureDuration(elapsedTime)).then(() => {
         selected.forEach(id => dispatch(deselectCard(id)))
         dispatch(unlockGame())
