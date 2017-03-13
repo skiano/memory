@@ -5,7 +5,7 @@ import Shell from './Shell'
 import { fetchCards } from '../../store/actions'
 
 const mapStateToProps = state => ({
-  hasCardTypes: !!state.get('cardTypes').get('easy'),
+  hasCardTypes: !!state.get('cardTypes').size,
 })
 
 function mapDispatchToProps(dispatch) {

@@ -25,13 +25,11 @@ import {
 
 const reducers = {}
 
-/** sets of unique card types based on nyt api */
-reducers.cardTypes = (state = Map(), { type, payload }) => {
+/** set of unique card types based on nyt api */
+reducers.cardTypes = (state = Set(), { type, payload }) => {
   switch (type) {
     case SETUP_CARDS:
-      return state
-        .set('easy', Set(payload[0].cards))
-        .set('hard', Set(payload[1].cards))
+      return Set(payload)
     default:
       return state
   }

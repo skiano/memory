@@ -11,11 +11,11 @@ import {
   setupCards,
 } from './'
 
-export const setup = (mode, level) => (
+export const setup = (mode, level, cardMaker = makeCards) => (
   /** Returns a thunk */
   (dispatch, getState) => {
     const cardTypes = getState().get('cardTypes')
-    const cards = makeCards(cardTypes, mode, level)
+    const cards = cardMaker(cardTypes, mode, level)
 
     dispatch(resetTimer())
 
@@ -37,7 +37,8 @@ export const fetchCards = () => (
       }
 
       response.json().then(({ levels }) => {
-        dispatch(setupCards(levels))
+        /** put two levels together because duplicates will be removed */
+        dispatch(setupCards(levels[0].cards.concat(levels[1].cards)))
       })
     })
   }

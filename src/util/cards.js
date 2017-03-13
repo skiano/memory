@@ -15,24 +15,15 @@ export const makeCards = (cards, mode, level) => {
   const { difficulty, sets, setSize } = levels[level]
   const cardFactory = makeCard || defaultCardFactory
 
-  /* We are limited by the card types in the api */
-  /* Nothing prevents adding more types */
-  const maxSets = cards.get('hard').size
-
-  if (sets > maxSets) {
+  if (sets > cards.size) {
     throw new Error(`
-      Levels cannot have more than ${maxSets} sets.
+      Levels cannot have more than ${cards.size} sets.
       -> ${title}:${difficulty} requested ${sets} sets
     `)
   }
 
-  /* Make sure easy matches original NYT sample api */
-  const cartTypes = sets <= 4 ?
-    cards.get('easy') :
-    cards.get('hard')
-
   /* Get enough card types to make the requisite sets */
-  const baseCards = cartTypes.slice(-sets)
+  const baseCards = cards.slice(-sets)
   const emptySet = Array(...Array(setSize || DEFAULT_SET_SIZE))
 
   return shuffle(baseCards.reduce((finalCards, value) => (
