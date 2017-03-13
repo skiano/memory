@@ -118,7 +118,10 @@ export const choose = cardId => (
       }
 
       default:
-        throw new Error(`Selection overflow: \n${selected}`)
+        throw new Error(`
+          Selection overflow:
+          ${selected}
+        `)
     }
   }
 )
