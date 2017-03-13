@@ -23,8 +23,8 @@ const Card = (props) => {
   }
 
   return (
-    <div className={className} style={style}>
-      <div className={styles.front}>
+    <div className={className}>
+      <div className={styles.front} style={style}>
         {props.text}
       </div>
       <div className={styles.back} />
