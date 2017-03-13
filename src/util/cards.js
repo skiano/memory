@@ -2,11 +2,18 @@
 import modes from '../modes'
 import shuffle from './shuffle'
 
+const DEFAULT_SET_SIZE = 2
+
+/** if game mode doesn't have a card factory */
+export const defaultCardFactory = (value, setMember) => (
+  { text: value }
+)
+
 /** This is where the game will be extendable */
 export const makeCards = (cards, mode, level) => {
-  const { title, levels } = modes[mode]
-  const { difficulty, sets } = levels[level]
-  const setSize = levels[level].setSize || 2
+  const { title, levels, makeCard } = modes[mode]
+  const { difficulty, sets, setSize } = levels[level]
+  const cardFactory = makeCard || defaultCardFactory
 
   /* We are limited by the card types in the api */
   /* Nothing prevents adding more types */
@@ -26,21 +33,19 @@ export const makeCards = (cards, mode, level) => {
 
   /* Get enough card types to make the requisite sets */
   const baseCards = cartTypes.slice(-sets)
+  const emptySet = Array(...Array(setSize || DEFAULT_SET_SIZE))
 
-  console.log(`
-    mode: ${title}
-    difficulty: ${difficulty}
-    level: ${level}
-    baseCards: ${baseCards}
-    sets: ${sets}
-  `)
-
-  return shuffle([...cartTypes, ...cartTypes])
+  return shuffle(baseCards.reduce((finalCards, value) => (
+    finalCards.concat(emptySet.map((empty, i) => ({
+      value,
+      props: cardFactory(value, i),
+    })))
+  ), []))
 }
 
 /** Once there are more card modes this will be useful */
 export function cardsMatch(a, b) {
-  return a === b
+  return a.value === b.value
 }
 
 export function vallidateSets(sets, cards) {

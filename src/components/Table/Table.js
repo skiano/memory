@@ -18,7 +18,6 @@ const Table = (props) => {
       left: positions[card.idx][0],
       top: positions[card.idx][1],
     }
-
     return (
       <button
         className={styles.button}

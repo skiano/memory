@@ -6,29 +6,36 @@ import { choose } from '../../store/actions'
 import { STATE_LOCKED } from '../../store/constants'
 
 const mapStateToProps = (state) => {
-  const sets = state.get('sets')
-  const cards = state.get('cards')
   const selected = state.get('selected')
   const remaining = state.get('remaining')
   const completedSets = state.get('completedSets')
   const gameLocked = state.get('gameLocked')
 
-  return {
-    isComplete: remaining.size < 1,
-    matchSize: sets.get(0).length,
-    isGameLocked: gameLocked === STATE_LOCKED,
-    sets: sets.map((set, idx) => ({
-      idx,
-      cards: set.map(cardId => cards.get(cardId)),
-      isSubmitted: completedSets.includes(idx),
-    })).toJS(),
-    cards: cards.map((value, idx) => ({
+  /** prepare the cards so they are easy for component */
+  const cards = state.get('cards').toJS().map((card, idx) => {
+    const { value, props } = card
+
+    return Object.assign({
       idx,
       value,
       isSelected: selected.includes(idx),
       isRemaining: remaining.includes(idx),
-      setIdx: 1,
-    })).toJS(),
+    }, props)
+  })
+
+  /** prepare sets for status component */
+  const sets = state.get('sets').toJS().map((set, idx) => ({
+    idx,
+    cards: set.map(cardId => cards[cardId]),
+    isSubmitted: completedSets.includes(idx),
+  }))
+
+  return {
+    sets,
+    cards,
+    isComplete: remaining.size < 1,
+    matchSize: sets[0].length,
+    isGameLocked: gameLocked === STATE_LOCKED,
   }
 }
 
