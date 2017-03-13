@@ -18,6 +18,11 @@ test('Pure Remove', () => {
   expect(output.join('')).toBe('acd')
 })
 
+test('Pure Remove (if missing)', () => {
+  const output = pure.remove(input, 'f')
+  expect(output).toBe(input)
+})
+
 test('Pure Add Unique', () => {
   const noop = pure.addUnique(input, 'b')
   expect(input.join('')).toBe('abcd')
