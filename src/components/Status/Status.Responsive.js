@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react'
 import eventListener from 'eventlistener'
 
-import Table from './Table'
-import styles from './Table.scss'
-import { getLayout } from '../../util/layout'
+import Status from './Status'
+import styles from './Status.scss'
 
-class ResponsiveTable extends React.Component {
+function getLayout() {}
+
+class ResponsiveStatus extends React.Component {
   constructor(props) {
     super(props)
     this.respond = this.respond.bind(this)
@@ -22,22 +23,22 @@ class ResponsiveTable extends React.Component {
   }
 
   respond() {
-    const cardCount = this.props.cards.length
+    const { sets } = this.props
     const { offsetWidth, offsetHeight } = this.wrapper
 
     this.setState(
-      getLayout(cardCount, [offsetWidth, offsetHeight]),
+      getLayout(sets, [offsetWidth, offsetHeight]),
     )
   }
 
   render() {
     const inner = this.state.positions ? (
-      <Table {...this.props} {...this.state} />
+      <Status {...this.props} {...this.state} />
     ) : null
 
     return (
       <div
-        className={styles.table}
+        className={styles.status}
         ref={(div) => { this.wrapper = div }}>
         {inner}
       </div>
@@ -45,8 +46,8 @@ class ResponsiveTable extends React.Component {
   }
 }
 
-ResponsiveTable.propTypes = {
-  cards: PropTypes.arrayOf(PropTypes.object),
+ResponsiveStatus.propTypes = {
+  sets: PropTypes.arrayOf(PropTypes.object),
 }
 
-export default ResponsiveTable
+export default ResponsiveStatus
