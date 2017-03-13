@@ -3,12 +3,15 @@ import shuffle from './shuffle'
 
 const DEFAULT_SET_SIZE = 2
 
-export const defaultCardFactory = value => ({ text: value })
+export const createCardMaker = (maker, value, setPosition, level) => (
+  (props) => {
+    maker({ props, value, level, setPosition })
+  }
+)
 
 export const makeCards = (cards, mode, level) => {
-  const { title, levels, makeCard } = modes[mode]
+  const { title, levels, makeCardFace } = modes[mode]
   const { difficulty, sets, setSize } = levels[level]
-  const cardFactory = makeCard || defaultCardFactory
 
   if (sets > cards.size) {
     throw new Error(`
@@ -22,9 +25,14 @@ export const makeCards = (cards, mode, level) => {
   const emptySet = Array(...Array(setSize || DEFAULT_SET_SIZE))
 
   return shuffle(baseCards.reduce((finalCards, value) => (
-    finalCards.concat(emptySet.map((empty, i) => ({
+    finalCards.concat(emptySet.map((empty, setPosition) => ({
       value,
-      props: cardFactory(value, i),
+      cardFace: makeCardFace ? createCardMaker(
+        makeCardFace,
+        value,
+        setPosition,
+        levels[level]
+      ) : null,
     })))
   ), []))
 }

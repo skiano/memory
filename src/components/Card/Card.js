@@ -5,6 +5,7 @@ import styles from './Card.scss'
 
 const Card = (props) => {
   const {
+    value,
     cardSize,
     isSelected,
     isRemaining,
@@ -25,7 +26,7 @@ const Card = (props) => {
   return (
     <div className={className}>
       <div className={styles.front} style={style}>
-        {props.text}
+        {value}
       </div>
       <div className={styles.back} />
     </div>
@@ -33,7 +34,7 @@ const Card = (props) => {
 }
 
 Card.propTypes = {
-  text: PropTypes.string,
+  value: PropTypes.string,
   cardSize: PropTypes.number,
   isSelected: PropTypes.bool,
   isRemaining: PropTypes.bool,

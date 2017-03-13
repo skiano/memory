@@ -62,10 +62,11 @@ export function getCardPropsFromState(cardId, state) {
   const selected = state.get('selected')
   const remaining = state.get('remaining')
 
-  return Object.assign({
+  return {
     idx: cardId,
     value: card.value,
+    makeFace: card.makeFace,
     isSelected: selected.includes(cardId),
     isRemaining: remaining.includes(cardId),
-  }, card.props)
+  }
 }
