@@ -6,7 +6,6 @@ const DEFAULT_SET_SIZE = 2
 /*
  * pass card props and set information
  * to the game modes card generator
- * *** make this cache ***
  */
 export const createCardMaker = (maker, info) => {
   if (!maker) return null
@@ -15,7 +14,8 @@ export const createCardMaker = (maker, info) => {
 
 export const makeCards = (cards, mode, level) => {
   const { title, levels, makeCardFace } = modes[mode]
-  const { difficulty, sets, setSize } = levels[level]
+  const { difficulty, sets } = levels[level]
+  const setSize = levels[level].setSize || DEFAULT_SET_SIZE
 
   if (sets > cards.size) {
     throw new Error(`
@@ -27,7 +27,7 @@ export const makeCards = (cards, mode, level) => {
   /* Get enough card types to make the requisite sets */
   /* convert to js so keys are indexes instead of Set keys */
   const baseCards = cards.slice(-sets).toJS()
-  const emptySet = Array(...Array(setSize || DEFAULT_SET_SIZE))
+  const emptySet = Array(...Array(setSize))
 
   return shuffle(baseCards.reduce((finalCards, value, setId) => (
     finalCards.concat(emptySet.map((empty, setPosition) => ({
@@ -35,6 +35,7 @@ export const makeCards = (cards, mode, level) => {
       makeCardFace: createCardMaker(makeCardFace, {
         value,
         setId,
+        setSize,
         baseCards,
         setPosition,
         level: levels[level],

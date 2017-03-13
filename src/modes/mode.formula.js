@@ -6,18 +6,24 @@ const fib = (n, memo = {}) => (memo[n] || (
   ((memo[n] = fib(n - 1, memo) + fib(n - 2), memo) && memo[n])
 ))
 
-const getFormula = n => `${fib(n - 2)} + ${fib(n - 1)}`
+const getFormula = (n, setPosition) => (
+  [
+    [-1, -2],
+    [-1, -3, -4],
+  ][setPosition - 1].slice(0, setPosition + 1).map(i => fib(n + i)).join('+')
+)
 
 export default {
   title: 'Fibonacci',
-  makeCardFace({ setId, setPosition }) {
-    const n = setId + 3
+  makeCardFace({ setId, setSize, setPosition }) {
+    const n = setId + setSize + 1
     const total = fib(n)
-    const text = (setPosition > 0) ? getFormula(n) : total
+    const text = (setPosition > 0) ? getFormula(n, setPosition) : total
     return (<div style={{ fontSize: '20px' }}>{text}</div>)
   },
   levels: [
     { difficulty: 'Easy', sets: 4 },
     { difficulty: 'Hard', sets: 6 },
+    { difficulty: 'Insane', sets: 4, setSize: 3 },
   ],
 }
