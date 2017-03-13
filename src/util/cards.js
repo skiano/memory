@@ -36,7 +36,11 @@ export const makeCards = (cards, mode, level) => {
 
 /** Once there are more card modes this will be useful */
 export function cardsMatch(a, b) {
-  return a.value === b.value
+  if (typeof a === 'string') {
+    return a === b
+  } else {
+    return a.value === b.value  
+  }
 }
 
 export function vallidateSets(sets, cards) {

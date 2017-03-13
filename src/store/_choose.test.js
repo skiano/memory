@@ -23,8 +23,8 @@ beforeEach(() => {
   subscribe = store.subscribe
   getState = store.getState
   dispatch = store.dispatch
-  dispatch(setup(
-    ['A', 'B', 'C', 'A', 'B', 'C', 'A', 'B', 'C']
+  dispatch(setup(null, null,
+    () => ['A', 'B', 'C', 'A', 'B', 'C', 'A', 'B', 'C']
   ))
 })
 
