@@ -27,6 +27,6 @@ This is based on [NYT kyt](https://github.com/NYTimes/kyt)
 
 ---
 
-## Features
+## Roadmap
 
-_Coming soon_
+[Roadmap](https://github.com/skiano/memory/issues/2)
