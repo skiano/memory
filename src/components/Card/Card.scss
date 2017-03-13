@@ -24,6 +24,10 @@ $front-color: darkblue;
   &.removed {
     opacity: 0 !important;
     transform: scale(0.6);
+
+    &:hover {
+      cursor: default;
+    }
   }
 
   &.selected {
