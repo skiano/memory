@@ -8,23 +8,23 @@ const Home = () => (
   <div className={styles.home}>
     {
       modes.map((mode, modeId) => (
-        <div key={modeId}>
+        <div key={modeId} className={styles.mode}>
           <h3>{mode.title}</h3>
-          {
-            mode.levels.map((level, levelId) => (
-              <Link
-                key={levelId}
-                to={`/play/${mode.slug}/${level.slug}`}>
-                {level.difficulty}
-              </Link>
-            ))
-          }
+          <nav>
+            {
+              mode.levels.map((level, levelId) => (
+                <Link
+                  className={styles.modeLink}
+                  key={levelId}
+                  to={`/play/${mode.slug}/${level.slug}`}>
+                  {level.difficulty}
+                </Link>
+              ))
+            }
+          </nav>
         </div>
       ))
     }
-    <Link to="/play/classic/easy">Play Classic (easy)</Link>
-    <Link to="/play/classic/hard">Play Classic (hard)</Link>
-    <Link to="/play/classic/tripples">Play Classic (tripples)</Link>
   </div>
 )
 

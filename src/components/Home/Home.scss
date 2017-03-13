@@ -1,3 +1,27 @@
 .home {
-  border: 1px solid red;
+  padding: 20px;
+  color: #fff;
+}
+
+.mode {
+  text-align: center;
+  width: 500px;
+  margin: 30px auto;
+
+  h3 {
+    margin-bottom: 10px;
+  }
+}
+
+.modeLink {
+  text-decoration: none;
+  display: inline-block;
+  height: 45px;
+  line-height: 45px;
+  background: darkblue;
+  color: red;
+  margin-right: 10px;
+  margin-left: 10px;
+  min-width: 80px;
+  text-align: center;
 }
