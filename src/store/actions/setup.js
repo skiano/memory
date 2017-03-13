@@ -13,7 +13,6 @@ import {
 } from './'
 
 export const setup = (mode, level, cardMaker = makeCards) => (
-  /** Returns a thunk */
   (dispatch, getState) => {
     const cardTypes = getState().get('cardTypes')
     const cards = cardMaker(cardTypes, mode, level)
@@ -31,7 +30,6 @@ export const setup = (mode, level, cardMaker = makeCards) => (
 )
 
 export const fetchCards = () => (
-  /** Returns a thunk */
   (dispatch) => {
     fetch('/api').then((response) => {
       if (response.status >= 400) {
