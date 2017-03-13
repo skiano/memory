@@ -1,15 +1,10 @@
-/* eslint-disable no-unused-vars */
 import modes from '../modes'
 import shuffle from './shuffle'
 
 const DEFAULT_SET_SIZE = 2
 
-/** if game mode doesn't have a card factory */
-export const defaultCardFactory = (value, setMember) => (
-  { text: value }
-)
+export const defaultCardFactory = value => ({ text: value })
 
-/** This is where the game will be extendable */
 export const makeCards = (cards, mode, level) => {
   const { title, levels, makeCard } = modes[mode]
   const { difficulty, sets, setSize } = levels[level]
@@ -34,7 +29,6 @@ export const makeCards = (cards, mode, level) => {
   ), []))
 }
 
-/** Once there are more card modes this will be useful */
 export function cardsMatch(a, b) {
   if (typeof a === 'string') { return a === b }
   return a.value === b.value
