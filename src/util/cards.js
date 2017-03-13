@@ -6,6 +6,7 @@ const DEFAULT_SET_SIZE = 2
 /*
  * pass card props and set information
  * to the game modes card generator
+ * *** make this cache ***
  */
 export const createCardMaker = (maker, info) => {
   if (!maker) return null

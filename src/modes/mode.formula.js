@@ -1,25 +1,20 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable no-return-assign, react/prop-types */
 import React from 'react'
 
-/* eslint-disable no-return-assign */
 const fib = (n, memo = {}) => (memo[n] || (
   (n < 2) ? ((memo[n] = n) && n) :
   ((memo[n] = fib(n - 1, memo) + fib(n - 2), memo) && memo[n])
 ))
-/* eslint-enable no-return-assign */
 
-// for (let i = 1; i <= 9; i += 1) {
-//   console.log(`${i} => ${fib(i)}`)
-// }
+const getFormula = n => `${fib(n - 2)} + ${fib(n - 1)}`
 
 export default {
-  title: 'Formula',
+  title: 'Fibonacci',
   makeCardFace({ setId, setPosition }) {
-    const total = fib(setId + 3)
-
-    return (
-      <span style={{ fontSize: '20px' }}>{total}:{setId + 3}</span>
-    )
+    const n = setId + 3
+    const total = fib(n)
+    const text = (setPosition > 0) ? getFormula(n) : total
+    return (<div style={{ fontSize: '20px' }}>{text}</div>)
   },
   levels: [
     { difficulty: 'Easy', sets: 4 },
