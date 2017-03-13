@@ -65,8 +65,8 @@ export function getCardPropsFromState(cardId, state) {
   return {
     idx: cardId,
     value: card.value,
-    makeFace: card.makeFace,
     isSelected: selected.includes(cardId),
     isRemaining: remaining.includes(cardId),
+    makeCardFace: card.makeCardFace,
   }
 }

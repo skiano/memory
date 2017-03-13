@@ -10,6 +10,7 @@ const Card = (props) => {
     isSelected,
     isRemaining,
     isGameLocked,
+    makeCardFace,
   } = props
 
   const className = classNames(styles.card, {
@@ -23,10 +24,12 @@ const Card = (props) => {
     lineHeight: `${cardSize}px`,
   }
 
+  const cardFace = makeCardFace ? makeCardFace(props) : value
+
   return (
     <div className={className}>
       <div className={styles.front} style={style}>
-        {value}
+        {cardFace}
       </div>
       <div className={styles.back} />
     </div>
@@ -39,6 +42,7 @@ Card.propTypes = {
   isSelected: PropTypes.bool,
   isRemaining: PropTypes.bool,
   isGameLocked: PropTypes.bool,
+  makeCardFace: PropTypes.func,
 }
 
 export default Card

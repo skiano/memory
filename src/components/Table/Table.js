@@ -25,7 +25,7 @@ const Table = (props) => {
         key={card.idx}
         onClick={() => choose(card.idx)}>
         <Card
-          {... card}
+          {...card}
           isGameLocked={isGameLocked}
           cardSize={cardSize} />
       </button>
