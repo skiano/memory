@@ -18,6 +18,7 @@ export const update = (arr, idx, fn) => {
 }
 
 export const remove = (arr, v) => {
+  if (!arr.includes(v)) return arr
   const n = [...arr]
   n.splice(arr.indexOf(v), 1)
   return n
