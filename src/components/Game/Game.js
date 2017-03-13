@@ -6,13 +6,6 @@ import { modeMap } from '../../modes'
 import './Game.scss'
 
 class Game extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isSetup: false,
-    }
-  }
-
   componentWillMount() {
     const { mode, level } = this.props.routeParams
     this.props.setup(
