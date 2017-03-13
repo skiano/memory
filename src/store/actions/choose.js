@@ -12,12 +12,9 @@ import {
   completeGame,
   lockGame,
   unlockGame,
-} from './'
-
-import {
   startTimer,
   stopTimer,
-} from './timer'
+} from './'
 
 import {
   getSuccessDuration,
