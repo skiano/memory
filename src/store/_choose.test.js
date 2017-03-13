@@ -77,7 +77,7 @@ test('guess: correct', () => {
   dispatch(choose(6)) // good
 
   const state = getState()
-  const cards = state.selected.cards
+  const cards = state.cards
   const completedSet = state.completedSets[0]
   const set = state.sets[completedSet]
   const setCards = set.map(id => cards[id])
