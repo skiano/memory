@@ -1,6 +1,9 @@
 /* eslint-disable no-return-assign, react/prop-types */
 import React from 'react'
 
+/** cache all the results */
+const fibCache = {}
+
 const fib = (n, memo = {}) => (memo[n] || (
   (n < 2) ? ((memo[n] = n) && n) :
   ((memo[n] = fib(n - 1, memo) + fib(n - 2), memo) && memo[n])
@@ -22,7 +25,7 @@ export default {
   ],
   makeCardFace({ setId, setSize, setPosition }) {
     const n = setId + setSize + 1
-    const total = fib(n)
+    const total = fib(n, fibCache)
     const text = (setPosition > 0) ? getFormula(n, setPosition) : total
     return (<div style={{ fontSize: '20px' }}>{text}</div>)
   },
