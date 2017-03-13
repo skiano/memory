@@ -1,5 +1,6 @@
 const MIN_CARD_SIZE = 40
-const IDEAL_GUTTER = 20
+const MAX_CARD_SIZE = 200
+const IDEAL_GUTTER = 25
 
 /*
  * given card count
@@ -30,13 +31,18 @@ export function getSizes(
   outerSide,
   cardCount,
   idealGutter,
-  minCardSize
+  minCardSize = MIN_CARD_SIZE,
+  maxCardSize = MAX_CARD_SIZE
 ) {
   let cardSize
 
   cardSize = (outerSide - ((cardCount - 1) * idealGutter)) / cardCount
 
-  if (cardSize < minCardSize) { cardSize = minCardSize }
+  if (cardSize < minCardSize) {
+    cardSize = minCardSize
+  } else if (cardSize > maxCardSize) {
+    cardSize = maxCardSize
+  }
 
   const gutterSize = (outerSide - (cardCount * cardSize)) / (cardCount - 1)
 

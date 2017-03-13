@@ -30,6 +30,20 @@ test('getSizes: prefer to enlarge cards and keep gutter', () => {
   expect(gutterSize).toEqual(10)
 })
 
+test('getSizes: grow gutters if cards are too big ', () => {
+  const outerSide = 100
+  const cardCount = 3
+  const idealGutter = 10
+  const minCardSize = 10
+  const maxCardSize = 20
+  const { cardSize, gutterSize } = layout.getSizes(
+    outerSide, cardCount, idealGutter, minCardSize, maxCardSize
+  )
+
+  expect(cardSize).toEqual(20)
+  expect(gutterSize).toEqual(20)
+})
+
 test('getSizes: shrink gutter to keep min card size', () => {
   const outerSide = 520
   const cardCount = 5
