@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Status from './Status.Responsive';
 import { COMPLETED } from '../../store/constants';
-import { getCardPropsFromState } from '../../util/state-helpers';
+import { getCardPropsFromState } from '../../util';
 
 const mapStateToProps = (state) => {
   const { gameState, completedSets, sets } = state;

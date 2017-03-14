@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import Table from './Table.Responsive';
 import { choose } from '../../store/actions';
 import { LOCKED, COMPLETED } from '../../store/constants';
-import { getCardPropsFromState } from '../../util/state-helpers';
+import { getCardPropsFromState } from '../../util';
 
 const mapStateToProps = (state) => {
   const { gameState, gameLocked } = state;

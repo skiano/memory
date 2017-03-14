@@ -23,6 +23,21 @@ export default {
     { difficulty: 'Hard', sets: 8 },
     { difficulty: 'Insane', sets: 6, setSize: 3 },
   ],
+  makeCards(totalSets, setSize) {
+    const cards = [];
+    for (let setId = 0; setId < totalSets; setId += 1) {
+      // make sure there are enough smaller numbers in the series
+      const n = setId + setSize + 2;
+      const value = fib(n, fibCache);
+
+      cards.push({ value, symbol: `${value}` });
+
+      for (let c = 1; c < setSize; c += 1) {
+        cards.push({ value, symbol: getFormula(n, c) });
+      }
+    }
+    return cards;
+  },
   makeCardFace({ setId, setSize, setPosition }) {
     const n = setId + setSize + 1;
     const total = fib(n, fibCache);
