@@ -3,14 +3,14 @@ import styles from './Shell.scss';
 
 class Shell extends React.Component {
   componentDidMount() {
-    this.props.fetchCards();
+    this.props.setup();
   }
 
   render() {
     return (
       <div className={styles.shell}>
         <div className={styles.content}>
-          {this.props.hasCardTypes ? this.props.children : null}
+          {this.props.isSetup ? this.props.children : null}
         </div>
       </div>
     );
@@ -19,8 +19,8 @@ class Shell extends React.Component {
 
 Shell.propTypes = {
   children: PropTypes.node,
-  fetchCards: PropTypes.func,
-  hasCardTypes: PropTypes.bool,
+  setup: PropTypes.func,
+  isSetup: PropTypes.bool,
 };
 
 export default Shell;
