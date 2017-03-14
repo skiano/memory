@@ -5,7 +5,7 @@ import {
   unique,
   update,
   addUnique,
-} from '../util/pure';
+} from '../util';
 
 import {
   UNLOCKED,
@@ -17,7 +17,6 @@ import {
 
 import {
   SET_CONFIG,
-  SETUP_CARDS,
   CREATE_GAME,
   START_GAME,
   COMPLETE_GAME,
@@ -37,16 +36,6 @@ reducers.config = (state = {}, { type, payload }) => {
   switch (type) {
     case SET_CONFIG:
       return Object.assign({}, state, payload);
-    default:
-      return state;
-  }
-};
-
-/** set of unique card types based on nyt api */
-reducers.cardTypes = (state = [], { type, payload }) => {
-  switch (type) {
-    case SETUP_CARDS:
-      return unique(payload);
     default:
       return state;
   }

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import fetch from 'isomorphic-fetch';
 import GAME_MODES from '../../modes';
 
@@ -13,7 +12,6 @@ import {
   stopTimer,
   resetTimer,
   setConfig,
-  setupCards,
 } from './';
 
 export const setupModes = (modesConfig, cardTypes) => (
@@ -84,8 +82,15 @@ export const setup = () => (
 
 export const setupGame = levelId => (
   (dispatch, getState) => {
-    const { levels } = getState().config;
-    const cards = shuffle(levels[levelId].cards);
+    let cards;
+
+    /** allow setupModes to be circumvented */
+    if (Array.isArray(levelId)) {
+      cards = shuffle(levelId);
+    } else {
+      const { levels } = getState().config;
+      cards = shuffle(levels[levelId].cards);
+    }
 
     dispatch(stopTimer());
     dispatch(resetTimer());

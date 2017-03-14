@@ -29,6 +29,18 @@ test('Setup Game', () => {
   expect(payload.sets.map(s => s.join()).join('|')).toEqual('0,1|2,3|4,5');
 });
 
+test('Setup Game: pass cards', () => {
+  const testState = {};
+  setupGame(['A', 'A', 'B', 'B', 'C', 'C'])(dispatch, () => testState);
+
+  const createGame = dispatch.mock.calls[dispatch.mock.calls.length - 1][0];
+  const { payload } = createGame;
+  expect(createGame.type).toEqual('CREATE_GAME');
+  expect(payload.cards.join('')).toEqual('CCBBAA');
+  expect(payload.seen.join('')).toEqual('000000');
+  expect(payload.sets.map(s => s.join()).join('|')).toEqual('0,1|2,3|4,5');
+});
+
 test('Setup Modes', () => {
   const modeConfig = [
     {

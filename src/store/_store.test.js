@@ -1,62 +1,58 @@
-test(() => {
-  console.log('dummy test');
+/* eslint-disable no-unused-vars */
+
+import createStore from './';
+
+import {
+  setup,
+  setupGame,
+  lockGame,
+  unlockGame,
+  selectCard,
+  deselectCard,
+  removeCard,
+  submitMatch,
+  resetTimer,
+  tick,
+} from './actions';
+
+let getState;
+let dispatch;
+
+beforeEach(() => {
+  const store = createStore();
+  getState = store.getState;
+  dispatch = store.dispatch;
 });
 
-// /* eslint-disable no-unused-vars */
-
-// import createStore from './';
-
-// import {
-//   setup,
-//   createGame,
-//   lockGame,
-//   unlockGame,
-//   selectCard,
-//   deselectCard,
-//   removeCard,
-//   submitMatch,
-//   resetTimer,
-//   tick,
-// } from './actions';
-
-// let getState;
-// let dispatch;
-
-// beforeEach(() => {
-//   const store = createStore();
-//   getState = store.getState;
-//   dispatch = store.dispatch;
-// });
-
-// test('initial state', () => {
-//   expect(getState().gameLocked).toBe('UNLOCKED');
-//   expect(getState().cards.length).toBe(0);
-//   expect(getState().remaining.length).toBe(0);
-//   expect(getState().sets.length).toBe(0);
-//   expect(getState().completedSets.length).toBe(0);
-//   expect(getState().seen.length).toBe(0);
-//   expect(getState().selected.length).toBe(0);
-//   expect(getState().elapsedTime).toBe(0);
-// });
+test('initial state', () => {
+  expect(getState().gameLocked).toBe('UNLOCKED');
+  expect(getState().cards.length).toBe(0);
+  expect(getState().remaining.length).toBe(0);
+  expect(getState().sets.length).toBe(0);
+  expect(getState().completedSets.length).toBe(0);
+  expect(getState().seen.length).toBe(0);
+  expect(getState().selected.length).toBe(0);
+  expect(getState().elapsedTime).toBe(0);
+});
 
 // test('action: setup: creates {cards, sets, remaining, seen}', () => {
 //   const input = ['A', 'B', 'C', 'A', 'B', 'C'];
 
-//   dispatch(setup(null, null, () => input));
+//   dispatch(setupGame(input));
 
 //   const state = getState();
 
-//   const expectedRemaining = [0, 1, 2, 3, 4, 5];
-//   input.map(c => expect(state.cards.includes(c)).toBe(true));
-//   expectedRemaining.map(i => expect(state.remaining.includes(i)).toBe(true));
+//   // const expectedRemaining = [0, 1, 2, 3, 4, 5];
+//   // input.map(c => expect(state.cards.includes(c)).toBe(true));
+//   // expectedRemaining.map(i => expect(state.remaining.includes(i)).toBe(true));
 
-//   const expectedSets = ['0,3', '1,4', '2,5'];
-//   const flattenedSets = state.sets.map(set => set.join());
-//   expectedSets.map(s => expect(flattenedSets.includes(s)).toBe(true));
+//   // const expectedSets = ['0,3', '1,4', '2,5'];
+//   // const flattenedSets = state.sets.map(set => set.join());
+//   // expectedSets.map(s => expect(flattenedSets.includes(s)).toBe(true));
 
-//   const seen = state.seen;
-//   expect(seen.length).toEqual(6);
-//   seen.forEach(counter => expect(counter).toEqual(0));
+//   // const seen = state.seen;
+//   // expect(seen.length).toEqual(6);
+//   // seen.forEach(counter => expect(counter).toEqual(0));
 // });
 
 // test('action: setup: handles sets larger than 2', () => {
