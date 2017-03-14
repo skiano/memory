@@ -4,7 +4,25 @@ import shuffle from './shuffle';
 const DEFAULT_SET_SIZE = 2;
 
 export const defaultCardMaker = (totalSets, setSize, cardTypes) => {
-  console.log(totalSets, setSize, cardTypes);
+  const cards = [];
+  let setId;
+  for (setId = 0; setId < totalSets; setId += 1) {
+    const symbol = cardTypes[setId];
+
+    if (!symbol) {
+      throw new Error(`
+        defaultCardMaker()
+          needed ${totalSets} card types
+          recieved: ${cardTypes.join()}
+      `);
+    }
+
+    let c;
+    for (c = 0; c < setSize; c += 1) {
+      cards.push({ value: symbol });
+    }
+  }
+  return cards;
 };
 
 export const makeCards = (defaultCards, modeId, levelId) => {
