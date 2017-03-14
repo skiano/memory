@@ -8,9 +8,9 @@ You can play classic memory, or even look for matches of three, but you can also
 
 * All cards begin face down.
 * The player turns one card at a time face up.
-  * If they match but the set is incomplete, they stay face up on the table.
-  * If they match and the set is complete, the set is removed from the game.
-  * If they do not match, all cards turn back over.
+  * If they match, but the set is incomplete, they stay face up on the table.
+  * If they match, and the set is complete, the set is removed from the game.
+  * If they do not match, all the face up cards are turned over.
 * The game ends when the player finds all matching sets.
 
 ## Game Modes
