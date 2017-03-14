@@ -32,7 +32,7 @@ You can play classic memory, or even look for matches of three, but you can also
 | Double Trouble | Easy | `☯ ★` `☯ ★` | 4 |
 | -               | Hard | `☯ ★` `☯ ★` | 8 |
 
-_More modes can be added by creating a new configuration in `src/modes`_
+More modes can be added by creating a new configuration in `src/modes`
 
 ## Dev Setup
 
