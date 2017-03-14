@@ -24,7 +24,7 @@ You can play classic memory, or even look for matches of three, but you can also
 | :-------- | :---------- | :--------- | :-------- |
 | Classic | Find sets with matching symbols | `✈` = `✈` | `✈` != `☯`
 | Spin | Find sets with matching symbol and orientation | `↑` = `↑` | `↓` != `↑` |
-| Namicon | Find sets with matching measings | `★` = `star` | `☯` != `star` |
+| Namicon | Find sets with matching meanings | `★` = `star` | `☯` != `star` |
 | Chromatic | Find sets with matching symbol and color | `★` = `★` | `★` != `☆` |
 | Double Trouble | Find sets where both symbols match | `★☯` = `★☯` | `★☯` != `☯★` |
 | Fibonacci | Find sets where card values match | `8` = `5 + 3` | `13` != `5+3` |
