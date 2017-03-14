@@ -1,17 +1,13 @@
-/* eslint-disable no-return-assign, react/prop-types */
-import React from 'react';
-
-const symbols = {
-  '❄': 'Snowflake',
-  '⍨': 'Emoticon',
-  '♘': 'Knight',
-  '✈': 'Plane',
-  '☯': 'Yin Yang',
-  '♠': 'Spade',
-  '☆': 'Star',
-  '♫': 'Music',
-};
-
+const symbols = [
+  ['❄', 'Snowflake'],
+  ['✈', 'Plane'],
+  ['♠', 'Spade'],
+  ['☆', 'Star'],
+  ['♘', 'Knight'],
+  ['☯', 'Yin Yang'],
+  ['⍨', 'Emoticon'],
+  ['♫', 'Music'],
+];
 
 export default {
   title: 'Namicon',
@@ -20,17 +16,21 @@ export default {
     { difficulty: 'Hard', sets: 8 },
     { difficulty: 'Quad', sets: 5, setSize: 4 },
   ],
-  makeCardFace({ value, setPosition }) {
-    if (!symbols[value]) {
-      throw new Error(`
-        Unknown symbol: ${value}
-      `);
-    }
+  makeCards(totalSets, setSize) {
+    const cards = [];
+    for (let setId = 0; setId < totalSets; setId += 1) {
+      const symbol = symbols[setId];
+      if (!symbol) {
+        throw new Error(`namesCardMaker() needed ${symbols} symbols`);
+      }
 
-    return (setPosition % 2 === 0) ? (
-      <div style={{ fontSize: 'inherit' }}>{value}</div>
-    ) : (
-      <div style={{ fontSize: '20px' }}>{symbols[value]}</div>
-    );
+      for (let c = 0; c < setSize; c += 1) {
+        cards.push({
+          value: symbol[0],
+          symbol: symbol[c % 2],
+        });
+      }
+    }
+    return cards;
   },
 };

@@ -1,6 +1,4 @@
-/* eslint-disable no-return-assign, react/prop-types */
-import React from 'react';
-
+/* eslint-disable no-return-assign */
 /** cache all the results */
 const fibCache = {};
 
@@ -30,18 +28,18 @@ export default {
       const n = setId + setSize + 2;
       const value = fib(n, fibCache);
 
-      cards.push({ value, symbol: `${value}` });
+      cards.push({
+        value,
+        symbol: `${value}`,
+      });
 
       for (let c = 1; c < setSize; c += 1) {
-        cards.push({ value, symbol: getFormula(n, c) });
+        cards.push({
+          value,
+          symbol: getFormula(n, c),
+        });
       }
     }
     return cards;
-  },
-  makeCardFace({ setId, setSize, setPosition }) {
-    const n = setId + setSize + 1;
-    const total = fib(n, fibCache);
-    const text = (setPosition > 0) ? getFormula(n, setPosition) : total;
-    return (<div style={{ fontSize: '20px' }}>{text}</div>);
   },
 };

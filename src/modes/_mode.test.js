@@ -1,5 +1,6 @@
 import modes from './';
 import fibonacci from './mode.formula';
+import names from './mode.names';
 
 // patch toMatchObject until jest 19 is included in kit
 function objectsMatch(received, expected) {
@@ -75,4 +76,28 @@ test('Mode: Fibonacci', () => {
   expect(objectsMatch(cards[6], { value: 13, symbol: '13' })).toBe(true);
   expect(objectsMatch(cards[7], { value: 13, symbol: '5+8' })).toBe(true);
   expect(objectsMatch(cards[8], { value: 13, symbol: '2+3+8' })).toBe(true);
+});
+
+test('Mode: Names', () => {
+  let sets = 3;
+  let setSize = 2;
+  let cards = names.makeCards(sets, setSize);
+
+  expect(objectsMatch(cards[0], { value: '❄', symbol: '❄' })).toBe(true);
+  expect(objectsMatch(cards[1], { value: '❄', symbol: 'Snowflake' })).toBe(true);
+  expect(objectsMatch(cards[2], { value: '✈', symbol: '✈' })).toBe(true);
+  expect(objectsMatch(cards[3], { value: '✈', symbol: 'Plane' })).toBe(true);
+  expect(objectsMatch(cards[4], { value: '♠', symbol: '♠' })).toBe(true);
+  expect(objectsMatch(cards[5], { value: '♠', symbol: 'Spade' })).toBe(true);
+
+  sets = 2;
+  setSize = 3;
+  cards = names.makeCards(sets, setSize);
+
+  expect(objectsMatch(cards[0], { value: '❄', symbol: '❄' })).toBe(true);
+  expect(objectsMatch(cards[1], { value: '❄', symbol: 'Snowflake' })).toBe(true);
+  expect(objectsMatch(cards[2], { value: '❄', symbol: '❄' })).toBe(true);
+  expect(objectsMatch(cards[3], { value: '✈', symbol: '✈' })).toBe(true);
+  expect(objectsMatch(cards[4], { value: '✈', symbol: 'Plane' })).toBe(true);
+  expect(objectsMatch(cards[5], { value: '✈', symbol: '✈' })).toBe(true);
 });
