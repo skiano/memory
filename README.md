@@ -26,7 +26,7 @@ You can play classic memory, or even look for matches of three, but you can also
 | Spin | Find sets with matching symbol and orientation | `↑` = `↑` | `↓` != `↑` |
 | Namicon | Find sets with matching meanings | `★` = `star` | `☯` != `star` |
 | Chromatic | Find sets with matching symbol and color | `★` = `★` | `★` != `☆` |
-| Double Trouble | Find sets where both symbols match | `★☯` = `☯★` | `★☯` != `✈★` |
+| Double Trouble | Find sets where all card symbols match | `★☯` = `☯★` | `★☯` != `✈★` |
 | Fibonacci | Find sets where card values match | `8` = `5 + 3` | `13` != `5+3` |
 
 More modes can be added by creating a new configuration in `src/modes`
