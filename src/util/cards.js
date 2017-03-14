@@ -14,7 +14,7 @@ export const defaultCardMaker = (totalSets, setSize, cardTypes) => {
 
     let c;
     for (c = 0; c < setSize; c += 1) {
-      cards.push({ value: symbol });
+      cards.push({ value: symbol, symbol });
     }
   }
   return cards;

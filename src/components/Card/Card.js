@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, cloneElement } from 'react';
 import classNames from 'classnames';
 import styles from './Card.scss';
 
@@ -9,7 +9,7 @@ const Card = (props) => {
     isSelected,
     isRemaining,
     isGameLocked,
-    makeCardFace,
+    cardFace,
   } = props;
 
   const className = classNames(styles.card, {
@@ -23,12 +23,10 @@ const Card = (props) => {
     lineHeight: `${cardSize}px`,
   };
 
-  const cardFace = makeCardFace ? makeCardFace(props) : value;
-
   return (
     <div className={className}>
       <div className={styles.front} style={style}>
-        {cardFace}
+        { cardFace ? cloneElement(cardFace, props) : value }
       </div>
       <div className={styles.back} />
     </div>
@@ -37,11 +35,11 @@ const Card = (props) => {
 
 Card.propTypes = {
   value: PropTypes.string,
+  cardFace: PropTypes.node,
   cardSize: PropTypes.number,
   isSelected: PropTypes.bool,
   isRemaining: PropTypes.bool,
   isGameLocked: PropTypes.bool,
-  makeCardFace: PropTypes.func,
 };
 
 export default Card;
