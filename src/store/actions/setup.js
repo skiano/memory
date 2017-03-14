@@ -4,6 +4,7 @@ import GAME_MODES from '../../modes';
 
 import {
   makeSets,
+  shuffle,
 } from '../../util';
 
 import {
@@ -87,7 +88,7 @@ export const setup = () => (
 export const setupGame = levelId => (
   (dispatch, getState) => {
     const { levels } = getState().config;
-    const { cards } = levels[levelId];
+    const cards = shuffle(levels[levelId].cards);
 
     dispatch(stopTimer());
     dispatch(resetTimer());
