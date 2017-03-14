@@ -1,13 +1,13 @@
 import {
   tick,
-} from './'
+} from './';
 
-let interval
+let interval;
 
 export const startTimer = () => (
   (dispatch) => {
-    interval = setInterval(() => dispatch(tick()), 1000)
+    interval = setInterval(() => dispatch(tick()), 1000);
   }
-)
+);
 
-export const stopTimer = () => (() => clearInterval(interval))
+export const stopTimer = () => (() => clearInterval(interval));

@@ -1,20 +1,20 @@
 /* eslint-disable no-return-assign, react/prop-types */
-import React from 'react'
+import React from 'react';
 
 /** cache all the results */
-const fibCache = {}
+const fibCache = {};
 
 const fib = (n, memo = {}) => (memo[n] || (
   (n < 2) ? ((memo[n] = n) && n) :
   ((memo[n] = fib(n - 1, memo) + fib(n - 2), memo) && memo[n])
-))
+));
 
 const getFormula = (n, setPosition) => (
   [
     [-2, -1],
     [-4, -3, -1],
   ][setPosition - 1].slice(0, setPosition + 1).map(i => fib(n + i)).join('+')
-)
+);
 
 export default {
   title: 'Fibonacci',
@@ -24,9 +24,9 @@ export default {
     { difficulty: 'Insane', sets: 6, setSize: 3 },
   ],
   makeCardFace({ setId, setSize, setPosition }) {
-    const n = setId + setSize + 1
-    const total = fib(n, fibCache)
-    const text = (setPosition > 0) ? getFormula(n, setPosition) : total
-    return (<div style={{ fontSize: '20px' }}>{text}</div>)
+    const n = setId + setSize + 1;
+    const total = fib(n, fibCache);
+    const text = (setPosition > 0) ? getFormula(n, setPosition) : total;
+    return (<div style={{ fontSize: '20px' }}>{text}</div>);
   },
-}
+};

@@ -1,5 +1,5 @@
 // See https://github.com/NYTimes/kyt/blob/master/docs/kytConfig.md
-const resolve = require('path').resolve
+const resolve = require('path').resolve;
 
 module.exports = {
   reactHotLoader: true,
@@ -13,8 +13,8 @@ module.exports = {
       {
         './wait': resolve(__dirname, '__mocks__/wait.js'),
       }
-    )
+    );
 
-    return baseConfig
+    return baseConfig;
   },
-}
+};

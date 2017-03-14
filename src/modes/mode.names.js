@@ -1,5 +1,5 @@
 /* eslint-disable no-return-assign, react/prop-types */
-import React from 'react'
+import React from 'react';
 
 const symbols = {
   '❄': 'Snowflake',
@@ -10,7 +10,7 @@ const symbols = {
   '♠': 'Spade',
   '☆': 'Star',
   '♫': 'Music',
-}
+};
 
 
 export default {
@@ -24,13 +24,13 @@ export default {
     if (!symbols[value]) {
       throw new Error(`
         Unknown symbol: ${value}
-      `)
+      `);
     }
 
     return (setPosition % 2 === 0) ? (
       <div style={{ fontSize: 'inherit' }}>{value}</div>
     ) : (
       <div style={{ fontSize: '20px' }}>{symbols[value]}</div>
-    )
+    );
   },
-}
+};

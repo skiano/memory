@@ -1,6 +1,6 @@
-import React, { PropTypes } from 'react'
-import Card from '../Card/Card'
-import styles from './Table.scss'
+import React, { PropTypes } from 'react';
+import Card from '../Card/Card';
+import styles from './Table.scss';
 
 const Table = (props) => {
   const {
@@ -9,7 +9,7 @@ const Table = (props) => {
     cardSize,
     positions,
     isGameLocked,
-  } = props
+  } = props;
 
   const cardComponents = cards.map((card) => {
     const style = {
@@ -17,7 +17,7 @@ const Table = (props) => {
       width: cardSize,
       left: positions[card.idx][0],
       top: positions[card.idx][1],
-    }
+    };
     return (
       <button
         className={styles.button}
@@ -29,15 +29,15 @@ const Table = (props) => {
           isGameLocked={isGameLocked}
           cardSize={cardSize} />
       </button>
-    )
-  })
+    );
+  });
 
   return (
     <div>
       {cardComponents}
     </div>
-  )
-}
+  );
+};
 
 Table.propTypes = {
   cards: PropTypes.arrayOf(PropTypes.object),
@@ -45,6 +45,6 @@ Table.propTypes = {
   cardSize: PropTypes.number,
   positions: PropTypes.arrayOf(PropTypes.array),
   isGameLocked: PropTypes.bool,
-}
+};
 
-export default Table
+export default Table;

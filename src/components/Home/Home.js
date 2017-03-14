@@ -1,8 +1,8 @@
-import React from 'react'
-import { Link } from 'react-router'
+import React from 'react';
+import { Link } from 'react-router';
 
-import styles from './Home.scss'
-import modes from '../../modes'
+import styles from './Home.scss';
+import modes from '../../modes';
 
 const Home = () => (
   <div className={styles.home}>
@@ -26,6 +26,6 @@ const Home = () => (
       ))
     }
   </div>
-)
+);
 
-export default Home
+export default Home;

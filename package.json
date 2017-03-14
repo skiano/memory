@@ -14,7 +14,7 @@
     "eventlistener": "0.0.1",
     "express": "^4.14.0",
     "isomorphic-fetch": "^2.2.1",
-    "kyt": "^0.3.0",
+    "kyt": "0.4.1",
     "react": "^15.4.1",
     "react-addons-test-utils": "^15.4.1",
     "react-dom": "^15.4.1",
@@ -30,10 +30,13 @@
   "scripts": {
     "dev": "kyt dev",
     "build": "kyt build",
-    "start": "kyt start",
+    "start": "node build/server/main.js",
     "test": "kyt test",
-    "lint": "kyt lint",
+    "lint": "kyt lint-script",
     "lint-style": "kyt lint-style",
     "kyt:help": "kyt --help"
+  },
+  "devDependencies": {
+    "babel-preset-kyt-react": "^0.1.1"
   }
 }

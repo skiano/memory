@@ -1,11 +1,11 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 
 import {
   remove,
   unique,
   update,
   addUnique,
-} from '../util/pure'
+} from '../util/pure';
 
 import {
   UNLOCKED,
@@ -13,11 +13,11 @@ import {
   PENDING,
   STARTED,
   COMPLETED,
-} from './constants'
+} from './constants';
 
 import {
   SETUP_CARDS,
-  SETUP_GAME,
+  CREATE_GAME,
   START_GAME,
   COMPLETE_GAME,
   LOCK_GAME,
@@ -28,128 +28,128 @@ import {
   SUBMIT_MATCH,
   RESET_TIMER,
   TICK,
-} from './actions'
+} from './actions';
 
-const reducers = {}
+const reducers = {};
 
 /** set of unique card types based on nyt api */
 reducers.cardTypes = (state = [], { type, payload }) => {
   switch (type) {
     case SETUP_CARDS:
-      return unique(payload)
+      return unique(payload);
     default:
-      return state
+      return state;
   }
-}
+};
 
 /** is the game started or completed */
 reducers.gameState = (state = PENDING, { type }) => {
   switch (type) {
-    case SETUP_GAME:
-      return PENDING
+    case CREATE_GAME:
+      return PENDING;
     case START_GAME:
-      return STARTED
+      return STARTED;
     case COMPLETE_GAME:
-      return COMPLETED
+      return COMPLETED;
     default:
-      return state
+      return state;
   }
-}
+};
 
 /** is the game locked or unlocked */
 reducers.gameLocked = (state = UNLOCKED, { type }) => {
   switch (type) {
-    case SETUP_GAME:
-      return UNLOCKED
+    case CREATE_GAME:
+      return UNLOCKED;
     case LOCK_GAME:
-      return LOCKED
+      return LOCKED;
     case UNLOCK_GAME:
-      return UNLOCKED
+      return UNLOCKED;
     default:
-      return state
+      return state;
   }
-}
+};
 
 /** the list of cards we have */
 reducers.cards = (state = [], { type, payload }) => {
   switch (type) {
-    case SETUP_GAME:
-      return payload.cards
+    case CREATE_GAME:
+      return payload.cards;
     default:
-      return state
+      return state;
   }
-}
+};
 
 /** the list of sets we are searching for */
 reducers.sets = (state = [], { type, payload }) => {
   switch (type) {
-    case SETUP_GAME:
-      return payload.sets
+    case CREATE_GAME:
+      return payload.sets;
     default:
-      return state
+      return state;
   }
-}
+};
 
 /** the list of card ids still on the table */
 reducers.remaining = (state = [], { type, payload }) => {
   switch (type) {
-    case SETUP_GAME:
-      return payload.remaining
+    case CREATE_GAME:
+      return payload.remaining;
     case REMOVE_CARD:
-      return remove(state, payload)
+      return remove(state, payload);
     default:
-      return state
+      return state;
   }
-}
+};
 
 /** keeps track of how many times we saw each card */
 reducers.seen = (state = [], { type, payload }) => {
   switch (type) {
-    case SETUP_GAME:
-      return payload.seen
+    case CREATE_GAME:
+      return payload.seen;
     case SELECT_CARD:
-      return update(state, payload, v => v + 1)
+      return update(state, payload, v => v + 1);
     default:
-      return state
+      return state;
   }
-}
+};
 
 /** list of card ids that are face up */
 reducers.selected = (state = [], { type, payload }) => {
   switch (type) {
-    case SETUP_GAME:
-      return []
+    case CREATE_GAME:
+      return [];
     case SELECT_CARD:
-      return addUnique(state, payload)
+      return addUnique(state, payload);
     case DESELECT_CARD:
-      return remove(state, payload)
+      return remove(state, payload);
     default:
-      return state
+      return state;
   }
-}
+};
 
 /** list of set ids we have completed */
 reducers.completedSets = (state = [], { type, payload }) => {
   switch (type) {
-    case SETUP_GAME:
-      return []
+    case CREATE_GAME:
+      return [];
     case SUBMIT_MATCH:
-      return addUnique(state, payload)
+      return addUnique(state, payload);
     default:
-      return state
+      return state;
   }
-}
+};
 
 /* time elapsed since first card turned over */
 reducers.elapsedTime = (state = 0, { type }) => {
   switch (type) {
     case RESET_TIMER:
-      return 0
+      return 0;
     case TICK:
-      return state + 1
+      return state + 1;
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default combineReducers(reducers)
+export default combineReducers(reducers);

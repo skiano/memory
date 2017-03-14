@@ -1,11 +1,11 @@
-import React from 'react'
-import { Router, Route, hashHistory } from 'react-router'
-import { Provider } from 'react-redux'
+import React from 'react';
+import { Router, Route, hashHistory } from 'react-router';
+import { Provider } from 'react-redux';
 
-import Shell from '../Shell/Shell.Smart'
-import Home from '../Home/Home'
-import Game from '../Game/Game.Smart'
-import createStore from '../../store'
+import Shell from '../Shell/Shell.Smart';
+import Home from '../Home/Home';
+import Game from '../Game/Game.Smart';
+import createStore from '../../store';
 
 const App = () => (
   <Provider store={createStore()}>
@@ -16,6 +16,6 @@ const App = () => (
       </Router>
     </Shell>
   </Provider>
-)
+);
 
-export default App
+export default App;

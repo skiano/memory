@@ -1,7 +1,7 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import Timer from './Timer'
+import Timer from './Timer';
 
-const mapStateToProps = ({ elapsedTime }) => ({ elapsedTime })
+const mapStateToProps = ({ elapsedTime }) => ({ elapsedTime });
 
-export default connect(mapStateToProps)(Timer)
+export default connect(mapStateToProps)(Timer);

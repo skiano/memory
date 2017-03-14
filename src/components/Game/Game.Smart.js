@@ -1,13 +1,13 @@
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import Game from './Game'
-import { setup } from '../../store/actions'
+import Game from './Game';
+import { setup } from '../../store/actions';
 
-const mapStateToProps = () => ({})
+const mapStateToProps = () => ({});
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ setup }, dispatch)
+  return bindActionCreators({ setup }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Game)
+export default connect(mapStateToProps, mapDispatchToProps)(Game);

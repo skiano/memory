@@ -1,7 +1,7 @@
 import {
   LOCKED,
   STARTED,
-} from '../constants'
+} from '../constants';
 
 import {
   selectCard,
@@ -14,7 +14,7 @@ import {
   unlockGame,
   startTimer,
   stopTimer,
-} from './'
+} from './';
 
 import {
   getSuccessDuration,
@@ -22,7 +22,7 @@ import {
   getPotentialSet,
   isFinalSet,
   wait,
-} from '../../util'
+} from '../../util';
 
 /*
  * Every time a card is selected,
@@ -35,7 +35,7 @@ export const guess = () => (
      selected,
      elapsedTime,
      completedSets,
-    } = getState()
+    } = getState();
 
     /*
      * If:
@@ -46,40 +46,40 @@ export const guess = () => (
      * we have a bad guess
      * and we need to turn the cards back over
      */
-    const potentialSetId = getPotentialSet(selected, sets)
+    const potentialSetId = getPotentialSet(selected, sets);
 
     if (potentialSetId !== null) {
       /** we're on the right track but need to find more matches */
-      if (selected.length < sets[potentialSetId].length) return
+      if (selected.length < sets[potentialSetId].length) return;
 
       /** Is this the end of the game? */
-      const isVictory = isFinalSet(completedSets, sets)
+      const isVictory = isFinalSet(completedSets, sets);
       if (isVictory) {
-        dispatch(stopTimer())
-        dispatch(completeGame())
+        dispatch(stopTimer());
+        dispatch(completeGame());
       }
 
       /** Wait for a bit and then submit the match */
-      dispatch(lockGame())
+      dispatch(lockGame());
       wait(getSuccessDuration(isVictory)).then(() => {
-        dispatch(submitMatch(potentialSetId))
+        dispatch(submitMatch(potentialSetId));
 
         selected.forEach((id) => {
-          dispatch(deselectCard(id))
-          dispatch(removeCard(id))
-        })
-        dispatch(unlockGame())
-      })
+          dispatch(deselectCard(id));
+          dispatch(removeCard(id));
+        });
+        dispatch(unlockGame());
+      });
     } else {
       /** Wait for a bit and then cancel the selection */
-      dispatch(lockGame())
+      dispatch(lockGame());
       wait(getFailureDuration(elapsedTime)).then(() => {
-        selected.forEach(id => dispatch(deselectCard(id)))
-        dispatch(unlockGame())
-      })
+        selected.forEach(id => dispatch(deselectCard(id)));
+        dispatch(unlockGame());
+      });
     }
   }
-)
+);
 
 
 /*
@@ -97,42 +97,42 @@ export const choose = cardId => (
       remaining,
       gameState,
       gameLocked,
-    } = getState()
+    } = getState();
 
-    const matchSize = sets[0].length
+    const matchSize = sets[0].length;
 
     /** the start of the game */
     if (gameState !== STARTED) {
-      dispatch(startGame())
-      dispatch(startTimer())
+      dispatch(startGame());
+      dispatch(startTimer());
     }
 
     switch (true) {
       /** Noop if game is locked */
       case (gameLocked === LOCKED):
-        break
+        break;
 
       /** Noop if card is already removed */
       case (!remaining.includes(cardId)):
-        break
+        break;
 
       /** Turn card back over */
       case (selected.includes(cardId)):
-        dispatch(deselectCard(cardId))
-        break
+        dispatch(deselectCard(cardId));
+        break;
 
       /** Select a card */
       case (selected.length < matchSize): {
-        dispatch(selectCard(cardId))
-        dispatch(guess())
-        break
+        dispatch(selectCard(cardId));
+        dispatch(guess());
+        break;
       }
 
       default:
         throw new Error(`
           Selection overflow:
           ${selected}
-        `)
+        `);
     }
   }
-)
+);

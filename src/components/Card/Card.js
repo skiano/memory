@@ -1,7 +1,6 @@
-import React, { PropTypes } from 'react'
-import classNames from 'classnames'
-
-import styles from './Card.scss'
+import React, { PropTypes } from 'react';
+import classNames from 'classnames';
+import styles from './Card.scss';
 
 const Card = (props) => {
   const {
@@ -11,20 +10,20 @@ const Card = (props) => {
     isRemaining,
     isGameLocked,
     makeCardFace,
-  } = props
+  } = props;
 
   const className = classNames(styles.card, {
     [styles.removed]: !isRemaining,
     [styles.selected]: isSelected,
     [styles.locked]: isGameLocked && !isSelected,
-  })
+  });
 
   const style = {
     fontSize: `${cardSize * 0.7}px`,
     lineHeight: `${cardSize}px`,
-  }
+  };
 
-  const cardFace = makeCardFace ? makeCardFace(props) : value
+  const cardFace = makeCardFace ? makeCardFace(props) : value;
 
   return (
     <div className={className}>
@@ -33,8 +32,8 @@ const Card = (props) => {
       </div>
       <div className={styles.back} />
     </div>
-  )
-}
+  );
+};
 
 Card.propTypes = {
   value: PropTypes.string,
@@ -43,6 +42,6 @@ Card.propTypes = {
   isRemaining: PropTypes.bool,
   isGameLocked: PropTypes.bool,
   makeCardFace: PropTypes.func,
-}
+};
 
-export default Card
+export default Card;

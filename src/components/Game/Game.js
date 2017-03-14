@@ -1,18 +1,18 @@
-import React, { PropTypes } from 'react'
-import { Link } from 'react-router'
+import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
-import styles from './Game.scss'
-import Table from '../Table/Table.Smart'
-import Timer from '../Timer/Timer.Smart'
-import { modeMap } from '../../modes'
+import styles from './Game.scss';
+import Table from '../Table/Table.Smart';
+import Timer from '../Timer/Timer.Smart';
+import { modeMap } from '../../modes';
 
 class Game extends React.Component {
   componentWillMount() {
-    const { mode, level } = this.props.routeParams
+    const { mode, level } = this.props.routeParams;
     this.props.setup(
       modeMap[mode].id,
       modeMap[mode].levels[level]
-    )
+    );
   }
 
   render() {
@@ -29,7 +29,7 @@ class Game extends React.Component {
           status goes here
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -39,6 +39,6 @@ Game.propTypes = {
     mode: PropTypes.string,
     level: PropTypes.string,
   }),
-}
+};
 
-export default Game
+export default Game;

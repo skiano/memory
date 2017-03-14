@@ -1,6 +1,6 @@
-const MIN_CARD_SIZE = 40
-const MAX_CARD_SIZE = 200
-const IDEAL_GUTTER = 25
+const MIN_CARD_SIZE = 40;
+const MAX_CARD_SIZE = 200;
+const IDEAL_GUTTER = 25;
 
 /*
  * given card count
@@ -8,20 +8,20 @@ const IDEAL_GUTTER = 25
  */
 export function getGridSize(cardCount) {
   // http://stackoverflow.com/a/16267018
-  let n
-  n = Math.sqrt(cardCount)
-  n = Math.floor(n)
+  let n;
+  n = Math.sqrt(cardCount);
+  n = Math.floor(n);
 
   while (n > 0) {
-    if (cardCount % n === 0) break
-    n -= 1
+    if (cardCount % n === 0) break;
+    n -= 1;
   }
 
   if (n === 1) {
-    throw new Error(`Bad card count: ${cardCount} (Card count must not be prime)`)
+    throw new Error(`Bad card count: ${cardCount} (Card count must not be prime)`);
   }
 
-  return [n, cardCount / n].sort().reverse()
+  return [n, cardCount / n].sort().reverse();
 }
 
 /*
@@ -34,19 +34,19 @@ export function getSizes(
   minCardSize = MIN_CARD_SIZE,
   maxCardSize = MAX_CARD_SIZE
 ) {
-  let cardSize
+  let cardSize;
 
-  cardSize = (outerSide - ((cardCount - 1) * idealGutter)) / cardCount
+  cardSize = (outerSide - ((cardCount - 1) * idealGutter)) / cardCount;
 
   if (cardSize < minCardSize) {
-    cardSize = minCardSize
+    cardSize = minCardSize;
   } else if (cardSize > maxCardSize) {
-    cardSize = maxCardSize
+    cardSize = maxCardSize;
   }
 
-  const gutterSize = (outerSide - (cardCount * cardSize)) / (cardCount - 1)
+  const gutterSize = (outerSide - (cardCount * cardSize)) / (cardCount - 1);
 
-  return { cardSize, gutterSize }
+  return { cardSize, gutterSize };
 }
 
 /*
@@ -55,14 +55,14 @@ export function getSizes(
 export function getPxDimensions(dimensions, cardSize, gutterSize) {
   return dimensions.map(d => (
     ((d - 1) * gutterSize) + (d * cardSize)
-  ))
+  ));
 }
 
 /*
  * get the absolute position of the card along one dimension
  */
 export function getPosition(i, cardSize, gutterSize) {
-  return i === 0 ? 0 : (i * cardSize) + (i * gutterSize)
+  return i === 0 ? 0 : (i * cardSize) + (i * gutterSize);
 }
 
 /*
@@ -75,40 +75,40 @@ export function getLayout(
   idealGutter = IDEAL_GUTTER,
   minCardSize = MIN_CARD_SIZE
 ) {
-  const grid = getGridSize(cardCount)
+  const grid = getGridSize(cardCount);
 
   /** if table is portrait transpose the grid */
   if (tableSize[0] < tableSize[1]) {
-    grid.reverse()
+    grid.reverse();
   }
 
-  let sizes
-  let pxDimensions
+  let sizes;
+  let pxDimensions;
 
-  sizes = getSizes(tableSize[1], grid[1], idealGutter, minCardSize)
-  pxDimensions = getPxDimensions(grid, sizes.cardSize, sizes.gutterSize)
+  sizes = getSizes(tableSize[1], grid[1], idealGutter, minCardSize);
+  pxDimensions = getPxDimensions(grid, sizes.cardSize, sizes.gutterSize);
 
   /** doesnt fit, try the other way */
   /** find a way that doesnt try twice? */
   if (pxDimensions[1] > tableSize[1] || pxDimensions[0] > tableSize[0]) {
-    sizes = getSizes(tableSize[0], grid[0], idealGutter, minCardSize)
-    pxDimensions = getPxDimensions(grid, sizes.cardSize, sizes.gutterSize)
+    sizes = getSizes(tableSize[0], grid[0], idealGutter, minCardSize);
+    pxDimensions = getPxDimensions(grid, sizes.cardSize, sizes.gutterSize);
   }
 
-  const { cardSize, gutterSize } = sizes
-  const offsets = pxDimensions.map((s, i) => (tableSize[i] - s) / 2)
-  const positions = []
+  const { cardSize, gutterSize } = sizes;
+  const offsets = pxDimensions.map((s, i) => (tableSize[i] - s) / 2);
+  const positions = [];
 
-  let i
+  let i;
   for (i = 0; i < cardCount; i += 1) {
-    const x = i % grid[0]
-    const y = Math.floor(i / grid[0])
+    const x = i % grid[0];
+    const y = Math.floor(i / grid[0]);
     positions.push([
       getPosition(x, cardSize, gutterSize) + offsets[0],
       getPosition(y, cardSize, gutterSize) + offsets[1],
-    ])
+    ]);
   }
 
-  return { positions, cardSize }
+  return { positions, cardSize };
 }
 

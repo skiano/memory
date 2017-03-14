@@ -5,4 +5,4 @@ export default {
     { difficulty: 'Hard', sets: 8 },
     { difficulty: 'Triples', sets: 8, setSize: 3 },
   ],
-}
+};
