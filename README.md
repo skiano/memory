@@ -2,6 +2,11 @@
 
 Welocme to Memory, with a twist.
 
+`-` `-` `-` `-`<span>&nbsp; | &nbsp;</span>`-` `☯` `-` `-`<span>&nbsp; | &nbsp;</span>`❄` `☯` `⍨` `♘`<br/>
+`★` `-` `-` `-`<span>&nbsp; | &nbsp;</span>`★` `-` `-` `-`<span>&nbsp; | &nbsp;</span>`★` `❄` `♠` `❄`<br/>
+`-` `-` `★` `-`<span>&nbsp; | &nbsp;</span>`-` `-` `★` `-`<span>&nbsp; | &nbsp;</span>`♘` `✈` `★` `⍨`<br/>
+`-` `-` `-` `-`<span>&nbsp; | &nbsp;</span>`-` `☯` `-` `-`<span>&nbsp; | &nbsp;</span>`✈` `☯` `❄` `♠`<br/>
+
 You can play classic memory, or even look for matches of three, but you can also play other modes, each of which has its own type of matching. For example, in the __Classic__ mode, a set may be two `☯` cards. However, in the __Fibonacci__ mode, a pair could be the `8` card and the `3+5` card.
 
 ## Rules
@@ -25,8 +30,8 @@ You can play classic memory, or even look for matches of three, but you can also
 | Fibonacci | Easy | `(8)` `(3 + 5)` | 4 |
 | -         | Hard | `(8)` `(3 + 5)` | 8 |
 | -         | Insane | `(13)` `(5 + 8)` `(5 + 8)` | 6 |
-| Chromatic | Easy | `❤` `❤` / `♡` `♡` | 4 |
-| -         | Hard | `❤` `❤` / `♡` `♡` | 8 |
+| Chromatic | Easy | `★` `★` / `☆` `☆` | 4 |
+| -         | Hard | `★` `★` / `☆` `☆` | 8 |
 | Namicon | Easy | `☯` `Yin Yang` | 4 |
 | -       | Hard | `☯` `Yin Yang` | 8 |
 | Double Trouble | Easy | `☯ ★` `☯ ★` | 4 |
