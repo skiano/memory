@@ -20,8 +20,8 @@ export default {
   title: 'Fibonacci',
   levels: [
     { difficulty: 'Easy', sets: 4 },
-    { difficulty: 'Hard', sets: 6 },
-    { difficulty: 'Insane', sets: 4, setSize: 3 },
+    { difficulty: 'Hard', sets: 8 },
+    { difficulty: 'Insane', sets: 6, setSize: 3 },
   ],
   makeCardFace({ setId, setSize, setPosition }) {
     const n = setId + setSize + 1

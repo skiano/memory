@@ -4,9 +4,11 @@ import mirrored from './mode.mirrored'
 import colors from './mode.colors'
 import tuples from './mode.tuples'
 import formula from './mode.formula'
+import names from './mode.names'
 
 const gameModes = [
   classic,
+  names,
   mirrored,
   colors,
   tuples,
