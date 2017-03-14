@@ -1,11 +1,11 @@
-# Memory
-
-Welocme to Memory, with a twist.
-
 `-` `-` `-` `-`<span>&nbsp; | &nbsp;</span>`-` `☯` `-` `-`<span>&nbsp; | &nbsp;</span>`❄` `☯` `⍨` `♘`<br/>
 `★` `-` `-` `-`<span>&nbsp; | &nbsp;</span>`★` `-` `-` `-`<span>&nbsp; | &nbsp;</span>`★` `❄` `♠` `❄`<br/>
 `-` `-` `★` `-`<span>&nbsp; | &nbsp;</span>`-` `-` `★` `-`<span>&nbsp; | &nbsp;</span>`♘` `✈` `★` `⍨`<br/>
 `-` `-` `-` `-`<span>&nbsp; | &nbsp;</span>`-` `☯` `-` `-`<span>&nbsp; | &nbsp;</span>`✈` `☯` `❄` `♠`<br/>
+
+# Memory
+
+Welocme to Memory, with a twist.
 
 You can play classic memory, or even look for matches of three, but you can also play other modes, each of which has its own type of matching. For example, in the __Classic__ mode, a set may be two `☯` cards. However, in the __Fibonacci__ mode, a pair could be the `8` card and the `3+5` card.
 
