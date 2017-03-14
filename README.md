@@ -32,9 +32,11 @@ You can play classic memory, or even look for matches of three, but you can also
 | Double Trouble | Easy | `☯ ★` `☯ ★` | 4 |
 | -               | Hard | `☯ ★` `☯ ★` | 8 |
 
-## Setup
+## Dev Setup
 
 ```bash
+$ git clone https://github.com/skiano/memory.git
+$ cd memory/
 $ npm install
 $ npm run dev
 $ open http://localhost:3000
