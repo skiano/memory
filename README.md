@@ -20,22 +20,14 @@ You can play classic memory, or even look for matches of three, but you can also
 
 ## Game Modes
 
-| Game Mode | Difficulty | Exmple Match | Total Sets |
-| :-------- | :--------- | :----------- | :--------- |
-| Classic | Easy | `✈` `✈` | 4 |
-| -       | Hard | `✈` `✈` | 8 |
-| -       | Triples | `✈` `✈` `✈` | 8 |
-| Spin | Easy | `↑` `↑`  / `↓` `↓` | 4 |
-| -    | Hard | `↑` `↑`  / `↓` `↓` | 8 |
-| Fibonacci | Easy | `(8)` `(3 + 5)` | 4 |
-| -         | Hard | `(8)` `(3 + 5)` | 8 |
-| -         | Insane | `(13)` `(5 + 8)` `(5 + 8)` | 6 |
-| Chromatic | Easy | `★` `★` / `☆` `☆` | 4 |
-| -         | Hard | `★` `★` / `☆` `☆` | 8 |
-| Namicon | Easy | `☯` `Yin Yang` | 4 |
-| -       | Hard | `☯` `Yin Yang` | 8 |
-| Double Trouble | Easy | `☯ ★` `☯ ★` | 4 |
-| -               | Hard | `☯ ★` `☯ ★` | 8 |
+| Game Mode | Description | Good Match | Bad Match |
+| :-------- | :---------- | :--------- | :-------- |
+| Classic | Find sets with matching symbols | `✈` = `✈` | `✈` != `☯`
+| Spin | Find sets with matching symbol and orientation | `↑` = `↑` | `↓` != `↑` |
+| Namicon | Find sets with matching meanings | `★` = `star` | `☯` != `star` |
+| Chromatic | Find sets with matching symbol and color | `★` = `★` | `★` != `☆` |
+| Double Trouble | Find sets where all card symbols match | `★☯` = `☯★` | `★☯` != `✈★` |
+| Fibonacci | Find sets where card values match | `8` = `5 + 3` | `13` != `5+3` |
 
 More modes can be added by creating a new configuration in `src/modes`
 
