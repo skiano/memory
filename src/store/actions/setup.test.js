@@ -36,7 +36,7 @@ test('Setup Game: pass cards', () => {
   const createGame = dispatch.mock.calls[dispatch.mock.calls.length - 1][0];
   const { payload } = createGame;
   expect(createGame.type).toEqual('CREATE_GAME');
-  expect(payload.cards.join('')).toEqual('CCBBAA');
+  expect(payload.cards.join('')).toEqual('AABBCC');
   expect(payload.seen.join('')).toEqual('000000');
   expect(payload.sets.map(s => s.join()).join('|')).toEqual('0,1|2,3|4,5');
 });

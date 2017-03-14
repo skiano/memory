@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 
 import {
   remove,
-  unique,
   update,
   addUnique,
 } from '../util';

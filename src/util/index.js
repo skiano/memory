@@ -7,7 +7,7 @@ export {
   update,
   remove,
   unique,
-} from './cards';
+} from './pure';
 export {
   getCardPropsFromState,
   getSuccessDuration,

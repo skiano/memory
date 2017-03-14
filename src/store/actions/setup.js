@@ -86,7 +86,7 @@ export const setupGame = levelId => (
 
     /** allow setupModes to be circumvented */
     if (Array.isArray(levelId)) {
-      cards = shuffle(levelId);
+      cards = levelId;
     } else {
       const { levels } = getState().config;
       cards = shuffle(levels[levelId].cards);
