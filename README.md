@@ -25,8 +25,8 @@ You can play classic memory, or even look for matches of three, but you can also
 | Classic | Easy | `✈` `✈` | 4 |
 | -       | Hard | `✈` `✈` | 8 |
 | -       | Triples | `✈` `✈` `✈` | 8 |
-| Reflection | Easy | `↑` `↓` | 4 |
-| -          | Hard | `↑` `↓` | 8 |
+| Reflection | Easy | `↑` `↑`  / `↓` `↓` | 4 |
+| -          | Hard | `↑` `↑`  / `↓` `↓` | 8 |
 | Fibonacci | Easy | `(8)` `(3 + 5)` | 4 |
 | -         | Hard | `(8)` `(3 + 5)` | 8 |
 | -         | Insane | `(13)` `(5 + 8)` `(5 + 8)` | 6 |
