@@ -1,26 +1,17 @@
-/* eslint-disable no-unused-vars */
-
-import createStore from './';
+import createStore from '../';
 
 import {
   choose,
   setup,
-  createGame,
   lockGame,
-  unlockGame,
   selectCard,
-  deselectCard,
-  removeCard,
-  submitMatch,
-} from './actions';
+} from './';
 
 let getState;
 let dispatch;
-let subscribe;
 
 beforeEach(() => {
   const store = createStore();
-  subscribe = store.subscribe;
   getState = store.getState;
   dispatch = store.dispatch;
   dispatch(setup(null, null,
@@ -113,7 +104,7 @@ test('full game', () => {
   dispatch(choose(2)); // good
   expect(getState().remaining.length).toEqual(0);
 
-  const { cards, selected, sets, completedSets } = getState();
+  const { cards, sets, completedSets } = getState();
   const cardSets = completedSets.map(setId => (
     sets[setId].map(cardId => cards[cardId])
   )).map(cardSet => cardSet.join('')).sort().join();

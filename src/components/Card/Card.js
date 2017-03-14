@@ -4,7 +4,7 @@ import styles from './Card.scss';
 
 const Card = (props) => {
   const {
-    value,
+    symbol,
     cardSize,
     isSelected,
     isRemaining,
@@ -26,7 +26,7 @@ const Card = (props) => {
   return (
     <div className={className}>
       <div className={styles.front} style={style}>
-        { cardFace ? cloneElement(cardFace, props) : value }
+        { cardFace ? cloneElement(cardFace, props) : symbol }
       </div>
       <div className={styles.back} />
     </div>
@@ -34,7 +34,7 @@ const Card = (props) => {
 };
 
 Card.propTypes = {
-  value: PropTypes.string,
+  symbol: PropTypes.string,
   cardFace: PropTypes.node,
   cardSize: PropTypes.number,
   isSelected: PropTypes.bool,
