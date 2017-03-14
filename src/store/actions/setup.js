@@ -20,6 +20,7 @@ import {
 
 export const setupModes = (modesConfig, cardTypes) => (
   (dispatch) => {
+    const slugMap = {};
     const flattenedLevels = [];
     const modes = [];
 
@@ -28,6 +29,11 @@ export const setupModes = (modesConfig, cardTypes) => (
      * create cards for all modes/levels
      */
     modesConfig.forEach((mode, modeId) => {
+      slugMap[mode.slug] = {
+        id: modeId,
+        levels: {},
+      };
+
       modes.push({
         title: mode.title,
         slug: mode.slug,
@@ -48,13 +54,17 @@ export const setupModes = (modesConfig, cardTypes) => (
           modeId,
         });
 
+        const levelId = levelsLength - 1;
+
         /** give levelIds back to parent mode */
-        modes[modeId].levels.push(levelsLength - 1);
+        modes[modeId].levels.push(levelId);
+        slugMap[mode.slug].levels[level.slug] = levelId;
       });
     });
 
     dispatch(setConfig({ modes }));
     dispatch(setConfig({ levels: flattenedLevels }));
+    dispatch(setConfig({ slugMap }));
   }
 );
 

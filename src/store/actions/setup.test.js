@@ -9,7 +9,7 @@ beforeEach(() => {
 });
 
 test('Setup Modes', () => {
-  const modes = [
+  const modeConfig = [
     {
       title: 'Mode 1',
       slug: 'mode-1',
@@ -30,43 +30,56 @@ test('Setup Modes', () => {
     },
   ];
 
-  setupModes(modes, cardTypes)(dispatch);
+  setupModes(modeConfig, cardTypes)(dispatch);
 
   /* were the modes setup correctly */
   const firstAction = dispatch.mock.calls[0][0];
-  const finalModes = firstAction.payload.modes;
+  const { modes } = firstAction.payload;
   expect(firstAction.type).toEqual('SET_CONFIG');
 
-  expect(finalModes[0].title).toEqual('Mode 1');
-  expect(finalModes[0].slug).toEqual('mode-1');
-  expect(finalModes[0].levels.join()).toEqual('0,1');
+  expect(modes[0].title).toEqual('Mode 1');
+  expect(modes[0].slug).toEqual('mode-1');
+  expect(modes[0].levels.join()).toEqual('0,1');
 
-  expect(finalModes[1].title).toEqual('Mode 2');
-  expect(finalModes[1].slug).toEqual('mode-2');
-  expect(finalModes[1].levels.join()).toEqual('2,3');
+  expect(modes[1].title).toEqual('Mode 2');
+  expect(modes[1].slug).toEqual('mode-2');
+  expect(modes[1].levels.join()).toEqual('2,3');
 
   /* were the levels setup correctly */
   const secondAction = dispatch.mock.calls[1][0];
-  const finalLevels = secondAction.payload.levels;
+  const { levels } = secondAction.payload;
   expect(secondAction.type).toEqual('SET_CONFIG');
 
-  expect(finalLevels[0].difficulty).toEqual('easy');
-  expect(finalLevels[0].slug).toEqual('e');
-  expect(finalLevels[0].modeId).toEqual(0);
-  expect(finalLevels[0].cards.join()).toEqual('4,2');
+  expect(levels[0].difficulty).toEqual('easy');
+  expect(levels[0].slug).toEqual('e');
+  expect(levels[0].modeId).toEqual(0);
+  expect(levels[0].cards.join()).toEqual('4,2');
 
-  expect(finalLevels[1].difficulty).toEqual('hard');
-  expect(finalLevels[1].slug).toEqual('h');
-  expect(finalLevels[1].modeId).toEqual(0);
-  expect(finalLevels[1].cards.join()).toEqual('8,3');
+  expect(levels[1].difficulty).toEqual('hard');
+  expect(levels[1].slug).toEqual('h');
+  expect(levels[1].modeId).toEqual(0);
+  expect(levels[1].cards.join()).toEqual('8,3');
 
-  expect(finalLevels[2].difficulty).toEqual('easy');
-  expect(finalLevels[2].slug).toEqual('e');
-  expect(finalLevels[2].modeId).toEqual(1);
-  expect(finalLevels[2].cards.join()).toEqual('A,B,C');
+  expect(levels[2].difficulty).toEqual('easy');
+  expect(levels[2].slug).toEqual('e');
+  expect(levels[2].modeId).toEqual(1);
+  expect(levels[2].cards.join()).toEqual('A,B,C');
 
-  expect(finalLevels[3].difficulty).toEqual('hard');
-  expect(finalLevels[3].slug).toEqual('h');
-  expect(finalLevels[3].modeId).toEqual(1);
-  expect(finalLevels[3].cards.join()).toEqual('A,B,C');
+  expect(levels[3].difficulty).toEqual('hard');
+  expect(levels[3].slug).toEqual('h');
+  expect(levels[3].modeId).toEqual(1);
+  expect(levels[3].cards.join()).toEqual('A,B,C');
+
+  /* were the slug map setup correctly */
+  const thirdAction = dispatch.mock.calls[2][0];
+  const { slugMap } = thirdAction.payload;
+  expect(thirdAction.type).toEqual('SET_CONFIG');
+
+  expect(slugMap['mode-1'].id).toEqual(0);
+  expect(slugMap['mode-1'].levels.e).toEqual(0);
+  expect(slugMap['mode-1'].levels.h).toEqual(1);
+
+  expect(slugMap['mode-2'].id).toEqual(1);
+  expect(slugMap['mode-2'].levels.e).toEqual(2);
+  expect(slugMap['mode-2'].levels.h).toEqual(3);
 });
