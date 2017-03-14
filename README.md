@@ -1,8 +1,8 @@
 # Memory
 
-Welocme to Memory, with a twist
+Welocme to Memory, with a twist.
 
-You can play classic memory, or even look for matches of three, but you can also play other modes, each of which has it's own type of matching. For example, the Fibonacci mode has numbers and formulas on cards, and you need to find the cards where the totals match. (you may see one card with `8` on it and it matches a card that has `3+5` on it)
+You can play classic memory, or even look for matches of three, but you can also play other modes, each of which has it's own type of matching. For example, the Fibonacci mode has numbers and formulas on cards, and you need to find the cards where the totals match. So you may see one card with `8` on it and it matches a card that has `3+5` on it.
 
 ## Rules
 
