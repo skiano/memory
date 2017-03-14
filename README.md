@@ -15,7 +15,7 @@
 
 Here's the twist. You can choose from various game modes, each of which has it's own type of matching.
 
-| Game Mode | Difficulty | Match | Total Sets |
+| Game Mode | Difficulty | Exmple Match | Total Sets |
 | :-------- | :--------- | :----------- | :--------- |
 | Classic | Easy | `✈` `✈` | 4 |
 | Classic | Hard | `✈` `✈` | 8 |
@@ -25,6 +25,8 @@ Here's the twist. You can choose from various game modes, each of which has it's
 | Fibonacci | Easy | `(8)` `(3 + 5)` | 4 |
 | Fibonacci | Hard | `(8)` `(3 + 5)` | 8 |
 | Fibonacci | Insane | `(13)` `(5 + 8)` `(5 + 8)` | 8 |
+| Chromatic | Easy | `❤` `❤` / `♡` `♡` | 4 |
+| Chromatic | Hard | `❤` `❤` / `♡` `♡` | 8 |
 
 ## Roadmap
 
