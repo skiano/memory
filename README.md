@@ -24,9 +24,13 @@ Here's the twist. You can choose from various game modes, each of which has it's
 | Reflection | Hard | `↑` `↓` | 8 |
 | Fibonacci | Easy | `(8)` `(3 + 5)` | 4 |
 | Fibonacci | Hard | `(8)` `(3 + 5)` | 8 |
-| Fibonacci | Insane | `(13)` `(5 + 8)` `(5 + 8)` | 8 |
+| Fibonacci | Insane | `(13)` `(5 + 8)` `(5 + 8)` | 6 |
 | Chromatic | Easy | `❤` `❤` / `♡` `♡` | 4 |
 | Chromatic | Hard | `❤` `❤` / `♡` `♡` | 8 |
+| Namicon | Easy | `☯` `Yin Yang` | 4 |
+| Namicon | Hard | `☯` `Yin Yang` | 8 |
+| Double Trouble | Easy | `☯✈` `☯✈` | 4 |
+| Double Trouble | Hard | `☯✈` `☯✈` | 8 |
 
 ## Roadmap
 
