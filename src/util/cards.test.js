@@ -57,3 +57,12 @@ test('makeSets: objects', () => {
     .toEqual('0,3|1,4|2,5');
 });
 
+test('makeSets: validation', () => {
+  expect(() => {
+    makeSets([
+      1, 2, 3,
+      1, 2,
+    ]);
+  }).toThrowError(/Sets must be the same size/);
+});
+
