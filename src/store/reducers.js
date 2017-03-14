@@ -16,6 +16,7 @@ import {
 } from './constants';
 
 import {
+  SET_CONFIG,
   SETUP_CARDS,
   CREATE_GAME,
   START_GAME,
@@ -31,6 +32,15 @@ import {
 } from './actions';
 
 const reducers = {};
+
+reducers.config = (state = {}, { type, payload }) => {
+  switch (type) {
+    case SET_CONFIG:
+      return Object.assign({}, state, payload);
+    default:
+      return state;
+  }
+};
 
 /** set of unique card types based on nyt api */
 reducers.cardTypes = (state = [], { type, payload }) => {

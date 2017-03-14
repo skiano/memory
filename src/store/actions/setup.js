@@ -1,64 +1,83 @@
 /* eslint-disable no-unused-vars */
 import fetch from 'isomorphic-fetch';
+import GAME_MODES from '../../modes';
 
 import {
-  makeCards,
   makeSets,
 } from '../../util';
+
+import {
+  unique,
+} from '../../util/pure';
 
 import {
   createGame,
   stopTimer,
   resetTimer,
+  setConfig,
   setupCards,
 } from './';
 
-export const setupModes = (modesConfig, cardMaker = makeCards) => (
-  (dispatch, getState) => {
-    const { cardTypes } = getState();
+export const setupModes = (modesConfig, cardTypes) => (
+  (dispatch) => {
     const flattenedLevels = [];
     const modes = [];
 
-    modesConfig.forEach((modeOpt) => {
-      const {
-        title,
-        levels,
-        makeCardFace,
-      } = modeOpt;
-
-      const modeId = modes.push({
-        title,
-        levels: [], // list of level ids
+    /*
+     * Flatten out the levels to make next level simple
+     * create cards for all modes/levels
+     */
+    modesConfig.forEach((mode, modeId) => {
+      modes.push({
+        title: mode.title,
+        slug: mode.slug,
+        levels: [],
       });
 
-      levels.forEach((level) => {
+      mode.levels.forEach((level) => {
         const {
           difficulty,
           setSize,
           sets,
         } = level;
 
-        const cards = cardMaker(level.cards || modeOpt.cards || cardTypes);
-
-        const levelId = levels.push({
-          title,
+        const levelsLength = flattenedLevels.push({
+          slug: level.slug,
+          cards: mode.makeCards(sets, setSize, cardTypes),
           difficulty,
-          cards,
+          modeId,
         });
 
-        modes[modeId].levels.push(levelId);
+        /** give levelIds back to parent mode */
+        modes[modeId].levels.push(levelsLength - 1);
       });
     });
 
-    dispatch(createModes(modes));
-    dispatch(createLevels(flattenedLevels));
+    dispatch(setConfig({ modes }));
+    dispatch(setConfig({ levels: flattenedLevels }));
   }
 );
 
-export const setup = (mode, level, cardMaker = makeCards) => (
+export const setup = () => (
+  (dispatch) => {
+    fetch('/api').then((response) => {
+      if (response.status >= 400) {
+        throw new Error('Bad response from server');
+      }
+
+      response.json().then(({ levels }) => {
+        /** put two levels together and remove dublicates */
+        const cardTypes = unique(levels[0].cards.concat(levels[1].cards));
+        dispatch(setupModes(GAME_MODES, cardTypes));
+      });
+    });
+  }
+);
+
+export const setupGame = levelId => (
   (dispatch, getState) => {
-    const { cardTypes } = getState();
-    const cards = cardMaker(cardTypes, mode, level);
+    const { levels } = getState().config;
+    const { cards } = levels[levelId];
 
     dispatch(stopTimer());
     dispatch(resetTimer());
@@ -69,20 +88,5 @@ export const setup = (mode, level, cardMaker = makeCards) => (
       remaining: cards.map((c, i) => i),
       seen: cards.map(() => 0),
     }));
-  }
-);
-
-export const fetchCards = () => (
-  (dispatch) => {
-    fetch('/api').then((response) => {
-      if (response.status >= 400) {
-        throw new Error('Bad response from server');
-      }
-
-      response.json().then(({ levels }) => {
-        /** put two levels together because duplicates will be removed */
-        dispatch(setupCards(levels[0].cards.concat(levels[1].cards)));
-      });
-    });
   }
 );

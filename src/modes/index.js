@@ -7,7 +7,7 @@ import tuples from './mode.tuples';
 import formula from './mode.formula';
 import names from './mode.names';
 
-const gameModes = [
+const GAME_MODES = [
   classic,
   names,
   spin,
@@ -23,20 +23,4 @@ const gameModes = [
   }, level)),
 }));
 
-/** for friendly url mapping */
-export const modeMap = {};
-
-gameModes.forEach((mode, modeId) => {
-  const levels = {};
-
-  mode.levels.forEach((level, levelId) => (
-    levels[level.slug] = levelId
-  ));
-
-  modeMap[mode.slug] = {
-    levels,
-    id: modeId,
-  };
-});
-
-export default gameModes;
+export default GAME_MODES;

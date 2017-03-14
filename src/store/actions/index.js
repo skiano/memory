@@ -1,6 +1,7 @@
 import { createAction } from 'redux-actions';
 
 /** Action types */
+export const SET_CONFIG = 'SET_CONFIG';
 export const SETUP_CARDS = 'SETUP_CARDS';
 export const CREATE_GAME = 'CREATE_GAME';
 export const START_GAME = 'START_GAME';
@@ -15,6 +16,7 @@ export const RESET_TIMER = 'RESET_TIMER';
 export const TICK = 'TICK';
 
 /** Action creators */
+export const setConfig = createAction(SET_CONFIG);
 export const setupCards = createAction(SETUP_CARDS);
 export const createGame = createAction(CREATE_GAME);
 export const startGame = createAction(START_GAME);
