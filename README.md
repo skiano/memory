@@ -2,7 +2,7 @@
 
 Welocme to Memory, with a twist.
 
-You can play classic memory, or even look for matches of three, but you can also play other modes, each of which has it's own type of matching. For example, the Fibonacci mode has numbers and formulas on cards, and you need to find the cards where the totals match. So the card with `3+5` on it matches the card with `8`.
+You can play classic memory, or even look for matches of three, but you can also play other modes, each of which has it's own type of matching. For example, in `Classic` mode, a set may be two `☯` cards, but in `Fibonacci` a pait could be the `8` card and the `3+5` card.
 
 ## Rules
 
