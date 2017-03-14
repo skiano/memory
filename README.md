@@ -41,7 +41,7 @@ $ npm install
 $ npm run dev
 $ open http://localhost:3000
 ```
-This is based on [NYT kyt](https://github.com/NYTimes/kyt)
+This project uses [NYT kyt](https://github.com/NYTimes/kyt)
 
 ---
 
