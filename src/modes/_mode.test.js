@@ -1,6 +1,7 @@
 import modes from './';
 import fibonacci from './mode.formula';
 import names from './mode.names';
+import colors from './mode.colors';
 
 // patch toMatchObject until jest 19 is included in kit
 function objectsMatch(received, expected) {
@@ -100,4 +101,37 @@ test('Mode: Names', () => {
   expect(objectsMatch(cards[3], { value: '✈', symbol: '✈' })).toBe(true);
   expect(objectsMatch(cards[4], { value: '✈', symbol: 'Plane' })).toBe(true);
   expect(objectsMatch(cards[5], { value: '✈', symbol: '✈' })).toBe(true);
+});
+
+test('Mode: Colors', () => {
+  const testCards = 'ABCDEFGH'.split('');
+  let sets = 4;
+  let setSize = 2;
+  let cards = colors.makeCards(sets, setSize, testCards);
+
+  expect(objectsMatch(cards[0], { value: 0, symbol: 'A', color: 'red' })).toBe(true);
+  expect(objectsMatch(cards[1], { value: 0, symbol: 'A', color: 'red' })).toBe(true);
+  expect(objectsMatch(cards[2], { value: 1, symbol: 'A', color: 'green' })).toBe(true);
+  expect(objectsMatch(cards[3], { value: 1, symbol: 'A', color: 'green' })).toBe(true);
+  expect(objectsMatch(cards[4], { value: 2, symbol: 'B', color: 'red' })).toBe(true);
+  expect(objectsMatch(cards[5], { value: 2, symbol: 'B', color: 'red' })).toBe(true);
+  expect(objectsMatch(cards[6], { value: 3, symbol: 'B', color: 'green' })).toBe(true);
+  expect(objectsMatch(cards[7], { value: 3, symbol: 'B', color: 'green' })).toBe(true);
+
+  sets = 4;
+  setSize = 3;
+  cards = colors.makeCards(sets, setSize, testCards);
+
+  expect(objectsMatch(cards[0], { value: 0, symbol: 'A', color: 'red' })).toBe(true);
+  expect(objectsMatch(cards[1], { value: 0, symbol: 'A', color: 'red' })).toBe(true);
+  expect(objectsMatch(cards[2], { value: 0, symbol: 'A', color: 'red' })).toBe(true);
+  expect(objectsMatch(cards[3], { value: 1, symbol: 'A', color: 'green' })).toBe(true);
+  expect(objectsMatch(cards[4], { value: 1, symbol: 'A', color: 'green' })).toBe(true);
+  expect(objectsMatch(cards[5], { value: 1, symbol: 'A', color: 'green' })).toBe(true);
+  expect(objectsMatch(cards[6], { value: 2, symbol: 'A', color: 'yellow' })).toBe(true);
+  expect(objectsMatch(cards[7], { value: 2, symbol: 'A', color: 'yellow' })).toBe(true);
+  expect(objectsMatch(cards[8], { value: 2, symbol: 'A', color: 'yellow' })).toBe(true);
+  expect(objectsMatch(cards[9], { value: 3, symbol: 'B', color: 'red' })).toBe(true);
+  expect(objectsMatch(cards[10], { value: 3, symbol: 'B', color: 'red' })).toBe(true);
+  expect(objectsMatch(cards[11], { value: 3, symbol: 'B', color: 'red' })).toBe(true);
 });

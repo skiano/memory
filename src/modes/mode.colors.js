@@ -1,4 +1,8 @@
-/* eslint-disable no-return-assign, react/prop-types */
+const colors = [
+  'red',
+  'green',
+  'yellow',
+];
 
 export default {
   title: 'Chromatic',
@@ -7,4 +11,28 @@ export default {
     { difficulty: 'Hard', sets: 8 },
     { difficulty: 'Triples', sets: 6, setSize: 3 },
   ],
+  makeCards(totalSets, setSize, cardTypes) {
+    const cards = [];
+    const pallette = colors.slice(0, setSize);
+
+    let symbolIdx = 0;
+    let colorIdx = 0;
+
+    for (let setId = 0; setId < totalSets; setId += 1) {
+      for (let c = 0; c < setSize; c += 1) {
+        cards.push({
+          value: setId,
+          symbol: cardTypes[symbolIdx],
+          color: pallette[colorIdx],
+        });
+      }
+
+      colorIdx += 1;
+      if (colorIdx > pallette.length - 1) {
+        colorIdx = 0;
+        symbolIdx += 1;
+      }
+    }
+    return cards;
+  },
 };
