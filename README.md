@@ -32,10 +32,6 @@ Here's the twist. You can choose from various game modes, each of which has it's
 | Double Trouble | Easy | `☯ ★` `☯ ★` | 4 |
 | -               | Hard | `☯ ★` `☯ ★` | 8 |
 
-## Roadmap
-
-[Roadmap](https://github.com/skiano/memory/issues/2)
-
 ## Setup
 
 ```bash
@@ -46,3 +42,7 @@ $ open http://localhost:3000
 This is based on [NYT kyt](https://github.com/NYTimes/kyt)
 
 ---
+
+## Roadmap
+
+[Roadmap](https://github.com/skiano/memory/issues/2)
