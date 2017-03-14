@@ -12,6 +12,7 @@ module.exports = {
     baseConfig.moduleNameMapper = Object.assign({}, baseConfig.moduleNameMapper,
       {
         './wait': resolve(__dirname, '__mocks__/wait.js'),
+        './shuffle': resolve(__dirname, '__mocks__/shuffle.js'),
       }
     );
 

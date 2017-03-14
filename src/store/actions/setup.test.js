@@ -1,4 +1,4 @@
-import { setupModes } from './setup';
+import { setupModes, setupGame } from './setup';
 
 let dispatch;
 let cardTypes;
@@ -6,6 +6,27 @@ let cardTypes;
 beforeEach(() => {
   dispatch = jest.fn();
   cardTypes = ['A', 'B', 'C'];
+});
+
+test('Setup Game', () => {
+  const levelId = 0;
+  const testState = {
+    config: {
+      levels: [
+        {
+          cards: ['A', 'A', 'B', 'B', 'C', 'C'],
+        },
+      ],
+    },
+  };
+  setupGame(levelId)(dispatch, () => testState);
+
+  const createGame = dispatch.mock.calls[dispatch.mock.calls.length - 1][0];
+  const { payload } = createGame;
+  expect(createGame.type).toEqual('CREATE_GAME');
+  expect(payload.cards.join('')).toEqual('CCBBAA');
+  expect(payload.seen.join('')).toEqual('000000');
+  expect(payload.sets.map(s => s.join()).join('|')).toEqual('0,1|2,3|4,5');
 });
 
 test('Setup Modes', () => {

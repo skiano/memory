@@ -1,6 +1,7 @@
+/* eslint-disable import/prefer-default-export, no-plusplus */
+
 /* https://bost.ocks.org/mike/shuffle/ */
-/* eslint-disable no-plusplus */
-export default function shuffle(array) {
+export function shuffle(array) {
   let m = array.length;
   let t;
   let i;

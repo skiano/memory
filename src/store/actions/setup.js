@@ -3,13 +3,10 @@ import fetch from 'isomorphic-fetch';
 import GAME_MODES from '../../modes';
 
 import {
-  makeSets,
-  shuffle,
-} from '../../util';
-
-import {
   unique,
-} from '../../util/pure';
+  shuffle,
+  makeSets,
+} from '../../util';
 
 import {
   createGame,
