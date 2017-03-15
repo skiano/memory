@@ -17,12 +17,12 @@ class Game extends React.Component {
       <div className={styles.game}>
         <header className={styles.header}>
           <Link to="/">Home</Link>
-          <Timer />
         </header>
         <div className={styles.table}>
           <Table />
         </div>
         <div className={styles.status}>
+          <Timer />
           <Status />
         </div>
       </div>

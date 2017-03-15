@@ -28,11 +28,15 @@
   margin: 4px;
   width: 10px;
   height: 10px;
-  display: block;
+  display: inline-block;
   background: darkblue;
   transition: all 480ms ease-in-out;
   border-radius: 50%;
   opacity: .7;
+
+  .cardIcon:first-child {
+    margin-top: 200px;
+  }
 
   &.selected {
     opacity: 1;

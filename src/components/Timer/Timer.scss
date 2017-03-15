@@ -1,8 +1,10 @@
 .timer {
   display: inline-block;
   font-family: Helvetica, sans-serif;
-  color: tomato;
-  line-height: 40px;
+  color: blue;
+  margin: 0 50px;
+  font-size: 25px;
+  line-height: 25px;
 
   &:active {
 

@@ -30,7 +30,7 @@ export default {
           value: symbol[0],
           symbol: symbol[isName ? 1 : 0],
           style: {
-            fontSize: isName ? '0.2em' : '1em',
+            fontSize: isName ? '0.22em' : '1em',
             fontWeight: isName ? 'bold' : 'normal',
           },
         });
