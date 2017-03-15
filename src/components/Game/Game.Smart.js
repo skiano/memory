@@ -2,12 +2,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Game from './Game';
-import { setup } from '../../store/actions';
+import { setupGame } from '../../store/actions';
 
-const mapStateToProps = () => ({});
+const mapStateToProps = ({ config }) => ({
+  slugMap: config.slugMap,
+});
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ setup }, dispatch);
+  return bindActionCreators({ setupGame }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

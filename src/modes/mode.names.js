@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+import React from 'react';
+
 const symbols = [
   ['❄', 'Snowflake'],
   ['✈', 'Plane'],
@@ -32,5 +35,8 @@ export default {
       }
     }
     return cards;
+  },
+  cardFace({ symbol }) {
+    return (<div style={{ fontSize: '20px' }}>{symbol}</div>);
   },
 };

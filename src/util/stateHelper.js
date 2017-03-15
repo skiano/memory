@@ -61,11 +61,10 @@ export function getCardPropsFromState(cardId, state) {
   const { selected, remaining } = state;
   const card = state.cards[cardId];
 
-  return {
+  return Object.assign({
     idx: cardId,
-    value: card.value,
     isSelected: selected.includes(cardId),
     isRemaining: remaining.includes(cardId),
     makeCardFace: card.makeCardFace,
-  };
+  }, card);
 }
