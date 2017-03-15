@@ -14,6 +14,8 @@ const getFormula = (n, setPosition) => (
   ][setPosition - 1].slice(0, setPosition + 1).map(i => fib(n + i)).join('+')
 );
 
+const getFontSize = symbol => (1 / Math.pow(symbol.length, 0.6));
+
 export default {
   title: 'Fibonacci',
   levels: [
@@ -31,12 +33,19 @@ export default {
       cards.push({
         value,
         symbol: `${value}`,
+        style: {
+          fontSize: `${getFontSize(`${value}`)}em`,
+        },
       });
 
       for (let c = 1; c < setSize; c += 1) {
+        const symbol = getFormula(n, c);
         cards.push({
           value,
-          symbol: getFormula(n, c),
+          symbol,
+          style: {
+            fontSize: `${getFontSize(symbol)}em`,
+          },
         });
       }
     }

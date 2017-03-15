@@ -33,7 +33,6 @@ export const setupModes = (modesConfig, cardTypes) => (
       modes.push({
         title: mode.title,
         slug: mode.slug,
-        cardFace: mode.cardFace,
         levels: [],
       });
 

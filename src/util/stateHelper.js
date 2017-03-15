@@ -65,6 +65,5 @@ export function getCardPropsFromState(cardId, state) {
     idx: cardId,
     isSelected: selected.includes(cardId),
     isRemaining: remaining.includes(cardId),
-    makeCardFace: card.makeCardFace,
   }, card);
 }

@@ -79,3 +79,10 @@ $front-color: darkblue;
   transition: background 400ms ease-in-out;
   background: $back-color;
 }
+
+.symbol {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

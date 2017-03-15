@@ -1,6 +1,3 @@
-/* eslint-disable react/prop-types */
-import React from 'react';
-
 const symbols = [
   ['❄', 'Snowflake'],
   ['✈', 'Plane'],
@@ -28,15 +25,17 @@ export default {
       }
 
       for (let c = 0; c < setSize; c += 1) {
+        const isName = c % 2;
         cards.push({
           value: symbol[0],
-          symbol: symbol[c % 2],
+          symbol: symbol[isName ? 1 : 0],
+          style: {
+            fontSize: isName ? '0.2em' : '1em',
+            fontWeight: isName ? 'bold' : 'normal',
+          },
         });
       }
     }
     return cards;
-  },
-  cardFace({ symbol }) {
-    return (<div style={{ fontSize: '20px' }}>{symbol}</div>);
   },
 };

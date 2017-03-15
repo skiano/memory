@@ -1,4 +1,4 @@
-import React, { PropTypes, createElement } from 'react';
+import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import styles from './Card.scss';
 
@@ -9,7 +9,6 @@ const Card = (props) => {
     isSelected,
     isRemaining,
     isGameLocked,
-    cardFace,
   } = props;
 
   const className = classNames(styles.card, {
@@ -20,13 +19,14 @@ const Card = (props) => {
 
   const style = {
     fontSize: `${cardSize * 0.7}px`,
-    lineHeight: `${cardSize}px`,
   };
+
+  const symbolStyle = props.style || {};
 
   return (
     <div className={className}>
       <div className={styles.front} style={style}>
-        { cardFace ? createElement(cardFace, props) : symbol }
+        <span className={styles.symbol} style={symbolStyle}>{symbol}</span>
       </div>
       <div className={styles.back} />
     </div>
@@ -35,11 +35,11 @@ const Card = (props) => {
 
 Card.propTypes = {
   symbol: PropTypes.string,
-  cardFace: PropTypes.node,
   cardSize: PropTypes.number,
   isSelected: PropTypes.bool,
   isRemaining: PropTypes.bool,
   isGameLocked: PropTypes.bool,
+  style: PropTypes.shape({}),
 };
 
 export default Card;

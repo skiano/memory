@@ -9,7 +9,7 @@ export default {
   levels: [
     { difficulty: 'Easy', sets: 4 },
     { difficulty: 'Hard', sets: 8 },
-    { difficulty: 'Triples', sets: 6, setSize: 3 },
+    { difficulty: 'Triples', sets: 8, setSize: 3 },
   ],
   makeCards(totalSets, setSize, cardTypes) {
     const cards = [];
@@ -24,6 +24,9 @@ export default {
           value: setId,
           symbol: cardTypes[symbolIdx],
           color: pallette[colorIdx],
+          style: {
+            color: pallette[colorIdx],
+          },
         });
       }
 
