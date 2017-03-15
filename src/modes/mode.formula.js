@@ -1,5 +1,6 @@
 /* eslint-disable no-return-assign */
 /** cache all the results */
+const formulaOffsets = [[-2, -1],[-4, -3, -1]];
 const fibCache = {};
 
 const fib = (n, memo = {}) => (memo[n] || (
@@ -8,10 +9,7 @@ const fib = (n, memo = {}) => (memo[n] || (
 ));
 
 const getFormula = (n, setPosition) => (
-  [
-    [-2, -1],
-    [-4, -3, -1],
-  ][setPosition - 1].slice(0, setPosition + 1).map(i => fib(n + i)).join('+')
+  formulaOffsets[setPosition - 1].slice(0, setPosition + 1).map(i => fib(n + i)).join('+')
 );
 
 const getFontSize = symbol => (1 / Math.pow(symbol.length, 0.6));
