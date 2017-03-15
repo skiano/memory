@@ -47,6 +47,7 @@ test('Setup Modes', () => {
       title: 'Mode 1',
       slug: 'mode-1',
       makeCards: (sets, size) => [sets, size],
+      cardFace: () => 'cardface',
       levels: [
         { difficulty: 'easy', slug: 'e', sets: 4, setSize: 2 },
         { difficulty: 'hard', slug: 'h', sets: 8, setSize: 3 },
@@ -56,7 +57,6 @@ test('Setup Modes', () => {
       title: 'Mode 2',
       slug: 'mode-2',
       makeCards: (sets, size, types) => types,
-      cardFace: c => `${c}!`,
       levels: [
         { difficulty: 'easy', slug: 'e', sets: 2, setSize: 2 },
         { difficulty: 'hard', slug: 'h', sets: 8, setSize: 3 },
@@ -74,6 +74,7 @@ test('Setup Modes', () => {
   expect(modes[0].title).toEqual('Mode 1');
   expect(modes[0].slug).toEqual('mode-1');
   expect(modes[0].levels.join()).toEqual('0,1');
+  expect(modes[0].cardFace()).toEqual('cardface');
 
   expect(modes[1].title).toEqual('Mode 2');
   expect(modes[1].slug).toEqual('mode-2');
@@ -97,12 +98,12 @@ test('Setup Modes', () => {
   expect(levels[2].difficulty).toEqual('easy');
   expect(levels[2].slug).toEqual('e');
   expect(levels[2].modeId).toEqual(1);
-  expect(levels[2].cards.join()).toEqual('A!,B!,C!');
+  expect(levels[2].cards.join()).toEqual('A,B,C');
 
   expect(levels[3].difficulty).toEqual('hard');
   expect(levels[3].slug).toEqual('h');
   expect(levels[3].modeId).toEqual(1);
-  expect(levels[3].cards.join()).toEqual('A!,B!,C!');
+  expect(levels[3].cards.join()).toEqual('A,B,C');
 
   /* were the slug map setup correctly */
   const thirdAction = dispatch.mock.calls[2][0];

@@ -1,4 +1,4 @@
-import React, { PropTypes, cloneElement } from 'react';
+import React, { PropTypes, createElement } from 'react';
 import classNames from 'classnames';
 import styles from './Card.scss';
 
@@ -26,7 +26,7 @@ const Card = (props) => {
   return (
     <div className={className}>
       <div className={styles.front} style={style}>
-        { cardFace ? cloneElement(cardFace, props) : symbol }
+        { cardFace ? createElement(cardFace, props) : symbol }
       </div>
       <div className={styles.back} />
     </div>

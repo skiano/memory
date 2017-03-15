@@ -33,6 +33,7 @@ export const setupModes = (modesConfig, cardTypes) => (
       modes.push({
         title: mode.title,
         slug: mode.slug,
+        cardFace: mode.cardFace,
         levels: [],
       });
 
@@ -43,11 +44,9 @@ export const setupModes = (modesConfig, cardTypes) => (
           sets,
         } = level;
 
-        const cards = mode.makeCards(sets, setSize, cardTypes);
-
         const levelsLength = flattenedLevels.push({
           slug: level.slug,
-          cards: mode.cardFace ? cards.map(mode.cardFace) : cards,
+          cards: mode.makeCards(sets, setSize, cardTypes),
           difficulty,
           modeId,
         });
