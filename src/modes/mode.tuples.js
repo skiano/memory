@@ -10,11 +10,14 @@ export const mixer = (symbols, cardIdx) => (
   symbols.slice(cardIdx).concat(symbols.slice(0, cardIdx))
 );
 
+const getFontSize = symbol => (1 / symbol.length);
+
 export default {
-  title: 'Double Trouble',
+  title: 'Twisted',
   levels: [
     { difficulty: 'Easy', sets: 4 },
     { difficulty: 'Hard', sets: 8 },
+    { difficulty: 'Dimented', sets: 5, setSize: 3 },
   ],
   makeCards(totalSets, setSize, cardTypes) {
     const cards = [];
@@ -26,9 +29,15 @@ export default {
       const symbols = symbolIdxs.map(i => cardTypes[i]);
 
       for (let c = 0; c < setSize; c += 1) {
+        const text = mixer(symbols, c).join('');
         cards.push({
           value: setId,
-          symbol: mixer(symbols, c).join(''),
+          symbol: text,
+          style: {
+            fontSize: `${getFontSize(`${text}`)}em`,
+            whiteSpace: 'nowrap',
+            letterSpacing: '.1em',
+          },
         });
       }
 

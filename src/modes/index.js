@@ -12,8 +12,8 @@ const GAME_MODES = [
   names,
   spin,
   colors,
-  tuples,
   formula,
+  tuples,
 ].map(mode => Object.assign({}, mode, {
   slug: slugify(mode.title.toLowerCase()),
   makeCards: mode.makeCards || defaultCardMaker,
