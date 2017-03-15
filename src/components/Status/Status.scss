@@ -4,8 +4,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: darkblue;
-  color: #fff;
 }
 
 .setWrap {
@@ -25,11 +23,13 @@
 }
 
 .cardIcon {
+  box-sizing: border-box;
   margin: 4px;
   width: 10px;
   height: 10px;
   display: inline-block;
-  background: darkblue;
+  background: #eee;
+  border: 2px solid #999;
   transition: all 480ms ease-in-out;
   border-radius: 50%;
   opacity: .7;
@@ -40,6 +40,7 @@
 
   &.selected {
     opacity: 1;
-    background: blue;
+    background: #444;
+    border-color: #000;
   }
 }
