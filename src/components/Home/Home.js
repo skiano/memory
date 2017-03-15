@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-
 import styles from './Home.scss';
-import modes from '../../modes';
 
-const Home = () => (
+const Home = ({ modes }) => (
   <div className={styles.home}>
     {
       modes.map((mode, modeId) => (
@@ -27,5 +25,16 @@ const Home = () => (
     }
   </div>
 );
+
+Home.propTypes = {
+  modes: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    slug: PropTypes.string,
+    levels: PropTypes.arrayOf(PropTypes.shape({
+      difficulty: PropTypes.string,
+      slug: PropTypes.string,
+    })),
+  })),
+};
 
 export default Home;

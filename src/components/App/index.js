@@ -3,7 +3,7 @@ import { Router, Route, hashHistory } from 'react-router';
 import { Provider } from 'react-redux';
 
 import Shell from '../Shell/Shell.Smart';
-import Home from '../Home/Home';
+import Home from '../Home/Home.Smart';
 import Game from '../Game/Game.Smart';
 import createStore from '../../store';
 

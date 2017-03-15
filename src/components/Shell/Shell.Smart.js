@@ -5,7 +5,7 @@ import Shell from './Shell';
 import { setup } from '../../store/actions';
 
 const mapStateToProps = ({ config }) => ({
-  isSetup: !!config.modes,
+  isSetup: config.modes && config.modes && config.slugMap,
 });
 
 function mapDispatchToProps(dispatch) {
