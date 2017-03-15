@@ -29,7 +29,7 @@ You can play classic memory, or even look for matches of three, but you can also
 | Double Trouble | Find sets where all card symbols match | `★☯` = `☯★` | `★☯` != `✈★` |
 | Fibonacci | Find sets where card values match | `8` = `5 + 3` | `13` != `5+3` |
 
-More modes can be added by creating a new configuration in `src/modes`
+More modes can are added in `src/modes`
 
 ## Dev Setup
 
