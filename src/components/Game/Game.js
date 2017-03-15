@@ -22,7 +22,7 @@ class Game extends React.Component {
           <Table />
         </div>
         <div className={styles.status}>
-          <Timer />
+          <div><Timer /></div>
           <Status />
         </div>
       </div>
