@@ -2,6 +2,7 @@ import modes from './';
 import fibonacci from './mode.formula';
 import names from './mode.names';
 import colors from './mode.colors';
+import tuples, { mixer } from './mode.tuples';
 
 // patch toMatchObject until jest 19 is included in kit
 function objectsMatch(received, expected) {
@@ -134,4 +135,50 @@ test('Mode: Colors', () => {
   expect(objectsMatch(cards[9], { value: 3, symbol: 'B', color: 'red' })).toBe(true);
   expect(objectsMatch(cards[10], { value: 3, symbol: 'B', color: 'red' })).toBe(true);
   expect(objectsMatch(cards[11], { value: 3, symbol: 'B', color: 'red' })).toBe(true);
+});
+
+test('Mode: Tuples (mixer)', () => {
+  expect(mixer([1, 2, 3], 0).join('')).toEqual('123');
+  expect(mixer([1, 2, 3], 1).join('')).toEqual('231');
+  expect(mixer([1, 2, 3], 2).join('')).toEqual('312');
+
+  expect(mixer([1, 2], 0).join('')).toEqual('12');
+  expect(mixer([1, 2], 1).join('')).toEqual('21');
+});
+
+test('Mode: Tuples', () => {
+  const testCards = 'ABCDEFGH'.split('');
+
+  let sets = 5;
+  let setSize = 2;
+  let cards = tuples.makeCards(sets, setSize, testCards);
+
+  // how the pattern works
+  // | BA | CB , CA | DC , DB , DA | ED , EC, EB, EA |
+
+  expect(objectsMatch(cards[0], { value: 0, symbol: 'AB' })).toBe(true);
+  expect(objectsMatch(cards[1], { value: 0, symbol: 'BA' })).toBe(true);
+
+  expect(objectsMatch(cards[2], { value: 1, symbol: 'BC' })).toBe(true);
+  expect(objectsMatch(cards[3], { value: 1, symbol: 'CB' })).toBe(true);
+
+  expect(objectsMatch(cards[4], { value: 2, symbol: 'AC' })).toBe(true);
+  expect(objectsMatch(cards[5], { value: 2, symbol: 'CA' })).toBe(true);
+
+  expect(objectsMatch(cards[6], { value: 3, symbol: 'CD' })).toBe(true);
+  expect(objectsMatch(cards[7], { value: 3, symbol: 'DC' })).toBe(true);
+
+  expect(objectsMatch(cards[8], { value: 4, symbol: 'BD' })).toBe(true);
+  expect(objectsMatch(cards[9], { value: 4, symbol: 'DB' })).toBe(true);
+
+  // how the pattern works with 3
+  // | CBA | DCB , DCA | EDC , EDB , EDA | FED , FEC, FEB, FEA |
+  //   210   321   320   432   431   430   543   542  541  540
+
+  sets = 4;
+  setSize = 3;
+  cards = tuples.makeCards(sets, setSize, testCards);
+
+  expect(cards.map(c => c.symbol).join('|'))
+    .toEqual('ABC|BCA|CAB|BCD|CDB|DBC|ACD|CDA|DAC|CDE|DEC|ECD');
 });
