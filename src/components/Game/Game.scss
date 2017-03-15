@@ -1,19 +1,23 @@
+$header-height: 45px;
+$status-height: 80px;
+$table-margin: 30px;
+
 .header {
   z-index: 1000;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 40px;
+  height: $header-height;
   text-align: center;
 }
 
 .table {
   position: fixed;
-  top: 100px;
-  left: 100px;
-  right: 100px;
-  bottom: 100px;
+  top: $table-margin + $header-height;
+  left: $table-margin;
+  right: $table-margin;
+  bottom: $table-margin + $status-height;
 }
 
 .status {
@@ -22,5 +26,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: 40px;
+  height: $status-height;
+  text-align: center;
 }

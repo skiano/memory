@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Status from './Status.Responsive';
+import Status from './Status';
 import { COMPLETED } from '../../store/constants';
 import { getCardPropsFromState } from '../../util';
 

@@ -25,7 +25,8 @@ $front-color: darkblue;
   }
 
   transform-style: preserve-3d;
-  transition: all 280ms ease-in-out;
+  transition: all 280ms ease-in-out,
+    opacity 350ms ease 40ms;
 
 
   &.removed {
@@ -47,10 +48,6 @@ $front-color: darkblue;
       background: darken($back-color, 7%);  
     }
   }
-}
-
-.mirrored {
-  transform: rotateX(180deg);
 }
 
 .front, .back {

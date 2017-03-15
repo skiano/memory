@@ -1,5 +1,5 @@
 const MIN_CARD_SIZE = 40;
-const MAX_CARD_SIZE = 200;
+const MAX_CARD_SIZE = 260;
 const IDEAL_GUTTER = 25;
 
 /*

@@ -1,4 +1,4 @@
-import * as layout from './layout';
+import * as layout from './tableLayout';
 
 test('getGridSize: returns closet to square', () => {
   expect(layout.getGridSize(9).join()).toEqual('3,3');

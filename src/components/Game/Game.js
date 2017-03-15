@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import styles from './Game.scss';
 import Table from '../Table/Table.Smart';
 import Timer from '../Timer/Timer.Smart';
+import Status from '../Status/Status.Smart';
 
 class Game extends React.Component {
   componentWillMount() {
@@ -22,7 +23,7 @@ class Game extends React.Component {
           <Table />
         </div>
         <div className={styles.status}>
-          status goes here
+          <Status />
         </div>
       </div>
     );

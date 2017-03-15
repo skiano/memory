@@ -1,7 +1,7 @@
 const colors = [
   'red',
   'green',
-  'yellow',
+  'white',
 ];
 
 export default {

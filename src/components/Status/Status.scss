@@ -1,0 +1,41 @@
+.status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: darkblue;
+  color: #fff;
+}
+
+.setWrap {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.setBlock {
+  float: left;
+  margin: 0 10px;
+}
+
+.submitted {
+  .cardIcon {
+    background: green;
+  }
+}
+
+.cardIcon {
+  margin: 4px;
+  width: 10px;
+  height: 10px;
+  display: block;
+  background: darkblue;
+  transition: all 480ms ease-in-out;
+  border-radius: 50%;
+  opacity: .7;
+
+  &.selected {
+    opacity: 1;
+    background: blue;
+  }
+}

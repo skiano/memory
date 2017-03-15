@@ -3,7 +3,7 @@ import eventListener from 'eventlistener';
 
 import Table from './Table';
 import styles from './Table.scss';
-import { getLayout } from '../../util/layout';
+import { getLayout } from '../../layout/tableLayout';
 
 class ResponsiveTable extends React.Component {
   constructor(props) {
