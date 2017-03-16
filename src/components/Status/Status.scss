@@ -1,3 +1,5 @@
+$status-faded: #333;
+
 .status {
   position: absolute;
   top: 0;
@@ -29,8 +31,8 @@
   width: 10px;
   height: 10px;
   display: inline-block;
-  background: #eee;
-  border: 2px solid #999;
+  background: $status-faded;
+  border: 2px solid lighten($status-faded, 10%);
   transition: all 480ms ease-in-out;
   border-radius: 50%;
   opacity: .7;
@@ -41,7 +43,7 @@
 
   &.selected {
     opacity: 1;
-    background: #444;
-    border-color: #000;
+    background: lighten($status-faded, 50%);
+    border-color: lighten($status-faded, 80%);
   }
 }
