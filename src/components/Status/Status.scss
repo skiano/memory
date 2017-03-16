@@ -20,8 +20,8 @@ $status-faded: #333;
 
 .submitted {
   .cardIcon {
-    background: #444;
-    border-color: #000;
+    background: lighten($status-faded, 50%);
+    border-color: lighten($status-faded, 80%);
   }
 }
 

@@ -45,7 +45,7 @@ export const setupModes = (modesConfig, cardTypes) => (
 
         const levelsLength = flattenedLevels.push({
           slug: level.slug,
-          cards: mode.makeCards(sets, setSize, cardTypes),
+          cards: mode.makeCards(sets, setSize, cardTypes, difficulty),
           difficulty,
           modeId,
         });

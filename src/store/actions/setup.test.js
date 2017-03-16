@@ -46,7 +46,7 @@ test('Setup Modes', () => {
     {
       title: 'Mode 1',
       slug: 'mode-1',
-      makeCards: (sets, size) => [sets, size],
+      makeCards: (sets, size, ct, difficulty) => [sets, size, difficulty],
       levels: [
         { difficulty: 'easy', slug: 'e', sets: 4, setSize: 2 },
         { difficulty: 'hard', slug: 'h', sets: 8, setSize: 3 },
@@ -86,12 +86,12 @@ test('Setup Modes', () => {
   expect(levels[0].difficulty).toEqual('easy');
   expect(levels[0].slug).toEqual('e');
   expect(levels[0].modeId).toEqual(0);
-  expect(levels[0].cards.join()).toEqual('4,2');
+  expect(levels[0].cards.join()).toEqual('4,2,easy');
 
   expect(levels[1].difficulty).toEqual('hard');
   expect(levels[1].slug).toEqual('h');
   expect(levels[1].modeId).toEqual(0);
-  expect(levels[1].cards.join()).toEqual('8,3');
+  expect(levels[1].cards.join()).toEqual('8,3,hard');
 
   expect(levels[2].difficulty).toEqual('easy');
   expect(levels[2].slug).toEqual('e');
