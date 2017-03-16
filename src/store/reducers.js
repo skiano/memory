@@ -24,6 +24,7 @@ import {
   REMOVE_CARD,
   SELECT_CARD,
   DESELECT_CARD,
+  UPDATE_SCORE,
   SUBMIT_MATCH,
   RESET_TIMER,
   TICK,
@@ -107,6 +108,17 @@ reducers.seen = (state = [], { type, payload }) => {
       return payload.seen;
     case SELECT_CARD:
       return update(state, payload, v => v + 1);
+    default:
+      return state;
+  }
+};
+
+reducers.score = (state = 0, { type, payload }) => {
+  switch (type) {
+    case CREATE_GAME:
+      return 0;
+    case UPDATE_SCORE:
+      return state + payload;
     default:
       return state;
   }

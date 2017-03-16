@@ -1,5 +1,6 @@
 export { wait } from './wait';
 export { shuffle } from './shuffle';
+export { getPointsFromGuess } from './scoreKeeper';
 export { makeCards, makeSets, defaultCardMaker } from './cards';
 export {
   add,

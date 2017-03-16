@@ -11,6 +11,7 @@ import {
   startGame,
   completeGame,
   lockGame,
+  updateScore,
   unlockGame,
   startTimer,
   stopTimer,
@@ -19,6 +20,7 @@ import {
 import {
   getSuccessDuration,
   getFailureDuration,
+  getPointsFromGuess,
   getPotentialSet,
   isFinalSet,
   wait,
@@ -32,6 +34,7 @@ export const guess = () => (
   (dispatch, getState) => {
     const {
      sets,
+     seen,
      selected,
      elapsedTime,
      completedSets,
@@ -63,6 +66,7 @@ export const guess = () => (
       dispatch(lockGame());
       wait(getSuccessDuration(isVictory)).then(() => {
         dispatch(submitMatch(potentialSetId));
+        dispatch(updateScore(getPointsFromGuess(selected, seen)));
 
         selected.forEach((id) => {
           dispatch(deselectCard(id));
