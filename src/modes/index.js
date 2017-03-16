@@ -22,6 +22,7 @@ const GAME_MODES = [
   levels: mode.levels.map(level => Object.assign({
     slug: slugify(level.difficulty.toLowerCase()),
     setSize: level.setSize || 2,
+    sets: level.sets || 4,
   }, level)),
 }));
 
