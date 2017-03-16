@@ -19,13 +19,13 @@ export default {
     { difficulty: 'Hard', sets: 8 },
     { difficulty: 'Dimented', sets: 5, setSize: 3 },
   ],
-  makeCards(totalSets, setSize, cardTypes) {
+  makeCards({ sets, setSize }, cardTypes) {
     const cards = [];
     const range = cardTypes.map((c, i) => i);
 
     let rangeStart = 0;
     let symbolIdxs = [...range].splice(rangeStart, setSize);
-    for (let setId = 0; setId < totalSets; setId += 1) {
+    for (let setId = 0; setId < sets; setId += 1) {
       const symbols = symbolIdxs.map(i => cardTypes[i]);
 
       for (let c = 0; c < setSize; c += 1) {

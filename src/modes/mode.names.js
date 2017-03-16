@@ -16,9 +16,9 @@ export default {
     { difficulty: 'Hard', sets: 8 },
     { difficulty: 'Quad', sets: 5, setSize: 4 },
   ],
-  makeCards(totalSets, setSize) {
+  makeCards({ sets, setSize }) {
     const cards = [];
-    for (let setId = 0; setId < totalSets; setId += 1) {
+    for (let setId = 0; setId < sets; setId += 1) {
       const symbol = symbols[setId];
       if (!symbol) {
         throw new Error(`namesCardMaker() needed ${symbols} symbols`);

@@ -1,6 +1,6 @@
 export { wait } from './wait';
 export { shuffle } from './shuffle';
-export { makeCards, makeSets } from './cards';
+export { makeCards, makeSets, defaultCardMaker } from './cards';
 export {
   add,
   addUnique,

@@ -46,7 +46,7 @@ test('Setup Modes', () => {
     {
       title: 'Mode 1',
       slug: 'mode-1',
-      makeCards: (sets, size) => [sets, size],
+      makeCards: ({ sets, setSize }) => [sets, setSize],
       levels: [
         { difficulty: 'easy', slug: 'e', sets: 4, setSize: 2 },
         { difficulty: 'hard', slug: 'h', sets: 8, setSize: 3 },
@@ -55,7 +55,7 @@ test('Setup Modes', () => {
     {
       title: 'Mode 2',
       slug: 'mode-2',
-      makeCards: (sets, size, types) => types,
+      makeCards: (level, types) => types,
       levels: [
         { difficulty: 'easy', slug: 'e', sets: 2, setSize: 2 },
         { difficulty: 'hard', slug: 'h', sets: 8, setSize: 3 },

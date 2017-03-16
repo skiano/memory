@@ -1,4 +1,6 @@
-export const defaultCardMaker = (totalSets, setSize, cardTypes) => {
+export const defaultCardMaker = (level, cardTypes) => {
+  const totalSets = level.sets;
+  const setSize = level.setSize;
   const cards = [];
   let setId;
   for (setId = 0; setId < totalSets; setId += 1) {
