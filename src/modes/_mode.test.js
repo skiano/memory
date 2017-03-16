@@ -46,7 +46,7 @@ test('Levels: make cards with value strings', () => {
     levels.forEach((level) => {
       expect(level.sets).toBeGreaterThan(1);
       expect(level.setSize).toBeGreaterThan(1);
-      const cards = makeCards(level.sets, level.setSize, cardTypes);
+      const cards = makeCards(level, cardTypes);
       cards.forEach(card => expect(card.value).toBeDefined());
     });
   });
@@ -55,7 +55,7 @@ test('Levels: make cards with value strings', () => {
 test('Mode: Fibonacci', () => {
   let sets = 4;
   let setSize = 2;
-  let cards = fibonacci.makeCards(sets, setSize);
+  let cards = fibonacci.makeCards({ sets, setSize });
 
   expect(objectsMatch(cards[0], { value: 3, symbol: '3' })).toBe(true);
   expect(objectsMatch(cards[1], { value: 3, symbol: '1+2' })).toBe(true);
@@ -68,7 +68,7 @@ test('Mode: Fibonacci', () => {
 
   sets = 3;
   setSize = 3;
-  cards = fibonacci.makeCards(sets, setSize);
+  cards = fibonacci.makeCards({ sets, setSize });
 
   expect(objectsMatch(cards[0], { value: 5, symbol: '5' })).toBe(true);
   expect(objectsMatch(cards[1], { value: 5, symbol: '2+3' })).toBe(true);
@@ -84,7 +84,7 @@ test('Mode: Fibonacci', () => {
 test('Mode: Names', () => {
   let sets = 3;
   let setSize = 2;
-  let cards = names.makeCards(sets, setSize);
+  let cards = names.makeCards({ sets, setSize });
 
   expect(objectsMatch(cards[0], { value: '❄', symbol: '❄' })).toBe(true);
   expect(objectsMatch(cards[1], { value: '❄', symbol: 'Snowflake' })).toBe(true);
@@ -95,7 +95,7 @@ test('Mode: Names', () => {
 
   sets = 2;
   setSize = 3;
-  cards = names.makeCards(sets, setSize);
+  cards = names.makeCards({ sets, setSize });
 
   expect(objectsMatch(cards[0], { value: '❄', symbol: '❄' })).toBe(true);
   expect(objectsMatch(cards[1], { value: '❄', symbol: 'Snowflake' })).toBe(true);
@@ -109,7 +109,7 @@ test('Mode: Colors', () => {
   const testCards = 'ABCDEFGH'.split('');
   let sets = 4;
   let setSize = 2;
-  let cards = colors.makeCards(sets, setSize, testCards);
+  let cards = colors.makeCards({ sets, setSize }, testCards);
 
   expect(objectsMatch(cards[0], { value: 0, symbol: 'A', color: colorPallette[0] })).toBe(true);
   expect(objectsMatch(cards[1], { value: 0, symbol: 'A', color: colorPallette[0] })).toBe(true);
@@ -122,7 +122,7 @@ test('Mode: Colors', () => {
 
   sets = 4;
   setSize = 3;
-  cards = colors.makeCards(sets, setSize, testCards);
+  cards = colors.makeCards({ sets, setSize }, testCards);
 
   expect(objectsMatch(cards[0], { value: 0, symbol: 'A', color: colorPallette[0] })).toBe(true);
   expect(objectsMatch(cards[1], { value: 0, symbol: 'A', color: colorPallette[0] })).toBe(true);
@@ -152,7 +152,7 @@ test('Mode: Tuples', () => {
 
   let sets = 5;
   let setSize = 2;
-  let cards = tuples.makeCards(sets, setSize, testCards);
+  let cards = tuples.makeCards({ sets, setSize }, testCards);
 
   // how the pattern works
   // | BA | CB , CA | DC , DB , DA | ED , EC, EB, EA |
@@ -178,7 +178,7 @@ test('Mode: Tuples', () => {
 
   sets = 4;
   setSize = 3;
-  cards = tuples.makeCards(sets, setSize, testCards);
+  cards = tuples.makeCards({ sets, setSize }, testCards);
 
   expect(cards.map(c => c.symbol).join('|'))
     .toEqual('ABC|BCA|CAB|BCD|CDB|DBC|ACD|CDA|DAC|CDE|DEC|ECD');
@@ -193,7 +193,7 @@ test('Mode: Spin', () => {
 
   let sets = 4;
   let setSize = 2;
-  let cards = spin.makeCards(sets, setSize);
+  let cards = spin.makeCards({ sets, setSize });
 
   checkCard(cards[0], 0, spinnableCards[0], 0);
   checkCard(cards[1], 0, spinnableCards[0], 0);
@@ -209,7 +209,7 @@ test('Mode: Spin', () => {
 
   sets = 4;
   setSize = 3;
-  cards = spin.makeCards(sets, setSize);
+  cards = spin.makeCards({ sets, setSize });
 
   checkCard(cards[0], 0, spinnableCards[0], 0);
   checkCard(cards[1], 0, spinnableCards[0], 0);

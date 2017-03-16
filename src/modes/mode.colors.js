@@ -11,14 +11,14 @@ export default {
     { difficulty: 'Hard', sets: 8 },
     { difficulty: 'Triples', sets: 8, setSize: 3 },
   ],
-  makeCards(totalSets, setSize, cardTypes) {
+  makeCards({ sets, setSize }, cardTypes) {
     const cards = [];
     const pallette = colorPallette.slice(0, setSize);
 
     let symbolIdx = 0;
     let colorIdx = 0;
 
-    for (let setId = 0; setId < totalSets; setId += 1) {
+    for (let setId = 0; setId < sets; setId += 1) {
       for (let c = 0; c < setSize; c += 1) {
         cards.push({
           value: setId,

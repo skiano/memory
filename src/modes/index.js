@@ -6,7 +6,6 @@ import colors from './mode.colors';
 import tuples from './mode.tuples';
 import formula from './mode.formula';
 import names from './mode.names';
-import dictionaries from './mode.dictionaries';
 
 const GAME_MODES = [
   classic,
