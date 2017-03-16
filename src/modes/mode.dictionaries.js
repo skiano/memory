@@ -8,7 +8,7 @@ const extraModes = [
     title: 'Games',
     levels: [
       {
-        difficulty: 'Mahjong Tiles',
+        difficulty: 'Mahjong',
         dictionary: [
           '\ud83c\udc10',
           '\ud83c\udc1e',
@@ -24,9 +24,73 @@ const extraModes = [
           '\ud83c\udc29',
         ],
       },
-      { difficulty: 'Alphabet 1', dictionary: 'ABCDEFGHI', sets: 6 },
+      {
+        difficulty: 'Dominos',
+        dictionary: [
+          '\ud83c\udc70',
+          '\ud83c\udc72',
+          '\ud83c\udc74',
+          '\ud83c\udc76',
+          '\ud83c\udc77',
+          '\ud83c\udc78',
+          '\ud83c\udc80',
+          '\ud83c\udc82',
+        ],
+      },
+      {
+        difficulty: 'Poker',
+        dictionary: [
+          // spades
+          '\ud83c\udcab',
+          '\ud83c\udcac',
+          '\ud83c\udcad',
+          '\ud83c\udcae',
+          // hearts
+          '\ud83c\udcbb',
+          '\ud83c\udcbc',
+          '\ud83c\udcbd',
+          '\ud83c\udcbe',
+          // diamonds
+          '\ud83c\udccb',
+          '\ud83c\udccc',
+          '\ud83c\udccd',
+          '\ud83c\udcce',
+          // clubs
+          '\ud83c\udcdb',
+          '\ud83c\udcdc',
+          '\ud83c\udcdd',
+          '\ud83c\udcde',
+        ],
+      },
     ],
   },
+  // {
+  //   title: 'Languages',
+  //   levels: [
+  //     {
+  //       difficulty: 'Braille',
+  //       dictionary: [
+  //         '\u2839',
+  //         '\u283a',
+  //         '\u283b',
+  //         '\u2833',
+  //         '\u282e',
+  //         '\u282b',
+  //       ],
+  //     },
+  //     {
+  //       difficulty: 'Cuneiform',
+  //       dictionary: [
+  //         '\ud808\udc48',
+  //         '\ud808\udc42',
+  //         '\ud808\udc49',
+  //         '\ud808\udc4c',
+  //         '\ud808\udc3e',
+  //         '\ud808\udc3c',
+  //       ],
+  //     },
+  //   ],
+  // },
 ].map(({ title, levels }) => ({
   title,
   levels,
