@@ -1,4 +1,4 @@
-const colors = [
+export const colorPallette = [
   'orange',
   'green',
   'purple',
@@ -13,7 +13,7 @@ export default {
   ],
   makeCards(totalSets, setSize, cardTypes) {
     const cards = [];
-    const pallette = colors.slice(0, setSize);
+    const pallette = colorPallette.slice(0, setSize);
 
     let symbolIdx = 0;
     let colorIdx = 0;

@@ -1,8 +1,9 @@
 import modes from './';
 import fibonacci from './mode.formula';
 import names from './mode.names';
-import colors from './mode.colors';
+import colors, { colorPallette } from './mode.colors';
 import tuples, { mixer } from './mode.tuples';
+import spin, { spinnableCards } from './mode.spin';
 
 // patch toMatchObject until jest 19 is included in kit
 function objectsMatch(received, expected) {
@@ -110,31 +111,31 @@ test('Mode: Colors', () => {
   let setSize = 2;
   let cards = colors.makeCards(sets, setSize, testCards);
 
-  expect(objectsMatch(cards[0], { value: 0, symbol: 'A', color: 'red' })).toBe(true);
-  expect(objectsMatch(cards[1], { value: 0, symbol: 'A', color: 'red' })).toBe(true);
-  expect(objectsMatch(cards[2], { value: 1, symbol: 'A', color: 'green' })).toBe(true);
-  expect(objectsMatch(cards[3], { value: 1, symbol: 'A', color: 'green' })).toBe(true);
-  expect(objectsMatch(cards[4], { value: 2, symbol: 'B', color: 'red' })).toBe(true);
-  expect(objectsMatch(cards[5], { value: 2, symbol: 'B', color: 'red' })).toBe(true);
-  expect(objectsMatch(cards[6], { value: 3, symbol: 'B', color: 'green' })).toBe(true);
-  expect(objectsMatch(cards[7], { value: 3, symbol: 'B', color: 'green' })).toBe(true);
+  expect(objectsMatch(cards[0], { value: 0, symbol: 'A', color: colorPallette[0] })).toBe(true);
+  expect(objectsMatch(cards[1], { value: 0, symbol: 'A', color: colorPallette[0] })).toBe(true);
+  expect(objectsMatch(cards[2], { value: 1, symbol: 'A', color: colorPallette[1] })).toBe(true);
+  expect(objectsMatch(cards[3], { value: 1, symbol: 'A', color: colorPallette[1] })).toBe(true);
+  expect(objectsMatch(cards[4], { value: 2, symbol: 'B', color: colorPallette[0] })).toBe(true);
+  expect(objectsMatch(cards[5], { value: 2, symbol: 'B', color: colorPallette[0] })).toBe(true);
+  expect(objectsMatch(cards[6], { value: 3, symbol: 'B', color: colorPallette[1] })).toBe(true);
+  expect(objectsMatch(cards[7], { value: 3, symbol: 'B', color: colorPallette[1] })).toBe(true);
 
   sets = 4;
   setSize = 3;
   cards = colors.makeCards(sets, setSize, testCards);
 
-  expect(objectsMatch(cards[0], { value: 0, symbol: 'A', color: 'red' })).toBe(true);
-  expect(objectsMatch(cards[1], { value: 0, symbol: 'A', color: 'red' })).toBe(true);
-  expect(objectsMatch(cards[2], { value: 0, symbol: 'A', color: 'red' })).toBe(true);
-  expect(objectsMatch(cards[3], { value: 1, symbol: 'A', color: 'green' })).toBe(true);
-  expect(objectsMatch(cards[4], { value: 1, symbol: 'A', color: 'green' })).toBe(true);
-  expect(objectsMatch(cards[5], { value: 1, symbol: 'A', color: 'green' })).toBe(true);
-  expect(objectsMatch(cards[6], { value: 2, symbol: 'A', color: 'yellow' })).toBe(true);
-  expect(objectsMatch(cards[7], { value: 2, symbol: 'A', color: 'yellow' })).toBe(true);
-  expect(objectsMatch(cards[8], { value: 2, symbol: 'A', color: 'yellow' })).toBe(true);
-  expect(objectsMatch(cards[9], { value: 3, symbol: 'B', color: 'red' })).toBe(true);
-  expect(objectsMatch(cards[10], { value: 3, symbol: 'B', color: 'red' })).toBe(true);
-  expect(objectsMatch(cards[11], { value: 3, symbol: 'B', color: 'red' })).toBe(true);
+  expect(objectsMatch(cards[0], { value: 0, symbol: 'A', color: colorPallette[0] })).toBe(true);
+  expect(objectsMatch(cards[1], { value: 0, symbol: 'A', color: colorPallette[0] })).toBe(true);
+  expect(objectsMatch(cards[2], { value: 0, symbol: 'A', color: colorPallette[0] })).toBe(true);
+  expect(objectsMatch(cards[3], { value: 1, symbol: 'A', color: colorPallette[1] })).toBe(true);
+  expect(objectsMatch(cards[4], { value: 1, symbol: 'A', color: colorPallette[1] })).toBe(true);
+  expect(objectsMatch(cards[5], { value: 1, symbol: 'A', color: colorPallette[1] })).toBe(true);
+  expect(objectsMatch(cards[6], { value: 2, symbol: 'A', color: colorPallette[2] })).toBe(true);
+  expect(objectsMatch(cards[7], { value: 2, symbol: 'A', color: colorPallette[2] })).toBe(true);
+  expect(objectsMatch(cards[8], { value: 2, symbol: 'A', color: colorPallette[2] })).toBe(true);
+  expect(objectsMatch(cards[9], { value: 3, symbol: 'B', color: colorPallette[0] })).toBe(true);
+  expect(objectsMatch(cards[10], { value: 3, symbol: 'B', color: colorPallette[0] })).toBe(true);
+  expect(objectsMatch(cards[11], { value: 3, symbol: 'B', color: colorPallette[0] })).toBe(true);
 });
 
 test('Mode: Tuples (mixer)', () => {
@@ -181,4 +182,48 @@ test('Mode: Tuples', () => {
 
   expect(cards.map(c => c.symbol).join('|'))
     .toEqual('ABC|BCA|CAB|BCD|CDB|DBC|ACD|CDA|DAC|CDE|DEC|ECD');
+});
+
+test('Mode: Spin', () => {
+  function checkCard(card, value, symbol, rotation) {
+    expect(card.symbol).toEqual(symbol);
+    expect(card.style.transformOrigin).toEqual('0% 0%');
+    expect(card.style.transform).toEqual(`rotate(${rotation}deg) translate(-50%, -50%)`);
+  }
+
+  let sets = 4;
+  let setSize = 2;
+  let cards = spin.makeCards(sets, setSize);
+
+  checkCard(cards[0], 0, spinnableCards[0], 0);
+  checkCard(cards[1], 0, spinnableCards[0], 0);
+
+  checkCard(cards[2], 2, spinnableCards[0], 180);
+  checkCard(cards[3], 2, spinnableCards[0], 180);
+
+  checkCard(cards[4], 3, spinnableCards[1], 0);
+  checkCard(cards[5], 3, spinnableCards[1], 0);
+
+  checkCard(cards[6], 4, spinnableCards[1], 180);
+  checkCard(cards[7], 4, spinnableCards[1], 180);
+
+  sets = 4;
+  setSize = 3;
+  cards = spin.makeCards(sets, setSize);
+
+  checkCard(cards[0], 0, spinnableCards[0], 0);
+  checkCard(cards[1], 0, spinnableCards[0], 0);
+  checkCard(cards[2], 0, spinnableCards[0], 0);
+
+  checkCard(cards[3], 1, spinnableCards[0], 120);
+  checkCard(cards[4], 1, spinnableCards[0], 120);
+  checkCard(cards[5], 1, spinnableCards[0], 120);
+
+  checkCard(cards[6], 2, spinnableCards[0], 240);
+  checkCard(cards[7], 2, spinnableCards[0], 240);
+  checkCard(cards[8], 2, spinnableCards[0], 240);
+
+  checkCard(cards[9], 3, spinnableCards[1], 0);
+  checkCard(cards[10], 3, spinnableCards[1], 0);
+  checkCard(cards[11], 3, spinnableCards[1], 0);
 });
