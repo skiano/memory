@@ -7,3 +7,7 @@ export const getPoints = seenCounts => (
     return points > 0 ? points : 0;
   }, 0)
 );
+
+export const getPointsFromGuess = (guess, seen) => (
+  getPoints(guess.map(cardId => seen[cardId]))
+);

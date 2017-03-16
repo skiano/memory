@@ -1,4 +1,4 @@
-import { getPoints, TOTAL_POINTS } from './scoreKeeper';
+import { getPoints, getPointsFromGuess, TOTAL_POINTS } from './scoreKeeper';
 
 test('scoreKeeper: lucky guess', () => {
   /** first time you any of the cards */
@@ -18,4 +18,10 @@ test('scoreKeeper: dropoff', () => {
   expect(getPoints([4])).toEqual(TOTAL_POINTS - 4);
   expect(getPoints([5])).toEqual(TOTAL_POINTS - 6);
   expect(getPoints([1000])).toEqual(0);
+});
+
+test('getPointsFromGuess', () => {
+  //                                            |     |  |
+  const points = getPointsFromGuess([0, 2, 3], [2, 4, 2, 2, 3]);
+  expect(points).toEqual(TOTAL_POINTS * 3);
 });
