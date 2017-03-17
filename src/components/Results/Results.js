@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import styles from './Results.scss';
 import formatTime from '../../util/formatTime';
 
-const Card = ({ nextLink, score, elapsedTime, replay }) => (
+const Card = ({ score, elapsedTime, replay }) => (
   <ReactCSSTransitionGroup
     transitionAppear
     transitionName="fade"
@@ -19,7 +19,6 @@ const Card = ({ nextLink, score, elapsedTime, replay }) => (
       <div className={styles.gameLinks}>
         <button onClick={replay}>← Play Again</button>
         <Link to="/">→ View Levels ←</Link>
-        <Link to={nextLink}>Next Level →</Link>
       </div>
     </div>
   </ReactCSSTransitionGroup>
@@ -28,7 +27,6 @@ const Card = ({ nextLink, score, elapsedTime, replay }) => (
 Card.propTypes = {
   score: PropTypes.number,
   elapsedTime: PropTypes.number,
-  nextLink: PropTypes.string,
   replay: PropTypes.func,
 };
 
