@@ -9,6 +9,7 @@
   "author": "Greg Skiano",
   "license": "Apache-2.0",
   "dependencies": {
+    "babel-preset-kyt-react": "^0.1.1",
     "classnames": "^2.2.5",
     "enzyme": "^2.6.0",
     "eventlistener": "0.0.1",
@@ -37,7 +38,4 @@
     "lint-style": "kyt lint-style",
     "kyt:help": "kyt --help"
   },
-  "devDependencies": {
-    "babel-preset-kyt-react": "^0.1.1"
-  }
 }
