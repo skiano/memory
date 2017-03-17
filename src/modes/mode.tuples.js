@@ -17,7 +17,7 @@ export default {
   levels: [
     { difficulty: 'Easy', sets: 4 },
     { difficulty: 'Hard', sets: 8 },
-    { difficulty: 'Dimented', sets: 5, setSize: 3 },
+    { difficulty: 'Demented', sets: 5, setSize: 3 },
   ],
   makeCards({ sets, setSize }, cardTypes) {
     const cards = [];

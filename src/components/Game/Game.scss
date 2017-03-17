@@ -1,5 +1,5 @@
-$header-height: 45px;
-$status-height: 80px;
+$header-height: 50px;
+$status-height: 90px;
 $table-margin: 30px;
 
 .header {
@@ -10,6 +10,14 @@ $table-margin: 30px;
   right: 0;
   height: $header-height;
   text-align: center;
+}
+
+h2 {
+  margin-top: 15px;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  color: #ddd;
 }
 
 .table {
@@ -28,12 +36,4 @@ $table-margin: 30px;
   bottom: 0;
   height: $status-height;
   text-align: center;
-}
-
-.stats {
-  font-family: Helvetica, sans-serif;
-  color: #555;
-  font-size: 25px;
-  line-height: 25px;
-  margin: 0 0 15px;
 }

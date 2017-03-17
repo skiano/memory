@@ -1,41 +1,32 @@
 $status-faded: #333;
-
-.status {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
+$dot-size: 8px;
+$juice-color: darken(limegreen, 5%);
 
 .setWrap {
-  overflow: hidden;
   display: inline-block;
+  margin: 5px 0;
 }
 
 .setBlock {
-  float: left;
-  margin: 0 10px;
+  display: inline-block;
+  margin: 0 5px;
 }
 
 .submitted {
   .cardIcon {
-    background: lighten($status-faded, 50%);
-    border-color: lighten($status-faded, 80%);
+    background: $juice-color;
   }
 }
 
 .cardIcon {
   box-sizing: border-box;
-  margin: 4px;
-  width: 10px;
-  height: 10px;
+  margin: 2px;
+  width: $dot-size;
+  height: $dot-size;
   display: inline-block;
   background: $status-faded;
-  border: 2px solid lighten($status-faded, 10%);
   transition: all 480ms ease-in-out;
   border-radius: 50%;
-  opacity: .7;
 
   .cardIcon:first-child {
     margin-top: 200px;
@@ -43,7 +34,7 @@ $status-faded: #333;
 
   &.selected {
     opacity: 1;
-    background: lighten($status-faded, 50%);
-    border-color: lighten($status-faded, 80%);
+    background: $juice-color;
+    border-color: $juice-color;
   }
 }

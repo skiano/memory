@@ -1,4 +1,4 @@
-export const TOTAL_POINTS = 20;
+export const TOTAL_POINTS = 10;
 
 export const getPoints = seenCounts => (
   seenCounts.reduce((total, count) => {

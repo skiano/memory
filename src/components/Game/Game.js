@@ -9,8 +9,14 @@ import Status from '../Status/Status.Smart';
 
 class Game extends React.Component {
   componentWillMount() {
-    const { mode, level } = this.props.routeParams;
-    this.props.setupGame(this.props.slugMap[mode].levels[level]);
+    const { levels, modes, routeParams, slugMap } = this.props;
+    const mode = slugMap[routeParams.mode];
+    const levelId = mode.levels[routeParams.level];
+    this.props.setupGame(levelId);
+    this.state = {
+      title: modes[mode.id].title,
+      difficulty: levels[levelId].difficulty,
+    };
   }
 
   render() {
@@ -18,13 +24,15 @@ class Game extends React.Component {
       <div className={styles.game}>
         <header className={styles.header}>
           <Link to="/">Home</Link>
+          <h2>{this.state.title} • <span>{this.state.difficulty}</span></h2>
         </header>
         <div className={styles.table}>
           <Table />
         </div>
         <div className={styles.status}>
-          <div className={styles.stats}><Timer /> | <Score /></div>
-          <Status />
+          <div><Timer /></div>
+          <div><Status /></div>
+          <div><Score /></div>
         </div>
       </div>
     );
@@ -34,10 +42,9 @@ class Game extends React.Component {
 Game.propTypes = {
   slugMap: PropTypes.shape({}),
   setupGame: PropTypes.func.isRequired,
-  routeParams: PropTypes.shape({
-    mode: PropTypes.string,
-    level: PropTypes.string,
-  }),
+  modes: PropTypes.arrayOf(PropTypes.shape({})),
+  levels: PropTypes.arrayOf(PropTypes.shape({})),
+  routeParams: PropTypes.shape({}),
 };
 
 export default Game;

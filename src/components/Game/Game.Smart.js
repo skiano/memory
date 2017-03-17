@@ -4,9 +4,7 @@ import { bindActionCreators } from 'redux';
 import Game from './Game';
 import { setupGame } from '../../store/actions';
 
-const mapStateToProps = ({ config }) => ({
-  slugMap: config.slugMap,
-});
+const mapStateToProps = ({ config }) => config;
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ setupGame }, dispatch);

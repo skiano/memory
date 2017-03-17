@@ -1,4 +1,36 @@
+$score-bar-height: 6px;
+$score-bar-width: 250px;
+$rounding: $score-bar-height / 2;
+$juice-color: darken(limegreen, 5%);
+
 .score {
   display: inline-block;
   margin: 0 0 15px;
+}
+
+.scoreNumber {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.scoreBar {
+  position: relative;
+  display: inline-block;
+  height: $score-bar-height;
+  width: $score-bar-width;
+  border-radius: $rounding;
+  background: #222;
+  overflow: hidden;
+}
+
+.juice {
+  // The right side is controlled by javascript
+  transition: right 300ms ease-in-out;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  min-width: 7px;
+  background: $juice-color;
+  border-radius: $rounding 3px 3px $rounding;
 }
