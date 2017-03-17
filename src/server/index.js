@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
 
           .fade-appear.fade-appear-active {
             opacity: 1;
-            transition: opacity 300ms ease 450ms;
+            transition: opacity 300ms ease 300ms;
           }
         </style>
       </head>

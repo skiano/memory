@@ -8,7 +8,7 @@ const Card = ({ nextLink, score, elapsedTime, replay }) => (
   <ReactCSSTransitionGroup
     transitionAppear
     transitionName="fade"
-    transitionAppearTimeout={500}
+    transitionAppearTimeout={1500}
     transitionEnter={false}
     transitionLeave={false}>
     <div className={styles.results}>
