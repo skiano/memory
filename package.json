@@ -1,5 +1,5 @@
 {
-  "name": "@skiano/memory",
+  "name": "skiano-memory",
   "version": "1.0.0",
   "description": "Memory the game, with a twist",
   "repository": {
@@ -9,6 +9,7 @@
   "author": "Greg Skiano",
   "license": "Apache-2.0",
   "dependencies": {
+    "babel-preset-kyt-react": "^0.1.1",
     "classnames": "^2.2.5",
     "enzyme": "^2.6.0",
     "eventlistener": "0.0.1",
@@ -30,13 +31,11 @@
   "scripts": {
     "dev": "kyt dev",
     "build": "kyt build",
+    "prestart": "npm run build",
     "start": "node build/server/main.js",
     "test": "kyt test",
     "lint": "kyt lint-script",
     "lint-style": "kyt lint-style",
     "kyt:help": "kyt --help"
-  },
-  "devDependencies": {
-    "babel-preset-kyt-react": "^0.1.1"
   }
 }

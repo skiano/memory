@@ -34,4 +34,4 @@ app.get('/', (req, res) => {
   `);
 });
 
-app.listen(parseInt(KYT.SERVER_PORT, 10));
+app.listen(process.env.PORT || parseInt(KYT.SERVER_PORT, 10));
