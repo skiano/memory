@@ -7,7 +7,7 @@
 
 Welocme to Memory, with a twist.
 
-It’s like the classic game, but you can also play variations, each of which has its own type of matching. For example, in the __Classic__ mode, a set may be two `☯` cards. However, in the __Fibonacci__ mode, a pair could be the `8` card and the `3+5` card.
+It’s like the classic game, but you can also play variations, each of which has its own type of matching. For example, in the __Classic__ variation, a set may be two `☯` cards. However, in the __Fibonacci__ variation, a pair could be the `8` card and the `3+5` card.
 
 ## Rules
 
