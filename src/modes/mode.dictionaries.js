@@ -1,8 +1,5 @@
 import { defaultCardMaker } from '../util';
 
-// { difficulty: 'Mahjong Tiles', dictionary: ['\uD83D\uDCA9', '\uD835\uDC00'], sets: 2 },
-
-
 const extraModes = [
   {
     title: 'Games',
