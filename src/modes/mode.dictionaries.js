@@ -42,22 +42,18 @@ const extraModes = [
         dictionary: [
           // spades
           '\ud83c\udcab',
-          '\ud83c\udcac',
           '\ud83c\udcad',
           '\ud83c\udcae',
           // hearts
           '\ud83c\udcbb',
-          '\ud83c\udcbc',
           '\ud83c\udcbd',
           '\ud83c\udcbe',
           // diamonds
           '\ud83c\udccb',
-          '\ud83c\udccc',
           '\ud83c\udccd',
           '\ud83c\udcce',
           // clubs
           '\ud83c\udcdb',
-          '\ud83c\udcdc',
           '\ud83c\udcdd',
           '\ud83c\udcde',
         ],
@@ -96,7 +92,14 @@ const extraModes = [
   levels,
   makeCards({ setSize, dictionary }) {
     const cardTypes = Array.isArray(dictionary) ? dictionary : dictionary.split('');
-    return defaultCardMaker({ sets: dictionary.length, setSize }, cardTypes);
+    return defaultCardMaker({
+      sets: dictionary.length,
+      setSize,
+    }, cardTypes).map(card => Object.assign({
+      style: {
+        fontSize: '1.1em',
+      },
+    }, card));
   },
 }));
 
