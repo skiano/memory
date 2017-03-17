@@ -16,7 +16,7 @@ It’s like the classic game, but you can also play variations, each of which ha
   * If they match, but the set is incomplete, they stay face up on the table.
   * If they match, and the set is complete, the set is removed from the game.
   * If they do not match, all the face up cards are turned over.
-* The game ends when the player finds all matching sets.
+* The game ends when the player finds all the matching sets.
 
 ## Scoring
 
