@@ -11,8 +11,9 @@ const App = () => (
   <Provider store={createStore()}>
     <Shell>
       <Router history={hashHistory}>
-        <Route path="/" component={Home} />
+        <Route path="/" exact component={Home} />
         <Route path="/play/:mode/:level" component={Game} />
+        <Route component={Home} />
       </Router>
     </Shell>
   </Provider>

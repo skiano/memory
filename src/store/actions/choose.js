@@ -57,16 +57,17 @@ export const guess = () => (
 
       /** Is this the end of the game? */
       const isVictory = isFinalSet(completedSets, sets);
-      if (isVictory) {
-        dispatch(stopTimer());
-        dispatch(completeGame());
-      }
 
       /** Wait for a bit and then submit the match */
       dispatch(lockGame());
       wait(getSuccessDuration(isVictory)).then(() => {
         dispatch(submitMatch(potentialSetId));
         dispatch(updateScore(getPointsFromGuess(selected, seen)));
+
+        if (isVictory) {
+          dispatch(stopTimer());
+          dispatch(completeGame());
+        }
 
         selected.forEach((id) => {
           dispatch(deselectCard(id));

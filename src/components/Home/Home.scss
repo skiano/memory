@@ -2,7 +2,7 @@ $juice-color: darken(limegreen, 5%);
 
 .home {
   text-align: center;
-  padding: 60px 0 100px;
+  padding: 80px 0 100px;
   color: #222;
 }
 
@@ -39,4 +39,8 @@ h1 {
   min-width: 90px;
   text-align: center;
   border-radius: 4px;
+
+  &:hover {
+    color: #ddd;
+  }
 }

@@ -41,6 +41,7 @@ export const setupModes = (modesConfig, cardTypes) => (
           slug: level.slug,
           difficulty: level.difficulty,
           cards: mode.makeCards(level, cardTypes),
+          link: `${mode.slug}/${level.slug}`,
           modeId,
         });
 

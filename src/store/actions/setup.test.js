@@ -87,6 +87,7 @@ test('Setup Modes', () => {
   expect(levels[0].slug).toEqual('e');
   expect(levels[0].modeId).toEqual(0);
   expect(levels[0].cards.join()).toEqual('4,2');
+  expect(levels[0].link).toEqual('mode-1/e');
 
   expect(levels[1].difficulty).toEqual('hard');
   expect(levels[1].slug).toEqual('h');

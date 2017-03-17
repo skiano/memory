@@ -1,6 +1,15 @@
 $header-height: 50px;
 $status-height: 90px;
 $table-margin: 30px;
+$juice-color: darken(limegreen, 5%);
+
+.game {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
 
 .header {
   z-index: 1000;
@@ -12,8 +21,19 @@ $table-margin: 30px;
   text-align: center;
 }
 
+.homeLink {
+  color: $juice-color;
+  text-decoration: none;
+  display: inline-block;
+  margin: 15px 0 0;
+
+  &:hover {
+    color: #ddd;
+  }
+}
+
 h2 {
-  margin-top: 15px;
+  margin-top: 8px;
   font-size: 15px;
   text-transform: uppercase;
   letter-spacing: .2em;
@@ -37,3 +57,4 @@ h2 {
   height: $status-height;
   text-align: center;
 }
+

@@ -25,6 +25,21 @@ app.get('/', (req, res) => {
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
         <title>Memory</title>
+
+        <style>
+          html {
+            background: #161616;
+          }
+
+          .fade-appear {
+            opacity: 0.01;
+          }
+
+          .fade-appear.fade-appear-active {
+            opacity: 1;
+            transition: opacity 300ms ease 450ms;
+          }
+        </style>
       </head>
       <body>
         <div id='root'></div>
