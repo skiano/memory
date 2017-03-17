@@ -1,7 +1,7 @@
 /* eslint-disable no-return-assign */
 /** cache all the results */
-const formulaOffsets = [[-2, -1], [-4, -3, -1]];
 const fibCache = {};
+const formulaOffsets = [[-2, -1], [-4, -3, -1]];
 
 const fib = (n, memo = {}) => (memo[n] || (
   (n < 2) ? ((memo[n] = n) && n) :
