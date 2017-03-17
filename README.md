@@ -35,7 +35,7 @@ At most, you get 20 points per card in the set. If the card was never seen befor
 | Double Trouble | Find sets where all card symbols match | `★☯` = `☯★` | `★☯` != `✈★` |
 | Fibonacci | Find sets where card values match | `8` = `5 + 3` | `13` != `5+3` |
 
-More modes can are added in `src/modes`
+Modes live in `src/modes`
 
 ## Dev Setup
 
