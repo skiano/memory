@@ -37,5 +37,5 @@
     "lint": "kyt lint-script",
     "lint-style": "kyt lint-style",
     "kyt:help": "kyt --help"
-  },
+  }
 }
