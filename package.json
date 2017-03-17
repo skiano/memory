@@ -32,7 +32,7 @@
   "scripts": {
     "dev": "kyt dev",
     "build": "kyt build",
-    "prestart": "npm run build",
+    "postinstall": "npm run build",
     "start": "node build/server/main.js",
     "test": "kyt test",
     "lint": "kyt lint-script",
