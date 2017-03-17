@@ -77,13 +77,14 @@ export const setup = () => (
 
 export const setupGame = levelId => (
   (dispatch, getState) => {
+    let levels = [];
     let cards;
 
     /** allow setupModes to be circumvented */
     if (Array.isArray(levelId)) {
       cards = levelId;
     } else {
-      const { levels } = getState().config;
+      levels = getState().config.levels;
       cards = shuffle(levels[levelId].cards);
     }
 
@@ -95,6 +96,12 @@ export const setupGame = levelId => (
       sets: makeSets(cards),
       remaining: cards.map((c, i) => i),
       seen: cards.map(() => 0),
+    }));
+
+    dispatch(setConfig({
+      currentLevel: levelId,
+      previousLevel: levelId > 0 ? levelId - 1 : null,
+      nextLevel: levelId < levels.length - 1 ? levelId += 1 : null,
     }));
   }
 );

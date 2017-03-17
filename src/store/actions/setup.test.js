@@ -21,7 +21,7 @@ test('Setup Game', () => {
   };
   setupGame(levelId)(dispatch, () => testState);
 
-  const createGame = dispatch.mock.calls[dispatch.mock.calls.length - 1][0];
+  const createGame = dispatch.mock.calls[2][0];
   const { payload } = createGame;
   expect(createGame.type).toEqual('CREATE_GAME');
   expect(payload.cards.join('')).toEqual('CCBBAA');
@@ -33,12 +33,72 @@ test('Setup Game: pass cards', () => {
   const testState = {};
   setupGame(['A', 'A', 'B', 'B', 'C', 'C'])(dispatch, () => testState);
 
-  const createGame = dispatch.mock.calls[dispatch.mock.calls.length - 1][0];
+  const createGame = dispatch.mock.calls[2][0];
   const { payload } = createGame;
   expect(createGame.type).toEqual('CREATE_GAME');
   expect(payload.cards.join('')).toEqual('AABBCC');
   expect(payload.seen.join('')).toEqual('000000');
   expect(payload.sets.map(s => s.join()).join('|')).toEqual('0,1|2,3|4,5');
+});
+
+test('Setup Game: previous/next beginning', () => {
+  const testState = {
+    config: {
+      levels: [
+        { cards: ['a', 'b', 'c'] },
+        { cards: ['x', 'y', 'z'] },
+        { cards: [1, 2, 3] },
+      ],
+    },
+  };
+  setupGame(0)(dispatch, () => testState);
+
+  const createGame = dispatch.mock.calls[3][0];
+  const { payload } = createGame;
+  expect(createGame.type).toEqual('SET_CONFIG');
+  expect(payload.currentLevel).toEqual(0);
+  expect(payload.previousLevel).toEqual(null);
+  expect(payload.nextLevel).toEqual(1);
+});
+
+test('Setup Game: previous/next middle', () => {
+  const testState = {
+    config: {
+      levels: [
+        { cards: ['a', 'b', 'c'] },
+        { cards: ['x', 'y', 'z'] },
+        { cards: [1, 2, 3] },
+      ],
+    },
+  };
+  setupGame(1)(dispatch, () => testState);
+
+  const createGame = dispatch.mock.calls[3][0];
+  const { payload } = createGame;
+  expect(createGame.type).toEqual('SET_CONFIG');
+  expect(payload.currentLevel).toEqual(1);
+  expect(payload.previousLevel).toEqual(0);
+  expect(payload.nextLevel).toEqual(2);
+});
+
+test('Setup Game: previous/next end', () => {
+  const testState = {
+    config: {
+      levels: [
+        { cards: ['a', 'b', 'c'] },
+        { cards: ['x', 'y', 'z'] },
+        { cards: [1, 2, 3] },
+      ],
+    },
+  };
+  setupGame(2)(dispatch, () => testState);
+
+  const createGame = dispatch.mock.calls[3][0];
+  const { payload } = createGame;
+  expect(createGame.type).toEqual('SET_CONFIG');
+  expect(payload.currentLevel).toEqual(2);
+  expect(payload.previousLevel).toEqual(1);
+  expect(payload.nextLevel).toEqual(null);
 });
 
 test('Setup Modes', () => {
