@@ -26,7 +26,7 @@ _Please Note: So far this is only tested in Chrome on a desktop._
 
 Every time you find a matching set you get points. How many points you get depends on how many times you saw each card. 
 
-At most, you get 20 points per card in the set. If the card was never seen before, you get all 20 points. If you only saw it once before, you still get all 20 points because it is the best you can do without luck. After that, the card is worth two fewer points each time you see it. So a card you saw twice is only worth 18, and a card you saw three times is worth 16, and so on until you reach zero. You cannot get negative points.
+At most, you get 10 points per card in the set. If the card was never seen before, you get all 10 points. If you only saw it once before, you still get all 10 points because it is the best you can do without luck. After that, the card is worth two fewer points each time you see it. So a card you saw twice is only worth 8, and a card you saw three times is worth 6, and so on until you reach zero. You cannot get negative points.
 
 ## Game Modes
 
