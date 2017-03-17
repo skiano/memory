@@ -4,6 +4,7 @@ import styles from './Home.scss';
 
 const Home = ({ modes }) => (
   <div className={styles.home}>
+    <h1>Memory, with a twist.</h1>
     {
       modes.map((mode, modeId) => (
         <div key={modeId} className={styles.mode}>
