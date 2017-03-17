@@ -12,7 +12,6 @@ class Game extends React.Component {
   componentWillMount() {
     /** look into cleaner ways to do this */
     /** perhaps using: https://github.com/ReactTraining/react-router/tree/master/packages/react-router-redux */
-
     /** fails on bad params! */
 
     const { levels, modes, routeParams, slugMap } = this.props;
@@ -31,7 +30,6 @@ class Game extends React.Component {
   }
 
   reset() {
-    console.log('reset');
     this.props.setupGame(this.state.levelId);
   }
 
@@ -51,7 +49,7 @@ class Game extends React.Component {
           <div><Score /></div>
         </div>
         {this.props.isComplete ? (
-          <Results replay={this.reset} nextLink="/play/classic/hard" />
+          <Results replay={this.reset} />
         ) : null}
       </div>
     );
