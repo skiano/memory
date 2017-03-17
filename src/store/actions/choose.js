@@ -64,15 +64,16 @@ export const guess = () => (
         dispatch(submitMatch(potentialSetId));
         dispatch(updateScore(getPointsFromGuess(selected, seen)));
 
-        if (isVictory) {
-          dispatch(stopTimer());
-          dispatch(completeGame());
-        }
-
         selected.forEach((id) => {
           dispatch(deselectCard(id));
           dispatch(removeCard(id));
         });
+        
+        if (isVictory) {
+          dispatch(stopTimer());
+          dispatch(completeGame());
+        }
+        
         dispatch(unlockGame());
       });
     } else {
