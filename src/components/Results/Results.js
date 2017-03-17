@@ -18,7 +18,7 @@ const Card = ({ score, elapsedTime, replay }) => (
       </p>
       <div className={styles.gameLinks}>
         <button onClick={replay}>← Play Again</button>
-        <Link to="/">→ View Levels ←</Link>
+        <Link to="/">View Levels →</Link>
       </div>
     </div>
   </ReactCSSTransitionGroup>
