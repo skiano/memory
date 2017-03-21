@@ -36,7 +36,7 @@ At most, you get 10 points per card in the set. If the card was never seen befor
 | Spin | Find sets with matching symbol and orientation | `↑` = `↑` | `↓` != `↑` |
 | Namicon | Find sets with matching meanings | `★` = `star` | `☯` != `star` |
 | Chromatic | Find sets with matching symbol and color | `★` = `★` | `★` != `☆` |
-| Double Trouble | Find sets where all card symbols match | `★☯` = `☯★` | `★☯` != `✈★` |
+| Twisted | Find sets where all card symbols match | `★☯` = `☯★` | `★☯` != `✈★` |
 | Fibonacci | Find sets where card values match | `8` = `5 + 3` | `13` != `5+3` |
 
 Modes live in `src/modes`
