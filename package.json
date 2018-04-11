@@ -31,7 +31,7 @@
   },
   "scripts": {
     "dev": "kyt dev",
-    "build": "kyt build",
+    "build": "kyt build && node createStaticHtml",
     "postinstall": "npm run build",
     "start": "node build/server/main.js",
     "test": "kyt test",
