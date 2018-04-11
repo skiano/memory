@@ -1,4 +1,3 @@
-import fetch from 'isomorphic-fetch';
 import GAME_MODES from '../../modes';
 
 import {
@@ -61,17 +60,24 @@ export const setupModes = (modesConfig, cardTypes) => (
 
 export const setup = () => (
   (dispatch) => {
-    fetch('/api').then((response) => {
-      if (response.status >= 400) {
-        throw new Error('Bad response from server');
+    // NOTE: there used to be an api call here, but i removed it
+    // for static deployment
+    const createLevels = () => [
+      {
+        cards: ['✈','♘','✈','♫','♫','☆','♘','☆'],
+        difficulty: 'easy'
+      },
+      {
+        cards: ['❄','⍨','♘','✈','☯','♠','☆','❄','♫','♫','☯','☆','✈','⍨','♠','♘'],
+        difficulty: 'hard'
       }
+    ]
 
-      response.json().then(({ levels }) => {
-        /** put two levels together and remove dublicates */
-        const cardTypes = unique(levels[0].cards.concat(levels[1].cards));
-        dispatch(setupModes(GAME_MODES, cardTypes));
-      });
-    });
+    setTimeout(() => {
+      const levels = createLevels();
+      const cardTypes = unique(levels[0].cards.concat(levels[1].cards));
+      dispatch(setupModes(GAME_MODES, cardTypes));
+    }, 20);
   }
 );
 

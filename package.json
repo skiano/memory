@@ -38,5 +38,10 @@
     "lint": "kyt lint-script",
     "lint-style": "kyt lint-style",
     "kyt:help": "kyt --help"
+  },
+  "devDependencies": {
+    "install": "^0.11.0",
+    "npm": "^5.8.0",
+    "rimraf": "^2.6.2"
   }
 }
