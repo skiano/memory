@@ -77,7 +77,7 @@ export const setup = () => (
       const levels = createLevels();
       const cardTypes = unique(levels[0].cards.concat(levels[1].cards));
       dispatch(setupModes(GAME_MODES, cardTypes));
-    }, 20);
+    }, 10);
   }
 );
 
