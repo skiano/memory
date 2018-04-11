@@ -11,7 +11,7 @@ It’s like the classic game, but you can also play variations, each of which ha
 
 _Please Note: So far this is only tested in Chrome on a desktop._
 
-[Play the game.](https://skiano-memory.herokuapp.com)
+[Play the game.](https://skiano.github.io/memory)
 
 ## Rules
 
